@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Fitdrift Create Path</title>
+	<script type="text/javascript"
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyApDXRNzq6eGqWKUbufj3MzhJ4P0RF0Ghw&amp;sensor=false">
+		
+	</script>
+	<link href="resources/css/athleticgis.css" rel="stylesheet" />
+	<link href="resources/css/bootstrap.css" rel="stylesheet" />
+	<link rel="shortcut icon" href="#{resource['images/favicon.ico']}" type="image/x-icon" />
+</h:head>
+<h:body>
+	<p:layout fullPage="true">
+
+		<p:layoutUnit position="north" size="50" resizable="false"
+			closable="false" collapsible="false">
+			<ui:insert name="header">
+				<ui:include src="/template/header.xhtml" />
+			</ui:insert>
+
+
+		</p:layoutUnit>
+
+		<p:layoutUnit position="south" size="50" resizable="false"
+			closable="false" collapsible="false">
+			<ui:insert name="footer">
+				<ui:include src="/template/footer.xhtml" />
+			</ui:insert>
+		</p:layoutUnit>
+
+		<p:layoutUnit position="center">
+		
+		
+			<h:form>
+				<p:tabMenu activeIndex="3">
+					<p:menuitem value="Dashboard" url="/faces/dashboard.xhtml" />
+					<p:menuitem value="Upload" url="/faces/upload.xhtml" />
+					<p:menuitem value="My Maps" url="/faces/mymaps.xhtml" />
+					<p:menuitem value="Create Path" url="/faces/createpath.xhtml" />
+					<p:menuitem value="Preferences" url="/faces/preferences.xhtml" />
+				</p:tabMenu>
+				<h:panelGrid styleClass="panelGridCenter">
+					<h:panelGrid columns="3" styleClass="panelGridCenter" width="50%">
+						<h:inputText value="#{createPathBean.myMapName}"
+							style="width : 400px" size="40"></h:inputText>
+
+						<h:commandButton value="Save" action="#{createPathBean.savePath}">
+						</h:commandButton>
+						<h:commandButton value="Restart" action="#{createPathBean.restartPath}">
+						</h:commandButton>
+					</h:panelGrid>
+				</h:panelGrid>
+				
+				<p:growl id="messages" showDetail="true" sticky="true" autoUpdate="true" /> 
+			</h:form>
+
+			<p:gmap id="gmap" center="#{createPathBean.center}" zoom="13"
+				type="HYBRID" style="width:100%;height:400px"
+				onPointClick="handlePointClick(event);" widgetVar="map" />
+
+			<p:dialog widgetVar="dlg" showEffect="fade">
+				<h:form prependId="false">
+					<h:panelGrid columns="2">
+            			<p:inputText id="title" value="#{createPathBean.title}" placeholder="Title"/> 
+						<f:facet name="footer">
+							<h:panelGrid styleClass="panelGridCenter" columns="2">
+								<p:commandButton value="Add"
+									actionListener="#{createPathBean.addMarker}"
+									oncomplete="markerAddComplete()" />
+								<p:commandButton value="Cancel" onclick="return cancel()" />
+							</h:panelGrid>
+						</f:facet>
+					</h:panelGrid>
+
+					<h:inputHidden id="lat" value="#{createPathBean.lat}" />
+					<h:inputHidden id="lng" value="#{createPathBean.lng}" />
+				</h:form>
+			</p:dialog>
+
+			<script type="text/javascript">
+				var currentMarker = null;
+
+				function handlePointClick(event) {
+					if(currentMarker === null) {  
+			            document.getElementById('lat').value = event.latLng.lat();  
+			            document.getElementById('lng').value = event.latLng.lng();  
+			  
+			            currentMarker = new google.maps.Marker({  
+			                position:new google.maps.LatLng(event.latLng.lat(), event.latLng.lng())  
+			            });  
+			  
+			            PF('map').addOverlay(currentMarker);  
+			  
+			            PF('dlg').show();  
+			        } 
+				}
+
+				function markerAddComplete() {
+					var title = document.getElementById('title');  
+			        currentMarker.setTitle(title.value);  
+			        title.value = "";  
+			  
+			        currentMarker = null;  
+			        PF('dlg').hide();
+				}
+
+				function cancel() {
+					PF('dlg').hide();
+					currentMarker.setMap(null);
+					currentMarker = null;
+
+					return false;
+				}
+			</script>
+		</p:layoutUnit>
+
+	</p:layout>
+</h:body>
+</html>

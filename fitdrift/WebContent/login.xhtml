@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:p="http://primefaces.org/ui">
+<h:head>
+        <title>Fitdrift Login</title>
+        <link href="resources/css/athleticgis.css" rel="stylesheet" />
+        <link href="resources/css/bootstrap.css" rel="stylesheet" />
+        <link rel="shortcut icon" href="#{resource['images/favicon.ico']}" type="image/x-icon" />
+</h:head>
+<h:body>
+        <f:view>
+                <p:layout fullPage="true">
+
+                        <p:layoutUnit position="north" size="50" resizable="false"
+                                closable="false" collapsible="false" >
+                                <h:panelGrid columns="2" width="100%"
+                                        columnClasses="headerCol1,headerCol2" styleClass="header">
+                                        <h:graphicImage library="images" name="fitdrift20131207_black.png" style="padding:0 0 0 10px"/>
+                                        <!--  <h:outputLabel value="Athletic GIS" styleClass="logoFont"></h:outputLabel>-->
+
+                                </h:panelGrid>
+
+                        </p:layoutUnit>
+
+                        <p:layoutUnit position="south" size="50" resizable="false"
+                                closable="false" collapsible="false">
+                                <ui:insert name="footer">
+                                        <ui:include src="/template/footer.xhtml" />
+                                </ui:insert>
+                        </p:layoutUnit>
+
+                        <p:layoutUnit position="center">
+                                <h:form id="loginForm" prependId="false">
+                                        <p:growl id="growl" showDetail="true" sticky="true" /> 
+                                        <p:panelGrid columns="1" styleClass="loginPanelGridCenter">
+                                                <f:facet name="header">
+                                                        <h:outputText value="Please sign in" styleClass="loginPanelHeaderFont"></h:outputText>
+                                                        <!--  <h2>Please sign in</h2>-->
+                                                </f:facet>
+
+                                                <p:inputText id="j_username" required="true"
+                                                        styleClass="form-control" placeholder="Username"
+                                                        requiredMessage="Username Required"></p:inputText>
+                                                <p:password id="j_password" required="true" 
+                                                        styleClass="form-control" feedback="false" placeholder="Password"
+                                                        requiredMessage="Password Required" value="#{loginBean.password}"/>
+
+                                                <h:panelGrid columns="2" style="margin-bottom:10px;"
+                                                        cellpadding="5">        
+                                                        <h:outputText value="Remember Me: " />
+                                                        <p:selectBooleanCheckbox  id="_spring_security_remember_me" value="#{loginBean.rememberMe}"/>
+                                                </h:panelGrid>
+                                                <h:commandButton value="Sign In" id="login" style="width : 210px;"
+                                                        action="#{loginBean.doLogin}"></h:commandButton>
+                                        </p:panelGrid>
+
+                                </h:form>
+                        </p:layoutUnit>
+
+                </p:layout>
+        </f:view>
+</h:body>
+</html>

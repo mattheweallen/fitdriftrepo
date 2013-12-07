@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Fitdrift Upload</title>
+	<link href="resources/css/athleticgis.css" rel="stylesheet" />
+	<link href="resources/css/bootstrap.css" rel="stylesheet" />
+	<link rel="shortcut icon" href="#{resource['images/favicon.ico']}" type="image/x-icon" />
+</h:head>
+<h:body>
+	
+		<p:layout fullPage="true">
+			
+			<p:layoutUnit position="north" size="50" resizable="false"
+				closable="false" collapsible="false">
+				<ui:insert name="header">
+					<ui:include src="/template/header.xhtml" />
+				</ui:insert>
+				
+			</p:layoutUnit>
+
+			<p:layoutUnit position="south" size="50" resizable="false"
+				closable="false" collapsible="false">
+				<ui:insert name="footer">
+					<ui:include src="/template/footer.xhtml" />
+				</ui:insert>
+			</p:layoutUnit>
+
+			<p:layoutUnit position="center">
+				<h:form enctype="multipart/form-data">
+				<p:tabMenu activeIndex="1">
+					<p:menuitem value="Dashboard" url="/faces/dashboard.xhtml" />
+					<p:menuitem value="Upload" url="/faces/upload.xhtml" />
+					<p:menuitem value="My Maps" url="/faces/mymaps.xhtml" />
+					<p:menuitem value="Create Path" url="/faces/createpath.xhtml" />
+					<p:menuitem value="Preferences" url="/faces/preferences.xhtml" />
+				</p:tabMenu>
+				
+					<h:outputLabel value="Select up to 10 valid .FIT and/or .GPX files To Upload: "></h:outputLabel>
+
+					<p:fileUpload id="fileUploader"
+						fileUploadListener="#{fileUploadController.handleFileUpload}"
+						mode="advanced" dragDropSupport="false" update="messages" multiple="true"
+						sizeLimit="10000000" fileLimit="10" allowTypes="/(\.|\/)(gpx|fit)$/" />
+
+					<p:growl id="messages" showDetail="true" />
+
+			</h:form>	
+			</p:layoutUnit>
+			
+		</p:layout>
+	
+</h:body>
+</html>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+	version="2.0">
+	<persistence-unit name="com.fitdrift.jpa" transaction-type="RESOURCE_LOCAL">
+				<description>
+            Persistence unit for fitdrift
+        </description>
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		<class>com.fitdrift.domain.user.UserRole</class>
+		<class>com.fitdrift.domain.activity.ActivityPoint</class>
+		<class>com.fitdrift.domain.activity.Activity</class>
+		<class>com.fitdrift.domain.user.User</class>
+		<class>com.fitdrift.domain.user.UserPreferences</class>
+		<class>com.fitdrift.domain.activity.MyMap</class>
+		<class>com.fitdrift.domain.activity.MyMapMarker</class>
+
+		<properties>
+			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/fitdrift" />
+			<property name="javax.persistence.jdbc.user" value="fitdrift" />
+			<property name="javax.persistence.jdbc.password" value="ripple93" />
+
+			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
+			<property name="hibernate.show_sql" value="true" />
+			<property name="hibernate.hbm2ddl.auto" value="update" />
+
+			<!-- Important -->
+        	<property name="hibernate.connection.provider_class" value="org.hibernate.connection.C3P0ConnectionProvider" />
+			<property name="hibernate.c3p0.min_size" value="5"></property>
+			<property name="hibernate.c3p0.max_size" value="20"></property>
+			<property name="hibernate.c3p0.timeout" value="300"></property>
+			<property name="hibernate.c3p0.max_statements" value="50"></property>
+			<property name="hibernate.c3p0.idle_test_period" value="3000"></property>
+		</properties>
+	</persistence-unit>
+</persistence>
