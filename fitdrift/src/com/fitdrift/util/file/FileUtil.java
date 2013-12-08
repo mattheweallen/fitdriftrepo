@@ -20,7 +20,21 @@ import com.fitdrift.util.file.gpx.beans.GPX;
 import com.fitdrift.util.file.gpx.beans.Track;
 import com.fitdrift.util.file.gpx.beans.Waypoint;
 
+/**
+ * Utility class for files.
+ * 
+ * @author Matthew Allen
+ * @version 20131208
+ */
 public class FileUtil {
+	
+	/**
+	 * Finds a files extension.
+	 * Returns the string after the last dot in fileName.
+	 * 
+	 * @param fileName
+	 * @return
+	 */
 	public static String fileExtension(String fileName) {
 		String extension = null;
 
@@ -31,6 +45,14 @@ public class FileUtil {
 		return extension;
 	}
 
+	/**
+	 * 
+	 * @param file
+	 * @param username
+	 * @throws ParserConfigurationException
+	 * @throws SAXException
+	 * @throws IOException
+	 */
 	public static void uploadAcitvityPointsFromGPX(UploadedFile file, String username) throws ParserConfigurationException, SAXException, IOException {
 		InputStream in = file.getInputstream();
 		GPXParser p = new GPXParser();
@@ -59,6 +81,12 @@ public class FileUtil {
 		in.close();
 	}
 	
+	/**
+	 * 
+	 * @param file
+	 * @param username
+	 * @throws IOException
+	 */
 	public static void uploadFitFile(UploadedFile file, String username) throws IOException {
 		List<ActivityPoint> activityPoints = FitDecoder.decode(file.getInputstream());
 		Activity a = new Activity();

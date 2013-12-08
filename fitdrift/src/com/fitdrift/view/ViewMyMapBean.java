@@ -26,6 +26,11 @@ import com.fitdrift.domain.activity.MyMapMarker;
 import com.fitdrift.model.AthleticgisFacade;
 import com.fitdrift.util.gis.GISCalculator;
 
+/**
+ * 
+ * @author Matthew Allen
+ * @version 20131208
+ */
 @ManagedBean
 @RequestScoped
 public class ViewMyMapBean implements Serializable {
