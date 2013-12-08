@@ -10,6 +10,14 @@ import com.garmin.fit.FitRuntimeException;
 import com.garmin.fit.MesgBroadcaster;
 import com.garmin.fit.RecordMesgListener;
 
+/**
+ * This class is creates a Fit Listener and returns the Activity points
+ * found by the listener.
+ * 
+ * @author Matthew Allen
+ * @version 20131208
+ *
+ */
 public class FitDecoder {
 	public static List<ActivityPoint> decode(InputStream in) throws IOException {
 		Decode decode = new Decode();
@@ -50,7 +58,7 @@ public class FitDecoder {
 		//	throw new RuntimeException(e);
 	//	}
 
-		System.out.println("Decoded FIT file.");
+		//System.out.println("Decoded FIT file.");
 		return listener.getActivityPoints();
 	}
 	
