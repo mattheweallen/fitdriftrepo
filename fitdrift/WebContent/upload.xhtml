@@ -41,12 +41,12 @@
 					<p:menuitem value="Preferences" url="/faces/preferences.xhtml" />
 				</p:tabMenu>
 				
-					<h:outputLabel value="Select up to 10 valid .FIT and/or .GPX files To Upload: "></h:outputLabel>
+					<h:outputLabel value="Select up to 25 valid .FIT and/or .GPX files To Upload: "></h:outputLabel>
 
 					<p:fileUpload id="fileUploader"
 						fileUploadListener="#{fileUploadController.handleFileUpload}"
 						mode="advanced" dragDropSupport="false" update="messages" multiple="true"
-						sizeLimit="10000000" fileLimit="10" allowTypes="/(\.|\/)(gpx|fit)$/" />
+						sizeLimit="25000000" fileLimit="25" allowTypes="/(\.|\/)(gpx|fit|FIT|GPX)$/" />
 
 					<p:growl id="messages" showDetail="true" />
 
