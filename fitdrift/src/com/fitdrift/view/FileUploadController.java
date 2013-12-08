@@ -73,7 +73,7 @@ public class FileUploadController {
 		if ("gpx".equals(extension)) {
 			FileUtil.uploadAcitvityPointsFromGPX(file, userInfoBean.getUsername());
 
-		} else if ("fit".equals(extension)) {
+		} else if ("fit".equals(extension.toLowerCase().trim())) {
 			FileUtil.uploadFitFile(file, userInfoBean.getUsername());
 //			try {
 //				// FitDecoder d = new FitDecoder();
