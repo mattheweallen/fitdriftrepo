@@ -2,19 +2,22 @@ package com.fitdrift.view;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.RequestScoped;
-import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 
 import org.primefaces.model.LazyDataModel;
 
 import com.fitdrift.domain.activity.Activity;
-import com.fitdrift.model.AthleticgisFacade;
 import com.fitdrift.view.model.ActivityDataModel;
 
 import java.io.Serializable;
-import java.util.List;
 
+/**
+ * This bean is behind the dashboard page. Its primary purpose is to create a 
+ * paginated lazy data model.
+ * 
+ * @author Matthew Allen
+ * @version 20131208
+ */
 @ManagedBean
 @ViewScoped
 public class DashboardBean implements Serializable {

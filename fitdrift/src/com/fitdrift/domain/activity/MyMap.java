@@ -18,10 +18,11 @@ import javax.persistence.Table;
 import com.fitdrift.domain.user.User;
 
 /**
+ * This class holds data related to a user defined map.
+ * Entity class for MyMap.
+ * 
  * @author Matthew Allen
  * @version 20131201
- * Entity class for MyMap.
- * This class holds data related to a user defined map.
  */
 @Entity
 @Table

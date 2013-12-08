@@ -1,11 +1,6 @@
 package com.fitdrift.view;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -17,15 +12,14 @@ import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.UploadedFile;
 import org.xml.sax.SAXException;
 
-import com.fitdrift.domain.activity.ActivityPoint;
-import com.fitdrift.model.AthleticgisFacade;
 import com.fitdrift.util.file.FileUtil;
-import com.fitdrift.util.file.fit.FitDecoder;
-import com.fitdrift.util.file.gpx.GPXParser;
-import com.fitdrift.util.file.gpx.beans.GPX;
-import com.fitdrift.util.file.gpx.beans.Track;
-import com.fitdrift.util.file.gpx.beans.Waypoint;
 
+/**
+ * This bean handles file uploads.
+ * 
+ * @author Matthew Allen
+ * @version 20131208
+ */
 @ManagedBean
 @RequestScoped
 public class FileUploadController {

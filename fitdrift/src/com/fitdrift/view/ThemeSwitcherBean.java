@@ -1,7 +1,5 @@
 package com.fitdrift.view;
 
-import java.util.ArrayList;  
-import java.util.List;  
 import java.util.Map;  
 import java.util.TreeMap;  
 
@@ -10,6 +8,13 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 
+/**
+ * This bean is used in the preferences page. It holds the different types of skins
+ * that a user can choose from to define their own look and feel.
+ * 
+ * @author Matthew Allen
+ * @version 20131208
+ */
 @ManagedBean
 @SessionScoped
 public class ThemeSwitcherBean {
@@ -87,7 +92,7 @@ public class ThemeSwitcherBean {
     }
 
     public void saveTheme() {  
-    	System.out.println(theme);
+    	//System.out.println(theme);
     	userInfoBean.setTheme(theme); // theme to database
     }
 }

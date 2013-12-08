@@ -10,31 +10,9 @@ import java.util.List;
 import javax.faces.application.FacesMessage;  
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;  
 import javax.faces.event.ActionEvent;  
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-import org.primefaces.model.map.DefaultMapModel;  
-import org.primefaces.model.map.LatLng;  
-import org.primefaces.model.map.MapModel;
-import org.primefaces.model.map.Marker;
-import org.primefaces.model.map.Polyline;
 
 import com.fitdrift.domain.activity.MyMap;
 import com.fitdrift.domain.activity.MyMapMarker;
@@ -43,6 +21,8 @@ import com.fitdrift.util.gis.GISCalculator;
 
 /**
  * Managed Bean for createpath.xhtml
+ * Primary purpose is to hold user defined markers on map.
+ * 
  * @author Matthew Allen
  * @version 20131203
  *

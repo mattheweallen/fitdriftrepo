@@ -12,10 +12,12 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
- * @author Matthew Allen
- * @version 20131129
  * Entity class for ActivityPoint.
  * This class will hold data related to an instant in time for an activity.
+ * 
+ * @author Matthew Allen
+ * @version 20131129
+ 
  */
 @Entity
 @Table

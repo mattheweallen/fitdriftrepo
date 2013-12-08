@@ -7,14 +7,11 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 
-import java.io.Serializable;
 import java.text.DecimalFormat;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
-import javax.faces.event.ActionEvent;
-
 import org.primefaces.event.map.OverlaySelectEvent;
 import org.primefaces.model.map.DefaultMapModel;
 import org.primefaces.model.map.LatLng;
@@ -25,6 +22,13 @@ import com.fitdrift.domain.activity.ActivityPoint;
 import com.fitdrift.model.AthleticgisFacade;
 import com.fitdrift.util.gis.GISCalculator;
 
+/**
+ * This bean constructs a polyline model to be shown in viewmymap page.
+ * The polyline is contructed from upload data.
+ * 
+ * @author Matthew Allen
+ * @version 20131208
+ */
 @ManagedBean
 @RequestScoped
 public class MapBean implements Serializable {

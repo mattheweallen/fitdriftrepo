@@ -9,6 +9,12 @@ import javax.faces.event.PhaseListener;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.web.WebAttributes;
 
+/**
+ * This Phase Listener listens for Spring Security Exceptions, and translates them to faces exceptions.
+ * 
+ * @author Matthew Allen
+ * @version 20131208
+ */
 public class LoginErrorPhaseListener implements PhaseListener {
 	private static final long serialVersionUID = 8718514904179695384L;
 

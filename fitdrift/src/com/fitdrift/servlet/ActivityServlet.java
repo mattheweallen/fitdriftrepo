@@ -14,6 +14,8 @@ import com.fitdrift.domain.activity.ActivityPoint;
 import com.fitdrift.model.AthleticgisFacade;
 
 /**
+ * This servlet is no longer being used. May be deleted.
+ * 
  * Servlet implementation class ActivityServlet
  */
 @WebServlet("/ActivityServlet")

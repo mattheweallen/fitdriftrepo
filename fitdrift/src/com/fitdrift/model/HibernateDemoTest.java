@@ -1,6 +1,7 @@
 package com.fitdrift.model;
 
 //import static org.junit.Assert.*;
+//for testing purposes only
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;

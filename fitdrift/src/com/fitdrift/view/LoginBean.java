@@ -19,6 +19,13 @@ import org.springframework.stereotype.Component;
 
 import com.fitdrift.model.user.UserDao;
 
+/**
+ * This bean handles the interaction between jsf and spring security.
+ * doLogin is called from the login page, when user is logging into application.
+ * 
+ * @author Matthew Allen
+ * @version 20131208
+ */
 @Component
 @Scope("request")
 @ManagedBean

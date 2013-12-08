@@ -5,10 +5,7 @@ import java.io.InputStream;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.Scanner;
-
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -28,6 +25,13 @@ import com.fitdrift.util.file.gpx.beans.GPX;
 import com.fitdrift.util.file.gpx.beans.Track;
 import com.fitdrift.util.file.gpx.beans.Waypoint;
 
+/**
+ * This was originally used for file upload. It has been replaced by FilUploadController.
+ * This class may be deleted in the future. Make sure it is not being used by anything. 
+ * 
+ * @author Matthew Allen
+ * @version 20131208
+ */
 @ManagedBean
 @RequestScoped
 public class UploadBean implements Serializable {

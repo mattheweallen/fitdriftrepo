@@ -10,34 +10,28 @@
 	<title>Fitdrift View My Map</title>
 	<script type="text/javascript"
 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyApDXRNzq6eGqWKUbufj3MzhJ4P0RF0Ghw&amp;sensor=false">
-		
 	</script>
 	<link href="#{resource['css/fitdrift.css']}" rel="stylesheet" />
-    <link href="#{resource['css/bootstrap.css']}" rel="stylesheet" />
-    <link rel="shortcut icon" href="#{resource['images/favicon.png']}" type="image/x-icon" />
+	<link href="#{resource['css/bootstrap.css']}" rel="stylesheet" />
+	<link rel="shortcut icon" href="#{resource['images/favicon.png']}"
+		type="image/x-icon" />
 </h:head>
 <h:body>
-
 	<p:layout fullPage="true">
-		
-			<p:layoutUnit position="north" size="50" resizable="false"
-				closable="false" collapsible="false">
-				<ui:insert name="header">
-					<ui:include src="/template/header.xhtml" />
-				</ui:insert>
-				
-
-			</p:layoutUnit>
-
-			<p:layoutUnit position="south" size="50" resizable="false"
-				closable="false" collapsible="false">
-				<ui:insert name="footer">
-					<ui:include src="/template/footer.xhtml" />
-				</ui:insert>
-			</p:layoutUnit>
-
-			<p:layoutUnit position="center">
-				<h:form>
+		<p:layoutUnit position="north" size="50" resizable="false"
+			closable="false" collapsible="false">
+			<ui:insert name="header">
+				<ui:include src="/template/header.xhtml" />
+			</ui:insert>
+		</p:layoutUnit>
+		<p:layoutUnit position="south" size="50" resizable="false"
+			closable="false" collapsible="false">
+			<ui:insert name="footer">
+				<ui:include src="/template/footer.xhtml" />
+			</ui:insert>
+		</p:layoutUnit>
+		<p:layoutUnit position="center">
+			<h:form>
 				<p:tabMenu activeIndex="-1">
 					<p:menuitem value="Dashboard" url="/faces/dashboard.xhtml" />
 					<p:menuitem value="Upload" url="/faces/upload.xhtml" />
@@ -55,27 +49,20 @@
 							<f:param name="mymap_id"
 								value="#{request.getParameter('mymap_id')}" />
 						</h:commandButton>
-						<h:commandButton value="Delete"
-							action="#{myMapBean.removeMyMap}">
+						<h:commandButton value="Delete" action="#{myMapBean.removeMyMap}">
 							<f:param name="mymap_id"
 								value="#{request.getParameter('mymap_id')}" />
 						</h:commandButton>
 					</h:panelGrid>
-
 				</h:panelGrid>
-
-
-				<p:growl id="messages" showDetail="true" sticky="true" autoUpdate="true" /> 
-
-				<p:gmap  fitBounds="true" type="HYBRID"
-					style="width:100%;height:400px" model="#{viewMyMapBean.polylineModel}" >
-					
+				<p:growl id="messages" showDetail="true" sticky="true"
+					autoUpdate="true" />
+				<p:gmap fitBounds="true" type="HYBRID"
+					style="width:100%;height:400px"
+					model="#{viewMyMapBean.polylineModel}">
 				</p:gmap>
-
-				</h:form>
-			</p:layoutUnit>
-		
+			</h:form>
+		</p:layoutUnit>
 	</p:layout>
-
 </h:body>
 </html>

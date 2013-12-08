@@ -18,10 +18,11 @@ import javax.persistence.Table;
 import com.fitdrift.domain.user.User;
 
 /**
- * @author Matthew Allen
- * @version 20131129
  * Entity class for Activity.
  * This hold data related to a summary of an activity.
+ * 
+ * @author Matthew Allen
+ * @version 20131129
  */
 @Entity
 @Table

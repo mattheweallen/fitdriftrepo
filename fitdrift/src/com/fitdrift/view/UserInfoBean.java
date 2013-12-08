@@ -16,6 +16,12 @@ import com.fitdrift.model.AthleticgisFacade;
 import java.io.Serializable;
 import java.util.Collection;
 
+/**
+ * This bean holds user info for each user's session.
+ * 
+ * @author Matthew Allen
+ * @version 20131208
+ */
 @ManagedBean
 @SessionScoped
 public class UserInfoBean implements Serializable {

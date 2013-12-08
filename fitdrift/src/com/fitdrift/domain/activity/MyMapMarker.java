@@ -13,10 +13,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
- * @author Matthew Allen
- * @version 20131201
  * Entity class for MyMap.
  * This class holds data related to a user defined map.
+ * 
+ * @author Matthew Allen
+ * @version 20131201
  */
 @Entity
 @Table
