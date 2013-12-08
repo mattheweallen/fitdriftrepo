@@ -1,19 +1,22 @@
 .logoFont {
 	font-family:"Lucida Sans Unicode", "Lucida Grande", sans-serif;
 	font-size:1.875em;
-	color:#FFFFFF;
+	/*color:#FFFFFF;*/
+	color:#000000;
 }
 
 .userFont {
 	font-family:"Lucida Console", Monaco, monospace;
 	font-size:.7em;
-	color:#FFFFFF;	
+	/*color:#FFFFFF;*/
+	color:#000000;	
 }
 
 .footerFont {
 	font-family:"Lucida Console", Monaco, monospace;
 	font-size:.7em;
-	color:#FFFFFF;	
+	/*color:#FFFFFF;*/
+	color:#000000;	
 }
 
 .loginPanelHeaderFont {
@@ -26,10 +29,10 @@
 	height:35px;
 	width:100%;
 	/*background-color:#b0e0e6;*/
-	background-color: #000000; 
-	
-	/*border-top-left-radius:2em;
-	border-top-right-radius:2em;*/
+	/*background-color: #000000;*/ 
+	/*background-color: none;*/
+	border-top-left-radius:2em;
+	border-top-right-radius:2em;
 	
 	/*width : 100%; background-color:#b0e0e6; height : 33px; position:absolute; top:0; /*padding-top: 15px; padding-left: 20px;*/
 }
@@ -43,9 +46,10 @@
 .footer {
 	height:23px;
 	width:100%;
-	background-color:#000000;
-	/*border-bottom-right-radius:2em;
-	border-bottom-left-radius:2em;*/
+	/*background-color:#000000;*/
+	/*background-color:none;*/
+	border-bottom-right-radius:2em;
+	border-bottom-left-radius:2em;
 }
 
 .loginPanel {
@@ -133,7 +137,7 @@
 	width: 100px;
 }
 
-.banner { 
+/*.banner { 
   	position: absolute; 
   	top: 0; 
     left: 0; 
@@ -170,7 +174,7 @@
 	text-align:center;
 	background:none repeat scroll 0 0 #F9F9F9;
 	border-top:1px solid #BBBBBB;
-}
+}*/
 
 input[type=text] {padding:5px; border:2px solid #ccc; 
 -webkit-border-radius: 5px;
