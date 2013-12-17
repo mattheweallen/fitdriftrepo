@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Fitdrift Create Activity</title>
+	<link href="#{resource['css/fitdrift.css']}" rel="stylesheet" />
+	<link href="#{resource['css/bootstrap.css']}" rel="stylesheet" />
+	<link rel="shortcut icon" href="#{resource['images/favicon.png']}"
+		type="image/x-icon" />
+</h:head>
+<h:body>
+
+	<p:layout fullPage="true">
+
+		<p:layoutUnit position="north" size="50" resizable="false"
+			closable="false" collapsible="false">
+			<ui:insert name="header">
+				<ui:include src="/template/header.xhtml" />
+			</ui:insert>
+
+
+		</p:layoutUnit>
+
+		<p:layoutUnit position="south" size="50" resizable="false"
+			closable="false" collapsible="false">
+			<ui:insert name="footer">
+				<ui:include src="/template/footer.xhtml" />
+			</ui:insert>
+		</p:layoutUnit>
+
+		<p:layoutUnit position="center">
+			<h:form>
+				<p:tabMenu activeIndex="-1">
+					<p:menuitem value="Dashboard" url="/faces/dashboard.xhtml" />
+					<p:menuitem value="Upload" url="/faces/upload.xhtml" />
+					<p:menuitem value="My Maps" url="/faces/mymaps.xhtml" />
+					<p:menuitem value="Create Path" url="/faces/createpath.xhtml" />
+					<p:menuitem value="Preferences" url="/faces/preferences.xhtml" />
+				</p:tabMenu>
+				<h:panelGrid styleClass="panelGridCenter">
+					<p:panelGrid columns="1" id="grid">
+						<f:facet name="header">
+							Activity Data
+						</f:facet>
+						
+						<p:calendar value="#{CreateActivityBean.activityDate}" id="popupCal" placeholder="Date" required="true"/> 
+						<p:message for="popupCal" /> 
+						
+						
+						<p:inputText id="distance" value="" placeholder="Distance">
+							<f:validateDoubleRange minimum="0" maximum="1000" /> 
+						</p:inputText>
+						<p:message for="distance" /> 
+
+						
+						<p:inputMask id="duration"  mask="99:99:99" placeholder="Duration HH:MM:SS">
+							<f:convertDateTime pattern="HH:MM:SS" /> 
+						</p:inputMask>
+						<p:message for="duration" /> 
+
+						<f:facet name="footer">
+							<p:commandButton type="button" value="Save" icon="ui-icon-check" update="grid" validateClient="true" 
+								style="margin:0" />
+						</f:facet>
+					</p:panelGrid>
+
+				</h:panelGrid>
+
+
+
+
+				
+			</h:form>
+		</p:layoutUnit>
+
+	</p:layout>
+
+</h:body>
+</html>
