@@ -30,4 +30,8 @@ public class CreateActivityBean {
 	public void setActivityDate(Date activityDate) {
 		this.activityDate = activityDate;
 	}
+	
+	public String createActivity() {
+		return "createactivity";
+	}
 }

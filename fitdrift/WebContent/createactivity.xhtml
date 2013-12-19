@@ -42,39 +42,52 @@
 					<p:menuitem value="Create Path" url="/faces/createpath.xhtml" />
 					<p:menuitem value="Preferences" url="/faces/preferences.xhtml" />
 				</p:tabMenu>
-				<h:panelGrid styleClass="panelGridCenter">
-					<p:panelGrid columns="1" id="grid">
-						<f:facet name="header">
+				<p:panelGrid columns="1" style="panelGridCenter">
+					<f:facet name="header">
 							Activity Data
 						</f:facet>
-						
-						<p:calendar value="#{CreateActivityBean.activityDate}" id="popupCal" placeholder="Date" required="true"/> 
-						<p:message for="popupCal" /> 
-						
-						
-						<p:inputText id="distance" value="" placeholder="Distance">
-							<f:validateDoubleRange minimum="0" maximum="1000" /> 
+					<p:messages id="messages" showDetail="true" autoUpdate="true"
+						closable="true" />
+					<h:panelGrid id="grid" columns="4" cellpadding="5">
+
+						<h:outputLabel for="popupCal" value="Date of Activity:"
+							style="font-weight:bold" />
+						<p:calendar value="#{createActivityBean.activityDate}"
+							id="popupCal" required="true" />
+						<p:message for="popupCal" />
+						<h:outputText value="" />
+
+						<h:outputLabel for="distance" value="Distance:"
+							style="font-weight:bold" />
+						<p:inputText id="distance" value=""
+							validatorMessage="Value must be number between 0 and 1000.">
+							<f:validateDoubleRange minimum="0" maximum="1000" />
 						</p:inputText>
-						<p:message for="distance" /> 
+						<p:message for="distance" />
+						<h:outputText value="" />
 
-						
-						<p:inputMask id="duration"  mask="99:99:99" placeholder="Duration HH:MM:SS">
-							<f:convertDateTime pattern="HH:MM:SS" /> 
+						<h:outputLabel for="duration" value="Duration (HH:MM:SS):"
+							style="font-weight:bold" />
+						<p:inputMask id="duration" mask="99:99:99"
+							validatorMessage="Value must be time in military format.">
+							<f:convertDateTime pattern="HH:MM:SS" />
 						</p:inputMask>
-						<p:message for="duration" /> 
-
-						<f:facet name="footer">
-							<p:commandButton type="button" value="Save" icon="ui-icon-check" update="grid" validateClient="true" 
-								style="margin:0" />
-						</f:facet>
-					</p:panelGrid>
-
-				</h:panelGrid>
+						<p:message for="duration" />
+						<h:outputText value="" />
 
 
 
+					</h:panelGrid>
+					<f:facet name="footer">
+						<p:commandButton value="Save" icon="ui-icon-check"
+							action="#{createActivityBean.createActivity}" update="grid"
+							validateClient="true" style="margin:0" />
+					</f:facet>
+				</p:panelGrid>
 
-				
+
+
+
 			</h:form>
 		</p:layoutUnit>
 
