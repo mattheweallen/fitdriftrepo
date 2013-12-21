@@ -57,11 +57,12 @@
 				</h:panelGrid>
 				<p:growl id="messages" showDetail="true" sticky="true"
 					autoUpdate="true" />
-				<p:gmap fitBounds="true" type="HYBRID"
-					style="width:100%;height:400px"
-					model="#{viewMyMapBean.polylineModel}">
-				</p:gmap>
+				
 			</h:form>
+			<p:gmap id="map_canvas" fitBounds="true" type="HYBRID"
+					style="width:100%;height:400px"
+					model="#{viewMyMapBean.polylineModel}" >
+				</p:gmap>
 		</p:layoutUnit>
 	</p:layout>
 </h:body>
