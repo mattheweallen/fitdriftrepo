@@ -1,145 +1,145 @@
 .logoFont {
-	font-family:"Lucida Sans Unicode", "Lucida Grande", sans-serif;
-	font-size:1.875em;
-	/*color:#FFFFFF;*/
-	color:#000000;
+        font-family:"Lucida Sans Unicode", "Lucida Grande", sans-serif;
+        font-size:1.875em;
+        /*color:#FFFFFF;*/
+        color:#000000;
 }
 
 .userFont {
-	font-family:"Lucida Console", Monaco, monospace;
-	font-size:.7em;
-	/*color:#FFFFFF;*/
-	color:#000000;	
+        font-family:"Lucida Console", Monaco, monospace;
+        font-size:.7em;
+        /*color:#FFFFFF;*/
+        color:#000000;        
 }
 
 .footerFont {
-	font-family:"Lucida Console", Monaco, monospace;
-	font-size:.7em;
-	/*color:#FFFFFF;*/
-	color:#000000;	
+        font-family:"Lucida Console", Monaco, monospace;
+        font-size:.7em;
+        /*color:#FFFFFF;*/
+        color:#000000;        
 }
 
 .loginPanelHeaderFont {
-	font-family:"Lucida Console", Monaco, monospace;
-	font-size:1em;
-	color:#000000;
+        font-family:"Lucida Console", Monaco, monospace;
+        font-size:1em;
+        color:#000000;
 }
 
 .header {
-	height:35px;
-	width:100%;
-	/*background-color:#b0e0e6;*/
-	/*background-color: #000000;*/ 
-	/*background-color: none;*/
-	border-top-left-radius:2em;
-	border-top-right-radius:2em;
-	
-	/*width : 100%; background-color:#b0e0e6; height : 33px; position:absolute; top:0; /*padding-top: 15px; padding-left: 20px;*/
+        height:35px;
+        width:100%;
+        /*background-color:#b0e0e6;*/
+        /*background-color: #000000;*/ 
+        /*background-color: none;*/
+        border-top-left-radius:2em;
+        border-top-right-radius:2em;
+        
+        /*width : 100%; background-color:#b0e0e6; height : 33px; position:absolute; top:0; /*padding-top: 15px; padding-left: 20px;*/
 }
 
 .content {
-	display:block;
-	overflow:auto;
-	width:100%;
+        display:block;
+        overflow:auto;
+        width:100%;
 }
 
 .footer {
-	height:23px;
-	width:100%;
-	/*background-color:#000000;*/
-	/*background-color:none;*/
-	border-bottom-right-radius:2em;
-	border-bottom-left-radius:2em;
+        height:23px;
+        width:100%;
+        /*background-color:#000000;*/
+        /*background-color:none;*/
+        border-bottom-right-radius:2em;
+        border-bottom-left-radius:2em;
 }
 
 .loginPanel {
-	height:300px;
-	width:100%
+        height:300px;
+        width:100%
 }
 
 .loginForm {
-	margin-left:auto;
-	margin-right:auto;
-	width:30%;
+        margin-left:auto;
+        margin-right:auto;
+        width:30%;
 }
 
 .uploadForm {
-	margin-left:auto;
-	margin-right:auto;
-	width:70%;
+        margin-left:auto;
+        margin-right:auto;
+        width:70%;
 }
 
 .activitiesTable {
-	margin-left:auto;
-	margin-right:auto;
-	width:70%;
+        margin-left:auto;
+        margin-right:auto;
+        width:70%;
 }
 
 .panelGridCenter {
-	text-align: center;
-	margin: 0 auto;
+        text-align: center;
+        margin: 0 auto;
 }
 
 .loginPanelGridCenter {
-	text-align: center;
-	position: relative;
-	top: 70px;
-	margin: 0 auto;
+        text-align: center;
+        position: relative;
+        top: 70px;
+        margin: 0 auto;
 }
 
 .panelGridLeft {
-	text-align: left;
-	margin: 0 auto;
+        text-align: left;
+        margin: 0 auto;
 }
 
 .mapPanel {
-	height:400px;
-	width:70%
+        height:400px;
+        width:70%
 }
 
 .richPanelHeaderCol1 {
-	padding-left: 50px;
-	
-	width: 50%;
-	text-align: left;
-	
+        padding-left: 50px;
+        
+        width: 50%;
+        text-align: left;
+        
 }
 
 .richPanelHeaderCol2 {
-	
-	padding-right: 50px;
-	
-	width: 50%;
-	text-align: right;
-	
+        
+        padding-right: 50px;
+        
+        width: 50%;
+        text-align: right;
+        
 }
 
 .headerCol1 {
-	
-	width: 50%;
-	text-align: left;
+        
+        width: 50%;
+        text-align: left;
 }
 
 .headerCol2 {
-	
-	width: 50%;
-	text-align: right;
+        
+        width: 50%;
+        text-align: right;
 }
 
 .footerCol {
-	padding-left: 20px;
-	
-	width: 100%;
-	text-align: left;
+        padding-left: 20px;
+        
+        width: 100%;
+        text-align: left;
 }
 
 .loginButton {
-	width: 100px;
+        width: 100px;
 }
 
 /*.banner { 
-  	position: absolute; 
-  	top: 0; 
+          position: absolute; 
+          top: 0; 
     left: 0; 
     background-color: #DDEEEE; 
     width: 100%; 
@@ -153,27 +153,27 @@
 }
 
 .order-table{   
-	border-collapse:collapse;
-	
+        border-collapse:collapse;
+        
 }
  
 .order-table-header{
-	text-align:center;
-	background:none repeat scroll 0 0 #E5E5E5;
-	border-bottom:1px solid #BBBBBB;
-	padding:16px;
+        text-align:center;
+        background:none repeat scroll 0 0 #E5E5E5;
+        border-bottom:1px solid #BBBBBB;
+        padding:16px;
 }
  
 .order-table-odd-row{
-	text-align:center;
-	background:none repeat scroll 0 0 #FFFFFFF;
-	border-top:1px solid #BBBBBB;
+        text-align:center;
+        background:none repeat scroll 0 0 #FFFFFFF;
+        border-top:1px solid #BBBBBB;
 }
  
 .order-table-even-row{
-	text-align:center;
-	background:none repeat scroll 0 0 #F9F9F9;
-	border-top:1px solid #BBBBBB;
+        text-align:center;
+        background:none repeat scroll 0 0 #F9F9F9;
+        border-top:1px solid #BBBBBB;
 }*/
 
 input[type=text] {padding:5px; border:2px solid #ccc; 
