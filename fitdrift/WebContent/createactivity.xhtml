@@ -57,6 +57,32 @@
 						<p:message for="popupCal" />
 						<h:outputText value="" />
 
+						<h:outputLabel for="startTime" value="Start Time (HH:MM:SS):"
+							style="font-weight:bold" />
+						<p:inputMask id="startTime" mask="99:99:99"
+							validatorMessage="Value must be time in military format HH:MM:SS, 23:45:56 for example.">
+							<f:validator validatorId="militaryTimeValidator" />
+						</p:inputMask>
+						<p:message for="startTime" />
+						<h:outputText value="" />
+
+						<h:outputLabel for="endTime" value="End Time (HH:MM:SS):"
+							style="font-weight:bold" />
+						<p:inputMask id="endTime" mask="99:99:99"
+							validatorMessage="Value must be time in military format HH:MM:SS, 23:45:56 for example.">
+							<f:validator validatorId="militaryTimeValidator" />
+						</p:inputMask>
+						<p:message for="endTime" />
+						<h:outputText value="" />
+
+						<h:outputLabel for="myMap" value="My Map:"
+							style="font-weight:bold" />
+						<p:inputText id="myMap" value="" onfocus="handleFocus(event);">
+							
+						</p:inputText>
+						<p:message for="myMap" />
+						<h:outputText value="" />
+
 						<h:outputLabel for="distance" value="Distance:"
 							style="font-weight:bold" />
 						<p:inputText id="distance" value=""
@@ -66,14 +92,7 @@
 						<p:message for="distance" />
 						<h:outputText value="" />
 
-						<h:outputLabel for="duration" value="Duration (HH:MM:SS):"
-							style="font-weight:bold" />
-						<p:inputMask id="duration" mask="99:99:99"
-							validatorMessage="Value must be time in military format.">
-							<f:convertDateTime pattern="HH:MM:SS" />
-						</p:inputMask>
-						<p:message for="duration" />
-						<h:outputText value="" />
+
 
 
 
@@ -89,6 +108,66 @@
 
 
 			</h:form>
+			<!-- Dialog -->
+			<p:dialog widgetVar="dlg" showEffect="fade">
+				<h:form prependId="false">
+					<p:dataTable id="myMapTable" value="#{myMapBean.lazyModel}"
+						var="myMap" rows="10" paginator="true" lazy="true">
+
+
+
+
+						<p:column rendered="#{request.isUserInRole('ROLE_ADMIN')}">
+							<f:facet name="header">User Name</f:facet>
+							<h:outputText value="#{myMap.user.username}" />
+
+						</p:column>
+
+						<p:column>
+							<f:facet name="header">Name</f:facet>
+							<h:link outcome="viewmymap" value="#{myMap.name}">
+								<f:param name="mymap_id" value="#{myMap.mymap_id}" />
+							</h:link>
+
+						</p:column>
+
+						<p:column>
+							<f:facet name="header">Date</f:facet>
+							<h:outputText value="#{myMap.date}" />
+
+						</p:column>
+
+						<p:column>
+							<f:facet name="header">Delete</f:facet>
+							<h:commandLink value="Delete" action="#{myMapBean.removeMyMap}">
+								<f:param name="mymap_id" value="#{myMap.mymap_id}" />
+							</h:commandLink>
+
+						</p:column>
+
+
+					</p:dataTable>
+				</h:form>
+			</p:dialog>
+
+			<script type="text/javascript">
+				var currentMarker = null;
+
+				function handleFocus(event) {
+					PF('dlg').show();
+				}
+
+				function markerAddComplete() {
+					PF('dlg').hide();
+				}
+
+				function cancel() {
+					PF('dlg').hide();
+					return false;
+				}
+			</script>
+
+			<!-- End Dialog -->
 		</p:layoutUnit>
 
 	</p:layout>
