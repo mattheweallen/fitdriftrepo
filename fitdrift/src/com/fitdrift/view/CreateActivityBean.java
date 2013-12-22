@@ -4,6 +4,11 @@ import java.util.Date;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
+import javax.faces.event.ActionEvent;
+
+import com.fitdrift.domain.activity.MyMap;
+
 
 /**
  * This class supports the createactivity.xhtml
@@ -13,11 +18,14 @@ import javax.faces.bean.RequestScoped;
  *
  */
 @ManagedBean
-@RequestScoped
+@ViewScoped
 public class CreateActivityBean {
 	private Date activityDate;
 	private String activityType;
 	private boolean indoors;
+	private MyMap selectedMap;
+	private String mapMapName;
+	
 
 	/**
 	 * @return the activityDate
@@ -63,5 +71,43 @@ public class CreateActivityBean {
 	 */
 	public void setIndoors(boolean indoors) {
 		this.indoors = indoors;
+	}
+	
+	public String addMyMap() {
+		
+		
+		if(selectedMap != null) {
+			System.out.println(selectedMap.getName());
+			this.mapMapName = selectedMap.getName();
+		}
+		return null;
+	}
+
+	/**
+	 * @return the selectedMap
+	 */
+	public MyMap getSelectedMap() {
+		return selectedMap;
+	}
+
+	/**
+	 * @param selectedMap the selectedMap to set
+	 */
+	public void setSelectedMap(MyMap selectedMap) {
+		this.selectedMap = selectedMap;
+	}
+
+	/**
+	 * @return the mapMapName
+	 */
+	public String getMapMapName() {
+		return mapMapName;
+	}
+
+	/**
+	 * @param mapMapName the mapMapName to set
+	 */
+	public void setMapMapName(String mapMapName) {
+		this.mapMapName = mapMapName;
 	}
 }

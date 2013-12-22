@@ -73,10 +73,10 @@
 				        
 				        
 						
-						<p:inputText id="myMap" placeholder="My Map" onfocus="handleFocus(event);" >
+						<p:inputText id="myMapInput" value="#{createActivityBean.mapMapName}" placeholder="My Map" onfocus="PF('dlg').show();" >
 							
 						</p:inputText>
-						<p:message for="myMap" />
+						<p:message for="myMapInput" />
 
 						<p:inputText id="distance" placeholder="Distance"
 							validatorMessage="Value must be number between 0 and 1000.">
@@ -126,9 +126,9 @@
 
 						<p:column>
 							<f:facet name="header">Name</f:facet>
-							<h:link outcome="viewmymap" value="#{myMap.name}">
-								<f:param name="mymap_id" value="#{myMap.mymap_id}" />
-							</h:link>
+							<p:commandLink value="#{myMap.name}" update=":#{p:component('myMapInput')}" action="#{createActivityBean.addMyMap}" oncomplete="PF('dlg').hide();">
+								<f:setPropertyActionListener value="#{myMap}" target="#{createActivityBean.selectedMap}" />  
+							</p:commandLink>
 
 						</p:column>
 
@@ -138,36 +138,13 @@
 
 						</p:column>
 
-						<p:column>
-							<f:facet name="header">Delete</f:facet>
-							<h:commandLink value="Select" action="#{myMapBean.removeMyMap}">
-								<f:param name="mymap_id" value="#{myMap.mymap_id}" />
-							</h:commandLink>
-
-						</p:column>
+						
 
 
 					</p:dataTable>
 				</h:form>
 			</p:dialog>
-
-			<script type="text/javascript">
-				var currentMarker = null;
-
-				function handleFocus(event) {
-					PF('dlg').show();
-				}
-
-				function markerAddComplete() {
-					PF('dlg').hide();
-				}
-
-				function cancel() {
-					PF('dlg').hide();
-					return false;
-				}
-			</script>
-
+			
 			<!-- End Dialog -->
 		</p:layoutUnit>
 
