@@ -22,8 +22,8 @@ public class MilitaryTimeValidator implements Validator {
         boolean valid = (new Time24HoursValidator()).validate(time);
         if (!valid) {
             FacesMessage message = new FacesMessage(
-                    FacesMessage.SEVERITY_ERROR, "Invalid military time.",
-                    "The time you entered is not a valid military time.");
+                    FacesMessage.SEVERITY_ERROR, "Invalid 24 hour clock time.",
+                    "The time is not a valid 24 hour clock time.");
             throw new ValidatorException(message);
         }
     }

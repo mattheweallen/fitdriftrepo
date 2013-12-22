@@ -48,54 +48,55 @@
 						</f:facet>
 					<p:messages id="messages" showDetail="true" autoUpdate="true"
 						closable="true" />
-					<h:panelGrid id="grid" columns="4" cellpadding="5">
-
-						<h:outputLabel for="popupCal" value="Date of Activity:"
-							style="font-weight:bold" />
+					<h:panelGrid id="grid" columns="1" cellpadding="5">
 						<p:calendar value="#{createActivityBean.activityDate}"
-							id="popupCal" required="true" />
+							id="popupCal" required="true" placeholder="Date of Activity" />
 						<p:message for="popupCal" />
-						<h:outputText value="" />
 
-						<h:outputLabel for="startTime" value="Start Time (HH:MM:SS):"
-							style="font-weight:bold" />
-						<p:inputMask id="startTime" mask="99:99:99"
-							validatorMessage="Value must be time in military format HH:MM:SS, 23:45:56 for example.">
+						<p:inputMask id="startTime" mask="99:99:99" placeholder="Start Time (HH:MM:SS)"
+							validatorMessage="Value must be time in 24 hour clock HH:MM:SS, 23:45:56 for example.">
 							<f:validator validatorId="militaryTimeValidator" />
 						</p:inputMask>
 						<p:message for="startTime" />
-						<h:outputText value="" />
-
-						<h:outputLabel for="endTime" value="End Time (HH:MM:SS):"
-							style="font-weight:bold" />
-						<p:inputMask id="endTime" mask="99:99:99"
-							validatorMessage="Value must be time in military format HH:MM:SS, 23:45:56 for example.">
+						
+						<p:inputMask id="endTime" mask="99:99:99" placeholder="End Time (HH:MM:SS)"
+							validatorMessage="Value must be time in 24 hour clock HH:MM:SS, 23:45:56 for example.">
 							<f:validator validatorId="militaryTimeValidator" />
 						</p:inputMask>
 						<p:message for="endTime" />
-						<h:outputText value="" />
-
-						<h:outputLabel for="myMap" value="My Map:"
-							style="font-weight:bold" />
-						<p:inputText id="myMap" value="" onfocus="handleFocus(event);">
+						
+						<p:selectOneMenu value="#{createActivityBean.activityType}">  
+				            <f:selectItem itemLabel="Select Activity Type" itemValue="" />  
+				            <f:selectItem itemLabel="Cycling" itemValue="1" />  
+				            <f:selectItem itemLabel="Running" itemValue="2" />  
+				        </p:selectOneMenu>  
+				        
+				        
+						
+						<p:inputText id="myMap" placeholder="My Map" onfocus="handleFocus(event);" >
 							
 						</p:inputText>
 						<p:message for="myMap" />
-						<h:outputText value="" />
 
-						<h:outputLabel for="distance" value="Distance:"
-							style="font-weight:bold" />
-						<p:inputText id="distance" value=""
+						<p:inputText id="distance" placeholder="Distance"
 							validatorMessage="Value must be number between 0 and 1000.">
 							<f:validateDoubleRange minimum="0" maximum="1000" />
 						</p:inputText>
 						<p:message for="distance" />
-						<h:outputText value="" />
+						
+						
+						
+						<p:inputText id="weight" placeholder="Weight"
+							validatorMessage="Value must be number between 0 and 1000.">
+							<f:validateDoubleRange minimum="0" maximum="1000" />
+						</p:inputText>
+						<p:message for="weight" />
 
-
-
-
-
+						<h:panelGrid columns="2" style="margin-bottom:10px;"
+							cellpadding="5">
+							<h:outputText value="Indoors " />
+							<p:selectBooleanCheckbox id="indoors" value="#{createActivityBean.indoors}" />
+						</h:panelGrid>
 					</h:panelGrid>
 					<f:facet name="footer">
 						<p:commandButton value="Save" icon="ui-icon-check"
