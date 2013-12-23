@@ -51,75 +51,87 @@
 
 
 					<p:panelGrid id="grid" columns="3">
-						<p:calendar value="#{createActivityBean.activityDate}"
-							id="popupCal" required="true" placeholder="Date of Activity"
-							requiredMessage="Date of Activity is required." />
+						<p:panelGrid columns="2">
+							<p:outputLabel for="popupCal" value="Date of Activity"></p:outputLabel>
+							<p:calendar value="#{createActivityBean.activityDate}"
+								id="popupCal" required="true"
+								requiredMessage="Date of Activity is required." />
+	
+							<p:outputLabel for="startTime" value="Start Time (HH:MM:SS)" ></p:outputLabel>
+							<p:inputMask id="startTime" mask="99:99:99"
+								required="true"
+								requiredMessage="Start Time is required."
+								validatorMessage="Start Time must be time in 24 hour clock HH:MM:SS, 23:45:56 for example.">
+								<f:validator validatorId="militaryTimeValidator" />
+							</p:inputMask>
+	
+							<p:outputLabel for="endTime" value="End Time (HH:MM:SS)"></p:outputLabel>
+							<p:inputMask id="endTime" mask="99:99:99"
+								required="true"
+								requiredMessage="End Time is required."
+								validatorMessage="End Time must be time in 24 hour clock HH:MM:SS, 23:45:56 for example.">
+								<f:validator validatorId="militaryTimeValidator" />
+							</p:inputMask>
+						</p:panelGrid>
 
-
-						<p:inputMask id="startTime" mask="99:99:99"
-							placeholder="Start Time (HH:MM:SS)"
-							validatorMessage="Start Time must be time in 24 hour clock HH:MM:SS, 23:45:56 for example.">
-							<f:validator validatorId="militaryTimeValidator" />
-						</p:inputMask>
-
-						<p:inputMask id="endTime" mask="99:99:99"
-							placeholder="End Time (HH:MM:SS)"
-							validatorMessage="End Time must be time in 24 hour clock HH:MM:SS, 23:45:56 for example.">
-							<f:validator validatorId="militaryTimeValidator" />
-						</p:inputMask>
-
-						<p:selectOneMenu value="#{createActivityBean.activityType}">
-							<f:selectItem itemLabel="Select Activity Type" itemValue="" />
-							<f:selectItem itemLabel="Cycling" itemValue="1" />
-							<f:selectItem itemLabel="Running" itemValue="2" />
-							<f:selectItem itemLabel="Swimming" itemValue="3" />
-						</p:selectOneMenu>
-
-						<p:selectOneMenu>
-							<f:selectItem itemLabel="Select Gear" itemValue="" />
-							<f:selectItem itemLabel="Cycling" itemValue="1" />
-							<f:selectItem itemLabel="Running" itemValue="2" />
-							<f:selectItem itemLabel="Swimming" itemValue="3" />
-						</p:selectOneMenu>
-
-						<h:panelGrid columns="2" style="margin-bottom:10px;"
-							cellpadding="5">
-							<h:outputText value="Indoors " />
-							<p:selectBooleanCheckbox id="indoors"
-								value="#{createActivityBean.indoors}" />
-						</h:panelGrid>
+						<p:panelGrid columns="2">
+							<h:panelGrid columns="2" style="margin-bottom:10px;"
+								cellpadding="5">
+								<h:outputText value="Indoors " />
+								<p:selectBooleanCheckbox id="indoors"
+									value="#{createActivityBean.indoors}" />
+							</h:panelGrid>
+							
+							<h:panelGrid columns="2" style="margin-bottom:10px;"
+								cellpadding="5">
+								<h:outputText value="Use My Map " />
+								<p:selectBooleanCheckbox id="useMyMap"
+									value="#{createActivityBean.useMyMap}" >
+									<p:ajax update="myMapInput distance" listener="#{createActivityBean.useMyMapChecked}"/>  
+								</p:selectBooleanCheckbox>
+							</h:panelGrid>
 						
-						<h:panelGrid columns="2" style="margin-bottom:10px;"
-							cellpadding="5">
-							<h:outputText value="Use My Map " />
-							<p:selectBooleanCheckbox id="useMyMap"
-								value="#{createActivityBean.useMyMap}" >
-								<p:ajax update="myMapInput distance" listener="#{createActivityBean.useMyMapChecked}"/>  
-							</p:selectBooleanCheckbox>
-						</h:panelGrid>
+							<p:outputLabel for="myMapInput" value="My Map"></p:outputLabel>
+							<p:inputText id="myMapInput"
+								value="#{createActivityBean.mapMapName}"
+								onfocus="PF('dlg').show();" disabled="#{!createActivityBean.useMyMap}">
+	
+							</p:inputText>
+	
+							<p:outputLabel for="distance" value="Distance"></p:outputLabel>
+							<p:inputText id="distance" value="#{createActivityBean.distance}" disabled="#{createActivityBean.useMyMap}"
+								validatorMessage="Distance must be number between 0 and 1000.">
+								<f:validateDoubleRange minimum="0" maximum="1000" />
+							</p:inputText>
+	
+	
+	
+							<p:outputLabel for="weight" value="Weight"></p:outputLabel>
+							<p:inputText id="weight" placeholder="Weight"
+								validatorMessage="Weight must be number between 0 and 1000.">
+								<f:validateDoubleRange minimum="0" maximum="1000" />
+							</p:inputText>
 
-						<p:inputText id="myMapInput"
-							value="#{createActivityBean.mapMapName}" placeholder="My Map" 
-							onfocus="PF('dlg').show();" disabled="#{!createActivityBean.useMyMap}">
-
-						</p:inputText>
-
-
-						<p:inputText id="distance" placeholder="Distance" value="#{createActivityBean.distance}" disabled="#{createActivityBean.useMyMap}"
-							validatorMessage="Distance must be number between 0 and 1000.">
-							<f:validateDoubleRange minimum="0" maximum="1000" />
-						</p:inputText>
-
-
-
-
-						<p:inputText id="weight" placeholder="Weight"
-							validatorMessage="Weight must be number between 0 and 1000.">
-							<f:validateDoubleRange minimum="0" maximum="1000" />
-						</p:inputText>
-
-
-
+						</p:panelGrid>
+						
+						<p:panelGrid columns="1">
+							<p:selectOneMenu value="#{createActivityBean.activityType}">
+								<f:selectItem itemLabel="-Select Activity Type-" itemValue="" />
+								<f:selectItem itemLabel="Cycling" itemValue="1" />
+								<f:selectItem itemLabel="Running" itemValue="2" />
+								<f:selectItem itemLabel="Swimming" itemValue="3" />
+							</p:selectOneMenu>
+	
+							<p:selectOneMenu>
+								<f:selectItem itemLabel="-Select Gear-" itemValue="" />
+								<f:selectItem itemLabel="Cycling" itemValue="1" />
+								<f:selectItem itemLabel="Running" itemValue="2" />
+								<f:selectItem itemLabel="Swimming" itemValue="3" />
+							</p:selectOneMenu>
+	
+							
+						</p:panelGrid>
+						
 					</p:panelGrid>
 					<f:facet name="footer">
 						<p:commandButton value="Save" icon="ui-icon-check"

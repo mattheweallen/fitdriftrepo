@@ -1,5 +1,6 @@
 package com.fitdrift.view;
 
+import java.io.Serializable;
 import java.text.DecimalFormat;
 import java.util.Date;
 import java.util.List;
@@ -24,7 +25,11 @@ import com.fitdrift.util.gis.GISCalculator;
  */
 @ManagedBean
 @ViewScoped
-public class CreateActivityBean {
+public class CreateActivityBean implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4050031415234475481L;
 	private Date activityDate;
 	private String activityType;
 	private boolean indoors;
