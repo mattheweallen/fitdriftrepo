@@ -40,8 +40,15 @@
 					<p:menuitem value="Create Path" url="/faces/createpath.xhtml" />
 					<p:menuitem value="Preferences" url="/faces/preferences.xhtml" />
 				</p:tabMenu>
-				<p:dashboard id="board" model="#{dashboardBean.model}">   
-					<p:panel id="activities" header="Activities">  
+				<p:dashboard id="board" model="#{dashboardBean.model}">  
+					<p:panel id="weather" header="Weather">  
+						<p:feedReader value="http://w1.weather.gov/xml/current_obs/KLSE.rss" var="feed">
+						<h:outputText value="#{feed.title}" style="font-weight: bold" />
+						<br />
+						<h:outputText value="#{feed.description.value}" escape="false"  />
+						</p:feedReader>
+					</p:panel> 
+					<p:panel id="activities" header="Past Activities">  
 						<p:dataTable id="activityTable" value="#{dashboardBean.lazyModel}"
 							var="activity" rows="10" paginator="true" lazy="true">
 		
@@ -80,13 +87,7 @@
 		
 						</p:dataTable>
 					</p:panel>
-					<p:panel id="weather" header="Weather">  
-						<p:feedReader value="http://w1.weather.gov/xml/current_obs/KLSE.rss" var="feed">
-						<h:outputText value="#{feed.title}" style="font-weight: bold" />
-						<br />
-						<h:outputText value="#{feed.description.value}" escape="false" />
-						</p:feedReader>
-					</p:panel>
+					
 					
 				</p:dashboard>
 			</h:form>
