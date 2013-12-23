@@ -4,6 +4,10 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 
+import org.primefaces.model.DashboardColumn;
+import org.primefaces.model.DashboardModel;
+import org.primefaces.model.DefaultDashboardColumn;
+import org.primefaces.model.DefaultDashboardModel;
 import org.primefaces.model.LazyDataModel;
 
 import com.fitdrift.domain.activity.Activity;
@@ -27,6 +31,26 @@ public class DashboardBean implements Serializable {
 	Activity selectedActivity;
 	@ManagedProperty(value = "#{userInfoBean}")
     private UserInfoBean userInfoBean;
+	private DashboardModel model; 
+	
+	public DashboardBean() {  
+        model = new DefaultDashboardModel();  
+        DashboardColumn column1 = new DefaultDashboardColumn();  
+        DashboardColumn column2 = new DefaultDashboardColumn();  
+        DashboardColumn column3 = new DefaultDashboardColumn();  
+          
+        column1.addWidget("activities");  
+//        column1.addWidget("finance");  
+//          
+//        column2.addWidget("lifestyle");  
+        column2.addWidget("weather");  
+//          
+//        column3.addWidget("politics");  
+//  
+        model.addColumn(column1);  
+        model.addColumn(column2);  
+//        model.addColumn(column3);  
+    } 
 	
 	public UserInfoBean getUserInfoBean() {
 		return userInfoBean;
@@ -59,6 +83,13 @@ public class DashboardBean implements Serializable {
 		}
 		return lazyModel;
 		//return new ActivityDataModel(userInfoBean.getUser_id());
+	}
+
+	/**
+	 * @return the model
+	 */
+	public DashboardModel getModel() {
+		return model;
 	}
 
 //	public List<Activity> getActivities() {
