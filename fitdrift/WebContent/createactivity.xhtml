@@ -42,62 +42,69 @@
 					<p:menuitem value="Create Path" url="/faces/createpath.xhtml" />
 					<p:menuitem value="Preferences" url="/faces/preferences.xhtml" />
 				</p:tabMenu>
-				<p:panelGrid columns="1" style="panelGridCenter">
+				<p:panelGrid columns="1" styleClass="panelGridCenter" >
 					<f:facet name="header">
 							Activity Data
 						</f:facet>
-					<p:messages id="messages" showDetail="true" autoUpdate="true"
-						closable="true" />
-					<h:panelGrid id="grid" columns="1" cellpadding="5">
+					<p:growl id="growls" autoUpdate="true" globalOnly="false" sticky="true"></p:growl>	
+					
+					
+					<p:panelGrid id="grid" columns="3">
 						<p:calendar value="#{createActivityBean.activityDate}"
-							id="popupCal" required="true" placeholder="Date of Activity" />
-						<p:message for="popupCal" />
+							id="popupCal" required="true" placeholder="Date of Activity" requiredMessage="Date of Activity is required."/>
+						
 
 						<p:inputMask id="startTime" mask="99:99:99" placeholder="Start Time (HH:MM:SS)"
-							validatorMessage="Value must be time in 24 hour clock HH:MM:SS, 23:45:56 for example.">
+							validatorMessage="Start Time must be time in 24 hour clock HH:MM:SS, 23:45:56 for example.">
 							<f:validator validatorId="militaryTimeValidator" />
 						</p:inputMask>
-						<p:message for="startTime" />
 						
 						<p:inputMask id="endTime" mask="99:99:99" placeholder="End Time (HH:MM:SS)"
-							validatorMessage="Value must be time in 24 hour clock HH:MM:SS, 23:45:56 for example.">
+							validatorMessage="End Time must be time in 24 hour clock HH:MM:SS, 23:45:56 for example.">
 							<f:validator validatorId="militaryTimeValidator" />
 						</p:inputMask>
-						<p:message for="endTime" />
 						
 						<p:selectOneMenu value="#{createActivityBean.activityType}">  
 				            <f:selectItem itemLabel="Select Activity Type" itemValue="" />  
 				            <f:selectItem itemLabel="Cycling" itemValue="1" />  
 				            <f:selectItem itemLabel="Running" itemValue="2" />  
+				            <f:selectItem itemLabel="Swimming" itemValue="3" /> 
 				        </p:selectOneMenu>  
 				        
+				        <p:selectOneMenu >  
+				            <f:selectItem itemLabel="Select Gear" itemValue="" />  
+				            <f:selectItem itemLabel="Cycling" itemValue="1" />  
+				            <f:selectItem itemLabel="Running" itemValue="2" />  
+				            <f:selectItem itemLabel="Swimming" itemValue="3" /> 
+				        </p:selectOneMenu> 
 				        
-						
-						<p:inputText id="myMapInput" value="#{createActivityBean.mapMapName}" placeholder="My Map" onfocus="PF('dlg').show();" >
-							
-						</p:inputText>
-						<p:message for="myMapInput" />
-
-						<p:inputText id="distance" placeholder="Distance"
-							validatorMessage="Value must be number between 0 and 1000.">
-							<f:validateDoubleRange minimum="0" maximum="1000" />
-						</p:inputText>
-						<p:message for="distance" />
-						
-						
-						
-						<p:inputText id="weight" placeholder="Weight"
-							validatorMessage="Value must be number between 0 and 1000.">
-							<f:validateDoubleRange minimum="0" maximum="1000" />
-						</p:inputText>
-						<p:message for="weight" />
-
-						<h:panelGrid columns="2" style="margin-bottom:10px;"
+				        <h:panelGrid columns="2" style="margin-bottom:10px;"
 							cellpadding="5">
 							<h:outputText value="Indoors " />
 							<p:selectBooleanCheckbox id="indoors" value="#{createActivityBean.indoors}" />
 						</h:panelGrid>
-					</h:panelGrid>
+						
+						<p:inputText id="myMapInput" value="#{createActivityBean.mapMapName}" placeholder="My Map" onfocus="PF('dlg').show();" >
+							
+						</p:inputText>
+					
+
+						<p:inputText id="distance" placeholder="Distance"
+							validatorMessage="Distance must be number between 0 and 1000.">
+							<f:validateDoubleRange minimum="0" maximum="1000" />
+						</p:inputText>
+						
+						
+						
+						
+						<p:inputText id="weight" placeholder="Weight"
+							validatorMessage="Weight must be number between 0 and 1000.">
+							<f:validateDoubleRange minimum="0" maximum="1000" />
+						</p:inputText>
+						
+
+						
+					</p:panelGrid>
 					<f:facet name="footer">
 						<p:commandButton value="Save" icon="ui-icon-check"
 							action="#{createActivityBean.createActivity}" update="grid"
@@ -110,7 +117,7 @@
 
 			</h:form>
 			<!-- Dialog -->
-			<p:dialog widgetVar="dlg" showEffect="fade">
+			<p:dialog widgetVar="dlg" showEffect="fade"  appendTo="@(body)"  dynamic="true" modal="true">
 				<h:form prependId="false">
 					<p:dataTable id="myMapTable" value="#{myMapBean.lazyModel}"
 						var="myMap" rows="10" paginator="true" lazy="true">
