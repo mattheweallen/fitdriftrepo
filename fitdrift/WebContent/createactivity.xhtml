@@ -88,15 +88,24 @@
 							<p:selectBooleanCheckbox id="indoors"
 								value="#{createActivityBean.indoors}" />
 						</h:panelGrid>
+						
+						<h:panelGrid columns="2" style="margin-bottom:10px;"
+							cellpadding="5">
+							<h:outputText value="Use My Map " />
+							<p:selectBooleanCheckbox id="useMyMap"
+								value="#{createActivityBean.useMyMap}" >
+								<p:ajax update="myMapInput distance" listener="#{createActivityBean.useMyMapChecked}"/>  
+							</p:selectBooleanCheckbox>
+						</h:panelGrid>
 
 						<p:inputText id="myMapInput"
-							value="#{createActivityBean.mapMapName}" placeholder="My Map"
-							onfocus="PF('dlg').show();">
+							value="#{createActivityBean.mapMapName}" placeholder="My Map" 
+							onfocus="PF('dlg').show();" disabled="#{!createActivityBean.useMyMap}">
 
 						</p:inputText>
 
 
-						<p:inputText id="distance" placeholder="Distance"
+						<p:inputText id="distance" placeholder="Distance" value="#{createActivityBean.distance}" disabled="#{createActivityBean.useMyMap}"
 							validatorMessage="Distance must be number between 0 and 1000.">
 							<f:validateDoubleRange minimum="0" maximum="1000" />
 						</p:inputText>
@@ -140,7 +149,7 @@
 						<p:column>
 							<f:facet name="header">Name</f:facet>
 							<p:commandLink value="#{myMap.name}"
-								update=":#{p:component('myMapInput')}"
+								update=":#{p:component('myMapInput')} :#{p:component('distance')}"
 								action="#{createActivityBean.addMyMap}"
 								oncomplete="PF('dlg').hide();">
 								<f:setPropertyActionListener value="#{myMap}"

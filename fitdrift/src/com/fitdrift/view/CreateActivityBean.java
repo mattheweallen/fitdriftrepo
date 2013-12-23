@@ -1,6 +1,8 @@
 package com.fitdrift.view;
 
+import java.text.DecimalFormat;
 import java.util.Date;
+import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -8,6 +10,9 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.event.ActionEvent;
 
 import com.fitdrift.domain.activity.MyMap;
+import com.fitdrift.domain.activity.MyMapMarker;
+import com.fitdrift.model.AthleticgisFacade;
+import com.fitdrift.util.gis.GISCalculator;
 
 
 /**
@@ -23,8 +28,10 @@ public class CreateActivityBean {
 	private Date activityDate;
 	private String activityType;
 	private boolean indoors;
+	private boolean useMyMap;
 	private MyMap selectedMap;
 	private String mapMapName;
+	private String distance;
 	
 
 	/**
@@ -79,6 +86,15 @@ public class CreateActivityBean {
 		if(selectedMap != null) {
 			System.out.println(selectedMap.getName());
 			this.mapMapName = selectedMap.getName();
+			
+			List<MyMapMarker> myMapMarkers = AthleticgisFacade
+					.findMyMapMarkersByMymap_id(selectedMap.getMymap_id());
+			
+			GISCalculator calc = new GISCalculator();
+			Double distance = calc.computeMarkerPathDistance(myMapMarkers) / 1000;
+			DecimalFormat df = new DecimalFormat("#.##");
+			
+			this.distance = df.format(distance); 
 		}
 		return null;
 	}
@@ -109,5 +125,37 @@ public class CreateActivityBean {
 	 */
 	public void setMapMapName(String mapMapName) {
 		this.mapMapName = mapMapName;
+	}
+
+	/**
+	 * @return the useMyMap
+	 */
+	public boolean isUseMyMap() {
+		return useMyMap;
+	}
+
+	/**
+	 * @param useMyMap the useMyMap to set
+	 */
+	public void setUseMyMap(boolean useMyMap) {
+		this.useMyMap = useMyMap;
+	}
+	
+	public void useMyMapChecked() {
+		distance = null;
+	}
+
+	/**
+	 * @return the distance
+	 */
+	public String getDistance() {
+		return distance;
+	}
+
+	/**
+	 * @param distance the distance to set
+	 */
+	public void setDistance(String distance) {
+		this.distance = distance;
 	}
 }
