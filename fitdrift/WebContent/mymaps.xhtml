@@ -33,18 +33,22 @@
 
 		<p:layoutUnit position="center">
 			<h:form>
-				<p:tabMenu activeIndex="2">
+				<p:tabMenu activeIndex="3">
 					<p:menuitem value="Dashboard" url="/faces/dashboard.xhtml" />
-					<p:menuitem value="Upload" url="/faces/upload.xhtml" />
+					<p:menuitem value="Upload Activity" url="/faces/upload.xhtml" />
+					<p:menuitem value="Manual Activity" url="/faces/createactivity.xhtml" />
 					<p:menuitem value="My Maps" url="/faces/mymaps.xhtml" />
-					<p:menuitem value="Create Path" url="/faces/createpath.xhtml" />
 					<p:menuitem value="Preferences" url="/faces/preferences.xhtml" />
 				</p:tabMenu>
+				
+				
 
 				<p:dataTable id="myMapTable" value="#{myMapBean.lazyModel}"
 					var="myMap" rows="10" paginator="true" lazy="true">
 
-
+					<f:facet name="header">
+						<p:commandButton action="createpath?faces-redirect=true" value="Create Map"></p:commandButton>
+					</f:facet>
 
 
 					<p:column rendered="#{request.isUserInRole('ROLE_ADMIN')}">

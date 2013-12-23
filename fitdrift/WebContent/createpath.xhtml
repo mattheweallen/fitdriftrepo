@@ -40,24 +40,20 @@
 
 
 			<h:form>
-				<p:tabMenu activeIndex="3">
-					<p:menuitem value="Dashboard" url="/faces/dashboard.xhtml" />
-					<p:menuitem value="Upload" url="/faces/upload.xhtml" />
-					<p:menuitem value="My Maps" url="/faces/mymaps.xhtml" />
-					<p:menuitem value="Create Path" url="/faces/createpath.xhtml" />
-					<p:menuitem value="Preferences" url="/faces/preferences.xhtml" />
-				</p:tabMenu>
+				
 				<h:panelGrid styleClass="panelGridCenter">
-					<h:panelGrid columns="3" styleClass="panelGridCenter" width="50%">
-						<h:inputText value="#{createPathBean.myMapName}"
-							style="width : 400px" size="40"></h:inputText>
+					<p:panelGrid columns="4" styleClass="panelGridCenter">
+						<p:inputText value="#{createPathBean.myMapName}"
+							style="width : 400px" size="40"></p:inputText>
 
-						<h:commandButton value="Save" action="#{createPathBean.savePath}">
-						</h:commandButton>
-						<h:commandButton value="Restart"
+						<p:commandButton value="Save" action="#{createPathBean.savePath}">
+						</p:commandButton>
+						<p:commandButton value="Restart"
 							action="#{createPathBean.restartPath}">
-						</h:commandButton>
-					</h:panelGrid>
+						</p:commandButton>
+						<p:commandButton value="Cancel" action="mymaps?faces-redirect=true">
+						</p:commandButton>
+					</p:panelGrid>
 				</h:panelGrid>
 
 				<p:growl id="messages" showDetail="true" sticky="true"

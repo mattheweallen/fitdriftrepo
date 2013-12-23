@@ -12,7 +12,7 @@
 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyApDXRNzq6eGqWKUbufj3MzhJ4P0RF0Ghw&amp;sensor=false">
 		
 	</script>
-	<link href="#{resource['css/fitdrift.css']}" rel="stylesheet" />
+		<link href="#{resource['css/fitdrift.css']}" rel="stylesheet" />
         <link href="#{resource['css/bootstrap.css']}" rel="stylesheet" />
         <link rel="shortcut icon" href="#{resource['images/favicon.png']}" type="image/x-icon" />
 </h:head>
@@ -38,29 +38,24 @@
 
 			<p:layoutUnit position="center">
 				<h:form>
-				<p:tabMenu activeIndex="-1">
-					<p:menuitem value="Dashboard" url="/faces/dashboard.xhtml" />
-					<p:menuitem value="Upload" url="/faces/upload.xhtml" />
-					<p:menuitem value="My Maps" url="/faces/mymaps.xhtml" />
-					<p:menuitem value="Create Path" url="/faces/createpath.xhtml" />
-					<p:menuitem value="Preferences" url="/faces/preferences.xhtml" />
-				</p:tabMenu>
 				<h:panelGrid styleClass="panelGridCenter">
-					<h:panelGrid columns="3" styleClass="panelGridCenter" width="50%">
-						<h:inputText binding="#{activityBean.inputTextActivityName}"
-							style="width : 400px" size="40"></h:inputText>
+					<p:panelGrid columns="4" styleClass="panelGridCenter">
+						<p:inputText binding="#{activityBean.inputTextActivityName}"
+							style="width : 400px" size="40"></p:inputText>
 
-						<h:commandButton value="Update"
+						<p:commandButton value="Update"
 							action="#{activityBean.updateActivity}">
 							<f:param name="activityId"
 								value="#{request.getParameter('activityId')}" />
-						</h:commandButton>
-						<h:commandButton value="Delete"
+						</p:commandButton>
+						<p:commandButton value="Delete"
 							action="#{activityBean.removeActivity}">
 							<f:param name="activityId"
 								value="#{request.getParameter('activityId')}" />
-						</h:commandButton>
-					</h:panelGrid>
+						</p:commandButton>
+						<p:commandButton value="Return to Dashboard" action="dashboard?faces-redirect=true">
+						</p:commandButton>
+					</p:panelGrid>
 
 				</h:panelGrid>
 
