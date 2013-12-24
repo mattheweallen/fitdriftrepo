@@ -6,67 +6,49 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
-<h:head>
-	<title>Fitdrift Login</title>
-	<link href="#{resource['css/fitdrift.css']}" rel="stylesheet" />
-	<link href="#{resource['css/bootstrap.css']}" rel="stylesheet" />
-	<link rel="shortcut icon" href="#{resource['images/favicon.png']}"
-		type="image/x-icon" />
-</h:head>
 <h:body>
-	<f:view>
-		<p:layout fullPage="true">
+	<ui:composition template="/template/layout.xhtml">
+		<ui:define name="scripts">
+			<title>Fitdrift Login</title>
+		</ui:define>
+		<ui:define name="header">
+			<h:panelGrid columns="2" width="100%"
+				columnClasses="headerCol1,headerCol2" styleClass="header">
+				<h:graphicImage library="images" name="fitdrift20131208_basic.png"
+					style="padding:0 0 0 10px" />
+				<!--  <h:outputLabel value="Athletic GIS" styleClass="logoFont"></h:outputLabel>-->
 
-			<p:layoutUnit position="north" size="50" resizable="false"
-				closable="false" collapsible="false">
-				<h:panelGrid columns="2" width="100%"
-					columnClasses="headerCol1,headerCol2" styleClass="header">
-					<h:graphicImage library="images" name="fitdrift20131208_basic.png"
-						style="padding:0 0 0 10px" />
-					<!--  <h:outputLabel value="Athletic GIS" styleClass="logoFont"></h:outputLabel>-->
+			</h:panelGrid>
+		</ui:define>
+		<ui:define name="content">
+			<h:form id="loginForm" prependId="false">
+				<p:growl id="growl" showDetail="true" sticky="true" />
+				<p:panelGrid columns="1" styleClass="loginPanelGridCenter">
+					<f:facet name="header">
+						<h:outputText value="Please sign in"
+							styleClass="loginPanelHeaderFont"></h:outputText>
+						<!--  <h2>Please sign in</h2>-->
+					</f:facet>
 
-				</h:panelGrid>
+					<p:inputText id="j_username" required="true"
+						styleClass="form-control" placeholder="Username"
+						requiredMessage="Username Required"></p:inputText>
+					<p:password id="j_password" required="true"
+						styleClass="form-control" feedback="false" placeholder="Password"
+						requiredMessage="Password Required" />
 
-			</p:layoutUnit>
+					<h:panelGrid columns="2" style="margin-bottom:10px;"
+						cellpadding="5">
+						<h:outputText value="Remember Me: " />
+						<p:selectBooleanCheckbox id="_spring_security_remember_me" />
+					</h:panelGrid>
 
-			<p:layoutUnit position="south" size="50" resizable="false"
-				closable="false" collapsible="false">
-				<ui:insert name="footer">
-					<ui:include src="/template/footer.xhtml" />
-				</ui:insert>
-			</p:layoutUnit>
+					<p:commandButton ajax="false" value="Sign In" id="login"
+						style="width : 210px;" action="#{loginBean.doLogin}"></p:commandButton>
+				</p:panelGrid>
 
-			<p:layoutUnit position="center">
-				<h:form id="loginForm" prependId="false">
-					<p:growl id="growl" showDetail="true" sticky="true" />
-					<p:panelGrid columns="1" styleClass="loginPanelGridCenter">
-						<f:facet name="header">
-							<h:outputText value="Please sign in"
-								styleClass="loginPanelHeaderFont"></h:outputText>
-							<!--  <h2>Please sign in</h2>-->
-						</f:facet>
-
-						<p:inputText id="j_username" required="true"
-							styleClass="form-control" placeholder="Username"
-							requiredMessage="Username Required"></p:inputText>
-						<p:password id="j_password" required="true"
-							styleClass="form-control" feedback="false" placeholder="Password"
-							requiredMessage="Password Required" />
-
-						<h:panelGrid columns="2" style="margin-bottom:10px;"
-							cellpadding="5">
-							<h:outputText value="Remember Me: " />
-							<p:selectBooleanCheckbox id="_spring_security_remember_me" />
-						</h:panelGrid>
-						
-						<p:commandButton ajax="false" value="Sign In" id="login" style="width : 210px;"
-							action="#{loginBean.doLogin}"></p:commandButton>
-					</p:panelGrid>
-
-				</h:form>
-			</p:layoutUnit>
-
-		</p:layout>
-	</f:view>
+			</h:form>
+		</ui:define>
+	</ui:composition>
 </h:body>
 </html>
