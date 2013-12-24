@@ -58,7 +58,8 @@
 							<h:outputText value="Remember Me: " />
 							<p:selectBooleanCheckbox id="_spring_security_remember_me" />
 						</h:panelGrid>
-						<p:commandButton value="Sign In" id="login" style="width : 210px;"
+						
+						<p:commandButton ajax="false" value="Sign In" id="login" style="width : 210px;"
 							action="#{loginBean.doLogin}"></p:commandButton>
 					</p:panelGrid>
 

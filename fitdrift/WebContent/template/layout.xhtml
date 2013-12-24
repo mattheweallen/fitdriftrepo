@@ -3,10 +3,13 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-	
+	<link href="#{resource['css/fitdrift.css']}" rel="stylesheet" />
+    <link href="#{resource['css/bootstrap.css']}" rel="stylesheet" />
+    <link rel="shortcut icon" href="#{resource['images/favicon.png']}" type="image/x-icon" />
 	
 	<ui:insert name="scripts">
 	</ui:insert>
@@ -14,27 +17,29 @@
 
 <h:body>
 
-	<div id="page">
+<p:layout fullPage="true">
 
-		<div id="header" class="header">
+		<p:layoutUnit position="north" size="50" resizable="false"
+			closable="false" collapsible="false">
 			<ui:insert name="header">
 				<ui:include src="/template/header.xhtml" />
 			</ui:insert>
-		</div>
 
-		<div id="content" class="content">
-			<ui:insert name="content">
-				<ui:include src="/template/content.xhtml" />
-			</ui:insert>
-		</div>
+		</p:layoutUnit>
 
-		<div id="footer" class="footer">
+		<p:layoutUnit position="south" size="50" resizable="false"
+			closable="false" collapsible="false">
 			<ui:insert name="footer">
 				<ui:include src="/template/footer.xhtml" />
 			</ui:insert>
-		</div>
+		</p:layoutUnit>
 
-	</div>
+		<p:layoutUnit position="center">
+			<ui:insert name="content">
+			</ui:insert>
+		</p:layoutUnit>
+
+	</p:layout>
 
 </h:body>
 </html>

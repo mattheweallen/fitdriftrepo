@@ -6,94 +6,74 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
-<h:head>
-	<title>Fitdrift Dashboard</title>
-	<link href="#{resource['css/fitdrift.css']}" rel="stylesheet" />
-        <link href="#{resource['css/bootstrap.css']}" rel="stylesheet" />
-        <link rel="shortcut icon" href="#{resource['images/favicon.png']}" type="image/x-icon" />
-</h:head>
+
 <h:body>
 
-	<p:layout fullPage="true">
-
-		<p:layoutUnit position="north" size="50" resizable="false"
-			closable="false" collapsible="false">
-			<ui:insert name="header">
-				<ui:include src="/template/header.xhtml" />
-			</ui:insert>
-
-		</p:layoutUnit>
-
-		<p:layoutUnit position="south" size="50" resizable="false"
-			closable="false" collapsible="false">
-			<ui:insert name="footer">
-				<ui:include src="/template/footer.xhtml" />
-			</ui:insert>
-		</p:layoutUnit>
-
-		<p:layoutUnit position="center">
+	<ui:composition template="/template/layout.xhtml">
+		<ui:define name="content">
 			<h:form>
 				<p:tabMenu activeIndex="0">
 					<p:menuitem value="Dashboard" url="/faces/dashboard.xhtml" />
 					<p:menuitem value="Upload Activity" url="/faces/upload.xhtml" />
-					<p:menuitem value="Manual Activity" url="/faces/createactivity.xhtml" />
+					<p:menuitem value="Manual Activity"
+						url="/faces/createactivity.xhtml" />
 					<p:menuitem value="My Maps" url="/faces/mymaps.xhtml" />
 					<p:menuitem value="Preferences" url="/faces/preferences.xhtml" />
 				</p:tabMenu>
-				<p:dashboard id="board" model="#{dashboardBean.model}">  
-					<p:panel id="weather" header="Weather">  
-						<p:feedReader value="http://w1.weather.gov/xml/current_obs/KLSE.rss" var="feed">
-						<h:outputText value="#{feed.title}" style="font-weight: bold" />
-						<br />
-						<h:outputText value="#{feed.description.value}" escape="false"  />
+				<p:dashboard id="board" model="#{dashboardBean.model}">
+					<p:panel id="weather" header="Weather">
+						<p:feedReader
+							value="http://w1.weather.gov/xml/current_obs/KLSE.rss" var="feed">
+							<h:outputText value="#{feed.title}" style="font-weight: bold" />
+							<br />
+							<h:outputText value="#{feed.description.value}" escape="false" />
 						</p:feedReader>
-					</p:panel> 
-					<p:panel id="activities" header="Past Activities">  
+					</p:panel>
+					<p:panel id="activities" header="Past Activities">
 						<p:dataTable id="activityTable" value="#{dashboardBean.lazyModel}"
 							var="activity" rows="10" paginator="true" lazy="true">
-		
-		
-		
-		
+
+
+
+
 							<p:column rendered="#{request.isUserInRole('ROLE_ADMIN')}">
 								<f:facet name="header">User Name</f:facet>
 								<h:outputText value="#{activity.user.username}" />
-		
+
 							</p:column>
-		
+
 							<p:column>
 								<f:facet name="header">Name</f:facet>
 								<h:link outcome="activity" value="#{activity.name}">
 									<f:param name="activityId" value="#{activity.activity_id}" />
 								</h:link>
-		
+
 							</p:column>
-		
+
 							<p:column>
 								<f:facet name="header">Date</f:facet>
 								<h:outputText value="#{activity.date}" />
-		
+
 							</p:column>
-		
+
 							<p:column>
 								<f:facet name="header">Delete</f:facet>
 								<h:commandLink value="Delete"
 									action="#{activityBean.removeActivity}">
 									<f:param name="activityId" value="#{activity.activity_id}" />
 								</h:commandLink>
-		
+
 							</p:column>
-		
-		
+
+
 						</p:dataTable>
 					</p:panel>
-					
-					
+
+
 				</p:dashboard>
 			</h:form>
-		</p:layoutUnit>
-
-	</p:layout>
+		</ui:define>
+	</ui:composition>
 
 </h:body>
 </html>
