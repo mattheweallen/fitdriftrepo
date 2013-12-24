@@ -26,13 +26,13 @@
 						<p:inputText value="#{createPathBean.myMapName}"
 							style="width : 400px" size="40"></p:inputText>
 
-						<p:commandButton value="Save" action="#{createPathBean.savePath}">
+						<p:commandButton value="Save" action="#{createPathBean.savePath}" icon="ui-icon-disk">
 						</p:commandButton>
-						<p:commandButton value="Restart"
+						<p:commandButton value="Restart" icon="ui-icon-arrowreturn-1-w"
 							action="#{createPathBean.restartPath}">
 						</p:commandButton>
 						<p:commandButton value="Cancel"
-							action="mymaps?faces-redirect=true">
+							action="mymaps?faces-redirect=true" icon="ui-icon-close">
 						</p:commandButton>
 					</p:panelGrid>
 				</h:panelGrid>
