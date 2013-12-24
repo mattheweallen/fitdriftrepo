@@ -109,7 +109,10 @@ public class ActivityDao implements Serializable {
 	public static void persistActivityAndActivityPoints(Activity a, List<ActivityPoint> activityPoints) {
 		EntityManager em = EntityManagerUtil.getEntityManager();
 		em.getTransaction().begin();
-		a.setWaypoints(activityPoints);
+		if(activityPoints != null) {
+			//TODO Should wayPoints in Activity be renamed activityPoints
+			a.setWaypoints(activityPoints);
+		}
 		
 		//set the timestamp of the activity to the timestamp of the first waypoint
 		if(activityPoints != null && !activityPoints.isEmpty()) {
@@ -117,9 +120,11 @@ public class ActivityDao implements Serializable {
 		}
 		
 		em.persist(a);
-		for(ActivityPoint ap : activityPoints) {
-			ap.setActivity(a);
-			em.persist(ap);
+		if(activityPoints != null) {
+			for(ActivityPoint ap : activityPoints) {
+				ap.setActivity(a);
+				em.persist(ap);
+			}
 		}
 		
 		em.getTransaction().commit();

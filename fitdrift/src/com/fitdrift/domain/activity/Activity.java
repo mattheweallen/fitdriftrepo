@@ -46,7 +46,28 @@ public class Activity implements Serializable {
 
 	@OneToMany(mappedBy = "activity", fetch = FetchType.LAZY, orphanRemoval = true)
 	private List<ActivityPoint> waypoints;
+	
+	@Column
+	private String type;
 
+	@Column
+	private String gear;
+	
+	@Column
+	private Boolean indoors;
+	
+	@Column
+	private Long startTime;
+	
+	@Column
+	private Long endTime;
+	
+	@Column
+	private Double distance;
+	
+	@Column
+	private Double weight;
+	
 	/**
 	 * @return the user
 	 */
@@ -119,5 +140,103 @@ public class Activity implements Serializable {
 	 */
 	public void setDate(Timestamp date) {
 		this.date = date;
+	}
+	
+	/**
+	 * @return the type
+	 */
+	public String getType() {
+		return type;
+	}
+
+	/**
+	 * @param type the type to set
+	 */
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	/**
+	 * @return the gear
+	 */
+	public String getGear() {
+		return gear;
+	}
+
+	/**
+	 * @param gear the gear to set
+	 */
+	public void setGear(String gear) {
+		this.gear = gear;
+	}
+
+	/**
+	 * @return the indoors
+	 */
+	public Boolean getIndoors() {
+		return indoors;
+	}
+
+	/**
+	 * @param indoors the indoors to set
+	 */
+	public void setIndoors(Boolean indoors) {
+		this.indoors = indoors;
+	}
+
+	/**
+	 * @return the startTime
+	 */
+	public Long getStartTime() {
+		return startTime;
+	}
+
+	/**
+	 * @param startTime the startTime to set
+	 */
+	public void setStartTime(Long startTime) {
+		this.startTime = startTime;
+	}
+
+	/**
+	 * @return the endTime
+	 */
+	public Long getEndTime() {
+		return endTime;
+	}
+
+	/**
+	 * @param endTime the endTime to set
+	 */
+	public void setEndTime(Long endTime) {
+		this.endTime = endTime;
+	}
+
+	/**
+	 * @return the distance
+	 */
+	public Double getDistance() {
+		return distance;
+	}
+
+	/**
+	 * @param distance the distance to set
+	 */
+	public void setDistance(Double distance) {
+		this.distance = distance;
+	}
+
+	/**
+	 * @return the weight
+	 */
+	public Double getWeight() {
+		return weight;
+	}
+
+	/**
+	 * @param weight the weight to set
+	 */
+	public void setWeight(Double weight) {
+		this.weight = weight;
 	}
 }

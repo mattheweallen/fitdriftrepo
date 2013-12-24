@@ -37,7 +37,7 @@
 	
 							<p:outputLabel for="startTime" value="Start Time (HH:MM:SS)" ></p:outputLabel>
 							<p:inputMask id="startTime" mask="99:99:99" 
-								required="true"
+								required="true" value="#{createActivityBean.startTime}"
 								requiredMessage="Start Time is required."
 								validatorMessage="Start Time must be time in 24 hour clock HH:MM:SS, 23:45:56 for example.">
 								<f:validator validatorId="militaryTimeValidator" />
@@ -45,7 +45,7 @@
 	
 							<p:outputLabel for="endTime" value="End Time (HH:MM:SS)"></p:outputLabel>
 							<p:inputMask id="endTime" mask="99:99:99"
-								required="true"
+								required="true" value="#{createActivityBean.endTime}"
 								requiredMessage="End Time is required."
 								validatorMessage="End Time must be time in 24 hour clock HH:MM:SS, 23:45:56 for example.">
 								<f:validator validatorId="militaryTimeValidator" />
@@ -114,7 +114,7 @@
 							Other Data
 						</f:facet>
 						<p:outputLabel for="weight" value="Weight"></p:outputLabel>
-						<p:inputText id="weight"
+						<p:inputText id="weight" value="#{createActivityBean.weight}"
 							validatorMessage="Weight must be number between 0 and 1000.">
 							<f:validateDoubleRange minimum="0" maximum="1000" />
 						</p:inputText>
