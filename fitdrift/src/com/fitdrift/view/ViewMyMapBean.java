@@ -10,6 +10,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.component.html.HtmlInputText;
 import javax.faces.context.FacesContext;
 
@@ -30,16 +31,13 @@ import com.fitdrift.util.gis.GISCalculator;
  * @version 20131208
  */
 @ManagedBean
-@RequestScoped
+@ViewScoped
 public class ViewMyMapBean implements Serializable {
 	private static final long serialVersionUID = -4430301657324644250L;
 	@ManagedProperty(value = "#{request.getParameter('mymap_id')}")
 	private String mymap_id;
-
-	@ManagedProperty(value = "#{userInfoBean}")
-	private UserInfoBean userInfoBean;
-	private HtmlInputText inputTextMyMapName;
 	private MapModel polylineModel = new DefaultMapModel();
+	private String myMapName;
 
 	@PostConstruct
 	public void initialize() {
@@ -82,34 +80,6 @@ public class ViewMyMapBean implements Serializable {
 		return polylineModel;
 	}
 
-	/**
-	 * @return the userInfoBean
-	 */
-	public UserInfoBean getUserInfoBean() {
-		return userInfoBean;
-	}
-
-	/**
-	 * @param userInfoBean
-	 *            the userInfoBean to set
-	 */
-	public void setUserInfoBean(UserInfoBean userInfoBean) {
-		this.userInfoBean = userInfoBean;
-	}
-
-	public HtmlInputText getInputTextMyMapName() {
-		return inputTextMyMapName;
-	}
-
-	public void setInputTextMyMapName(HtmlInputText inputTextMyMapName) {
-
-		if (mymap_id != null) {
-			inputTextMyMapName.setValue(AthleticgisFacade.findMyMapById(
-					Long.parseLong(mymap_id)).getName());
-		}
-		this.inputTextMyMapName = inputTextMyMapName;
-	}
-
 	public String getMymap_id() {
 		return mymap_id;
 	}
@@ -123,11 +93,27 @@ public class ViewMyMapBean implements Serializable {
 				.getExternalContext().getRequestParameterMap();
 		String mId = params.get("mymap_id");
 		Long id = Long.parseLong(mId);
-		if (inputTextMyMapName.getValue().toString() != null
-				&& inputTextMyMapName.getValue().toString().length() > 0) {
-			AthleticgisFacade.mergeMyMap(inputTextMyMapName.getValue()
-					.toString(), id);
+		if (myMapName != null && myMapName.length() > 0) {
+			AthleticgisFacade.mergeMyMap(myMapName, id);
 		}
 		return "mymaps?faces-redirect=true";
+	}
+
+	/**
+	 * @return the myMapName
+	 */
+	public String getMyMapName() {
+		if (mymap_id != null) {
+			myMapName = AthleticgisFacade.findMyMapById(Long.parseLong(mymap_id)).getName();
+		}
+		return myMapName;
+	}
+
+	/**
+	 * @param myMapName the myMapName to set
+	 */
+	public void setMyMapName(String myMapName) {
+		
+		this.myMapName = myMapName;
 	}
 }

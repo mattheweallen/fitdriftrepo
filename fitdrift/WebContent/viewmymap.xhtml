@@ -32,28 +32,23 @@
 		</p:layoutUnit>
 		<p:layoutUnit position="center">
 			<h:form>
-				<p:tabMenu activeIndex="-1">
-					<p:menuitem value="Dashboard" url="/faces/dashboard.xhtml" />
-					<p:menuitem value="Upload" url="/faces/upload.xhtml" />
-					<p:menuitem value="My Maps" url="/faces/mymaps.xhtml" />
-					<p:menuitem value="Create Path" url="/faces/createpath.xhtml" />
-					<p:menuitem value="Preferences" url="/faces/preferences.xhtml" />
-				</p:tabMenu>
 				<h:panelGrid styleClass="panelGridCenter">
-					<h:panelGrid columns="3" styleClass="panelGridCenter" width="50%">
-						<h:inputText binding="#{viewMyMapBean.inputTextMyMapName}"
-							style="width : 400px" size="40"></h:inputText>
+					<p:panelGrid columns="4" styleClass="panelGridCenter">
+						<p:inputText value="#{viewMyMapBean.myMapName}"
+							style="width : 400px" size="40"></p:inputText>
 
-						<h:commandButton value="Update"
+						<p:commandButton value="Update"
 							action="#{viewMyMapBean.updateMyMap}">
 							<f:param name="mymap_id"
 								value="#{request.getParameter('mymap_id')}" />
-						</h:commandButton>
-						<h:commandButton value="Delete" action="#{myMapBean.removeMyMap}">
+						</p:commandButton>
+						<p:commandButton value="Delete" action="#{myMapBean.removeMyMap}">
 							<f:param name="mymap_id"
 								value="#{request.getParameter('mymap_id')}" />
-						</h:commandButton>
-					</h:panelGrid>
+						</p:commandButton>
+						<p:commandButton value="Return to My Maps" immediate="true" action="mymaps?faces-redirect=true">
+						</p:commandButton>
+					</p:panelGrid>
 				</h:panelGrid>
 				<p:growl id="messages" showDetail="true" sticky="true"
 					autoUpdate="true" />
