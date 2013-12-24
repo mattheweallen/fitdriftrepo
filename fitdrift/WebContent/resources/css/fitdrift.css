@@ -126,6 +126,18 @@
         text-align: right;
 }
 
+.viewCol1 {
+        
+        width: 200px;
+        text-align: center;
+}
+
+.viewCol2 {
+        
+        width: 20px;
+        text-align: center;
+}
+
 .footerCol {
         padding-left: 20px;
         

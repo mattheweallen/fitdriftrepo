@@ -33,16 +33,16 @@
 						<p:inputText value="#{viewMyMapBean.myMapName}"
 							style="width : 400px" size="40"></p:inputText>
 
-						<p:commandButton value="Update"
+						<p:commandButton value="Update" icon="ui-icon-refresh"
 							action="#{viewMyMapBean.updateMyMap}">
 							<f:param name="mymap_id"
 								value="#{request.getParameter('mymap_id')}" />
 						</p:commandButton>
-						<p:commandButton value="Delete" action="#{myMapBean.removeMyMap}">
+						<p:commandButton value="Delete" action="#{myMapBean.removeMyMap}" icon="ui-icon-trash">
 							<f:param name="mymap_id"
 								value="#{request.getParameter('mymap_id')}" />
 						</p:commandButton>
-						<p:commandButton value="Return to My Maps" immediate="true"
+						<p:commandButton value="Return to My Maps" immediate="true" icon="ui-icon-arrow-1-w"
 							action="mymaps?faces-redirect=true">
 						</p:commandButton>
 					</p:panelGrid>

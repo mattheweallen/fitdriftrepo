@@ -38,7 +38,15 @@
 							var="activity" rows="10" paginator="true" lazy="true">
 
 
-
+							<p:column style="text-align: center">
+								<f:facet name="header">View</f:facet>
+								
+									
+									<p:button outcome="activity" icon="ui-icon-zoomin">
+										<f:param name="activityId" value="#{activity.activity_id}" />
+									</p:button>
+								
+							</p:column>
 
 							<p:column rendered="#{request.isUserInRole('ROLE_ADMIN')}">
 								<f:facet name="header">User Name</f:facet>
@@ -48,10 +56,10 @@
 
 							<p:column>
 								<f:facet name="header">Name</f:facet>
-								<h:link outcome="activity" value="#{activity.name}">
-									<f:param name="activityId" value="#{activity.activity_id}" />
-								</h:link>
-
+								
+									<h:outputText value="#{activity.name}"></h:outputText>
+									
+								
 							</p:column>
 
 							<p:column>
@@ -60,12 +68,12 @@
 
 							</p:column>
 
-							<p:column>
+							<p:column style="text-align: center">
 								<f:facet name="header">Delete</f:facet>
-								<h:commandLink value="Delete"
+								<p:commandButton icon="ui-icon-trash"
 									action="#{activityBean.removeActivity}">
 									<f:param name="activityId" value="#{activity.activity_id}" />
-								</h:commandLink>
+								</p:commandButton>
 
 							</p:column>
 

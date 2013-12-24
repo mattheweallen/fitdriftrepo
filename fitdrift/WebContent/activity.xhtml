@@ -21,17 +21,17 @@
 						<h:inputText value="#{activityBean.activityName}"
 							style="width : 400px" size="40"></h:inputText>
 
-						<p:commandButton value="Update"
+						<p:commandButton value="Update" icon="ui-icon-refresh"
 							action="#{activityBean.updateActivity}">
 							<f:param name="activityId"
 								value="#{request.getParameter('activityId')}" />
 						</p:commandButton>
-						<p:commandButton value="Delete"
+						<p:commandButton value="Delete" icon="ui-icon-trash"
 							action="#{activityBean.removeActivity}">
 							<f:param name="activityId"
 								value="#{request.getParameter('activityId')}" />
 						</p:commandButton>
-						<p:commandButton value="Return to Dashboard" action="dashboard?faces-redirect=true">
+						<p:commandButton value="Return to Dashboard" action="dashboard?faces-redirect=true" icon="ui-icon-arrow-1-w">
 						</p:commandButton>
 					</p:panelGrid>
 

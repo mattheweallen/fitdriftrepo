@@ -8,7 +8,7 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <h:body>
-	
+
 	<ui:composition template="/template/layout.xhtml">
 		<ui:define name="scripts">
 			<title>Fitdrift My Maps</title>
@@ -18,20 +18,31 @@
 				<p:tabMenu activeIndex="3">
 					<p:menuitem value="Dashboard" url="/faces/dashboard.xhtml" />
 					<p:menuitem value="Upload Activity" url="/faces/upload.xhtml" />
-					<p:menuitem value="Manual Activity" url="/faces/createactivity.xhtml" />
+					<p:menuitem value="Manual Activity"
+						url="/faces/createactivity.xhtml" />
 					<p:menuitem value="My Maps" url="/faces/mymaps.xhtml" />
 					<p:menuitem value="Preferences" url="/faces/preferences.xhtml" />
 				</p:tabMenu>
-				
-				
+
+
 
 				<p:dataTable id="myMapTable" value="#{myMapBean.lazyModel}"
 					var="myMap" rows="10" paginator="true" lazy="true">
 
 					<f:facet name="header">
-						<p:commandButton action="createpath?faces-redirect=true" value="Create Map"></p:commandButton>
+						<p:commandButton action="createpath?faces-redirect=true" icon="ui-icon-circle-plus"
+							value="Create Map"></p:commandButton>
 					</f:facet>
 
+					<p:column style="text-align: center">
+						<f:facet name="header">View</f:facet>
+
+
+						<p:button outcome="viewmymap" icon="ui-icon-zoomin">
+							<f:param name="mymap_id" value="#{myMap.mymap_id}" />
+						</p:button>
+
+					</p:column>
 
 					<p:column rendered="#{request.isUserInRole('ROLE_ADMIN')}">
 						<f:facet name="header">User Name</f:facet>
@@ -41,11 +52,8 @@
 
 					<p:column>
 						<f:facet name="header">Name</f:facet>
-						
-						<h:link outcome="viewmymap" value="#{myMap.name}">
- -              			<f:param name="mymap_id" value="#{myMap.mymap_id}" />
- -            			</h:link>
 
+						<h:outputText value="#{myMap.name}"></h:outputText>
 
 
 					</p:column>
@@ -56,12 +64,12 @@
 
 					</p:column>
 
-					<p:column>
+					<p:column style="text-align: center">
 						<f:facet name="header">Delete</f:facet>
-						<h:commandLink value="Delete"
+						<p:commandButton icon="ui-icon-trash"
 							action="#{myMapBean.removeMyMap}">
 							<f:param name="mymap_id" value="#{myMap.mymap_id}" />
-						</h:commandLink>
+						</p:commandButton>
 
 					</p:column>
 
