@@ -15,39 +15,41 @@
 			</script>
 		</ui:define>
 		<ui:define name="content">
-				<h:form>
-				<h:panelGrid styleClass="panelGridCenter">
-					<p:panelGrid columns="4" styleClass="panelGridCenter">
-						<h:inputText value="#{activityBean.activityName}"
-							style="width : 400px" size="40"></h:inputText>
-
-						<p:commandButton value="Update" icon="ui-icon-refresh"
-							action="#{activityBean.updateActivity}">
-							<f:param name="activityId"
-								value="#{request.getParameter('activityId')}" />
-						</p:commandButton>
-						<p:commandButton value="Delete" icon="ui-icon-trash"
-							action="#{activityBean.removeActivity}">
-							<f:param name="activityId"
-								value="#{request.getParameter('activityId')}" />
-						</p:commandButton>
-						<p:commandButton value="Return to Dashboard" action="dashboard?faces-redirect=true" icon="ui-icon-arrow-1-w">
-						</p:commandButton>
-					</p:panelGrid>
-
-				</h:panelGrid>
-
-
-				
-				
-				
-				<p:growl id="messages" showDetail="true" sticky="true" autoUpdate="true" /> 
-				</h:form>
-				<p:gmap id="map_canvas" fitBounds="true" type="HYBRID"
-					style="width:100%;height:400px" model="#{activityBean.polylineModel}" >
+			<p:layout>
+				<p:layoutUnit position="center"> 
+					<h:form>
+						<p:panelGrid columns="1" styleClass="panelGridCenter">
+						<p:panelGrid columns="3" styleClass="panelGridCenter">
+							
+	
+							<p:commandButton value="Update" icon="ui-icon-refresh"
+								action="#{activityBean.updateActivity}">
+								<f:param name="activityId"
+									value="#{request.getParameter('activityId')}" />
+							</p:commandButton>
+							<p:commandButton value="Delete" icon="ui-icon-trash"
+								action="#{activityBean.removeActivity}">
+								<f:param name="activityId"
+									value="#{request.getParameter('activityId')}" />
+							</p:commandButton>
+							<p:commandButton value="Return to Dashboard" action="dashboard?faces-redirect=true" icon="ui-icon-arrow-1-w">
+							</p:commandButton>
+						</p:panelGrid>
+							<h:inputText value="#{activityBean.activityName}"
+									style="width : 400px" size="40"></h:inputText>
 					
-				</p:gmap>
-			</ui:define>
+						</p:panelGrid>
+						<p:growl id="messages" showDetail="true" sticky="true" autoUpdate="true" /> 
+					</h:form>
+				</p:layoutUnit>
+				<p:layoutUnit position="east" minSize="700" rendered="#{!activityBean.emptyMap}">  
+					<p:gmap id="map_canvas" fitBounds="true" type="HYBRID" 
+						style="width:100%;height:400px" model="#{activityBean.polylineModel}" >
+					
+					</p:gmap>
+				</p:layoutUnit>
+			</p:layout>
+		</ui:define>
 	</ui:composition>
 
 </h:body>

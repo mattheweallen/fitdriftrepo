@@ -37,6 +37,7 @@ public class ActivityBean implements Serializable {
 	private MapModel polylineModel = new DefaultMapModel();
 	@ManagedProperty(value = "#{request.getParameter('activityId')}")
     private String activityId;
+	private Boolean emptyMap = false;
 	
 	@PostConstruct
     public void initialize() {
@@ -46,16 +47,21 @@ public class ActivityBean implements Serializable {
 		polyline.setStrokeOpacity(1.0);
 		List<ActivityPoint> activityPoints = AthleticgisFacade
 				.findActivityPointsByActivityId(Long.parseLong(activityId));
-		for (ActivityPoint ap : activityPoints) {
-			polyline.getPaths().add(
-					new LatLng(ap.getLatitude(), ap.getLongitude()));
-		}
-		GISCalculator calc = new GISCalculator();
-	    Double distance = calc.computePathDistance(activityPoints)/1000;
-	    DecimalFormat df = new DecimalFormat("#.##");
-	    addMessage(new FacesMessage(FacesMessage.SEVERITY_INFO, "Distance", "Your total distance is " + df.format(distance) + " km."));
 		
-		polylineModel.addOverlay(polyline);
+		if(activityPoints != null && activityPoints.size() > 0) {
+			for (ActivityPoint ap : activityPoints) {
+				polyline.getPaths().add(
+						new LatLng(ap.getLatitude(), ap.getLongitude()));
+			}
+			GISCalculator calc = new GISCalculator();
+		    Double distance = calc.computePathDistance(activityPoints)/1000;
+		    DecimalFormat df = new DecimalFormat("#.##");
+		    addMessage(new FacesMessage(FacesMessage.SEVERITY_INFO, "Distance", "Your total distance is " + df.format(distance) + " km."));
+			
+			polylineModel.addOverlay(polyline);
+		} else {
+			emptyMap = true;
+		}
 	}
 	
 	public MapModel getPolylineModel() {
@@ -108,5 +114,19 @@ public class ActivityBean implements Serializable {
 		
 		AthleticgisFacade.removeActivity(id);
 		return "dashboard?faces-redirect=true";
+	}
+
+	/**
+	 * @return the emptyMap
+	 */
+	public Boolean getEmptyMap() {
+		return emptyMap;
+	}
+
+	/**
+	 * @param emptyMap the emptyMap to set
+	 */
+	public void setEmptyMap(Boolean emptyMap) {
+		this.emptyMap = emptyMap;
 	}
 }
