@@ -10,6 +10,7 @@
 	<title>Fitdrift View My Map</title>
 	<script type="text/javascript"
 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyApDXRNzq6eGqWKUbufj3MzhJ4P0RF0Ghw&amp;sensor=false">
+		
 	</script>
 	<link href="#{resource['css/fitdrift.css']}" rel="stylesheet" />
 	<link href="#{resource['css/bootstrap.css']}" rel="stylesheet" />
@@ -17,20 +18,15 @@
 		type="image/x-icon" />
 </h:head>
 <h:body>
-	<p:layout fullPage="true">
-		<p:layoutUnit position="north" size="50" resizable="false"
-			closable="false" collapsible="false">
-			<ui:insert name="header">
-				<ui:include src="/template/header.xhtml" />
-			</ui:insert>
-		</p:layoutUnit>
-		<p:layoutUnit position="south" size="50" resizable="false"
-			closable="false" collapsible="false">
-			<ui:insert name="footer">
-				<ui:include src="/template/footer.xhtml" />
-			</ui:insert>
-		</p:layoutUnit>
-		<p:layoutUnit position="center">
+	<ui:composition template="/template/layout.xhtml">
+		<ui:define name="scripts">
+			<title>Fitdrift View My Map</title>
+			<script type="text/javascript"
+				src="https://maps.googleapis.com/maps/api/js?key=AIzaSyApDXRNzq6eGqWKUbufj3MzhJ4P0RF0Ghw&amp;sensor=false">
+				
+			</script>
+		</ui:define>
+		<ui:define name="content">
 			<h:form>
 				<h:panelGrid styleClass="panelGridCenter">
 					<p:panelGrid columns="4" styleClass="panelGridCenter">
@@ -46,19 +42,20 @@
 							<f:param name="mymap_id"
 								value="#{request.getParameter('mymap_id')}" />
 						</p:commandButton>
-						<p:commandButton value="Return to My Maps" immediate="true" action="mymaps?faces-redirect=true">
+						<p:commandButton value="Return to My Maps" immediate="true"
+							action="mymaps?faces-redirect=true">
 						</p:commandButton>
 					</p:panelGrid>
 				</h:panelGrid>
 				<p:growl id="messages" showDetail="true" sticky="true"
 					autoUpdate="true" />
-				
+
 			</h:form>
 			<p:gmap id="map_canvas" fitBounds="true" type="HYBRID"
-					style="width:100%;height:400px"
-					model="#{viewMyMapBean.polylineModel}" >
-				</p:gmap>
-		</p:layoutUnit>
-	</p:layout>
+				style="width:100%;height:400px"
+				model="#{viewMyMapBean.polylineModel}">
+			</p:gmap>
+		</ui:define>
+	</ui:composition>
 </h:body>
 </html>

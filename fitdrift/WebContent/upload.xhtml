@@ -6,54 +6,39 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
-<h:head>
-	<title>Fitdrift Upload</title>
-	<link href="#{resource['css/fitdrift.css']}" rel="stylesheet" />
-    <link href="#{resource['css/bootstrap.css']}" rel="stylesheet" />
-    <link rel="shortcut icon" href="#{resource['images/favicon.png']}" type="image/x-icon" />
-</h:head>
+
 <h:body>
-	
-		<p:layout fullPage="true">
-			
-			<p:layoutUnit position="north" size="50" resizable="false"
-				closable="false" collapsible="false">
-				<ui:insert name="header">
-					<ui:include src="/template/header.xhtml" />
-				</ui:insert>
-				
-			</p:layoutUnit>
 
-			<p:layoutUnit position="south" size="50" resizable="false"
-				closable="false" collapsible="false">
-				<ui:insert name="footer">
-					<ui:include src="/template/footer.xhtml" />
-				</ui:insert>
-			</p:layoutUnit>
+	<ui:composition template="/template/layout.xhtml">
+		<ui:define name="scripts">
+			<title>Fitdrift Upload</title>
 
-			<p:layoutUnit position="center">
-				<h:form enctype="multipart/form-data">
+		</ui:define>
+		<ui:define name="content">
+			<h:form enctype="multipart/form-data">
 				<p:tabMenu activeIndex="1">
 					<p:menuitem value="Dashboard" url="/faces/dashboard.xhtml" />
 					<p:menuitem value="Upload Activity" url="/faces/upload.xhtml" />
-					<p:menuitem value="Manual Activity" url="/faces/createactivity.xhtml" />
+					<p:menuitem value="Manual Activity"
+						url="/faces/createactivity.xhtml" />
 					<p:menuitem value="My Maps" url="/faces/mymaps.xhtml" />
 					<p:menuitem value="Preferences" url="/faces/preferences.xhtml" />
 				</p:tabMenu>
-				
-					<h:outputLabel value="Select up to 25 valid .FIT and/or .GPX files To Upload: "></h:outputLabel>
 
-					<p:fileUpload id="fileUploader"
-						fileUploadListener="#{fileUploadController.handleFileUpload}"
-						mode="advanced" dragDropSupport="false" update="messages" multiple="true"
-						sizeLimit="25000000" fileLimit="25" allowTypes="/(\.|\/)(gpx|fit|FIT|GPX)$/" />
+				<h:outputLabel
+					value="Select up to 25 valid .FIT and/or .GPX files To Upload: "></h:outputLabel>
 
-					<p:growl id="messages" showDetail="true" />
+				<p:fileUpload id="fileUploader"
+					fileUploadListener="#{fileUploadController.handleFileUpload}"
+					mode="advanced" dragDropSupport="false" update="messages"
+					multiple="true" sizeLimit="25000000" fileLimit="25"
+					allowTypes="/(\.|\/)(gpx|fit|FIT|GPX)$/" />
 
-			</h:form>	
-			</p:layoutUnit>
-			
-		</p:layout>
-	
+				<p:growl id="messages" showDetail="true" />
+
+			</h:form>
+		</ui:define>
+	</ui:composition>
+
 </h:body>
 </html>
