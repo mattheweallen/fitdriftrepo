@@ -50,6 +50,9 @@ public class CreateActivityBean implements Serializable {
 	private Double thigh;
 	private Double aveHeartRate;
 	private Double calories;
+	private Double systolic;
+	private Double diastolic;
+	private Double pulse;
 
 	/**
 	 * @return the activityDate
@@ -377,6 +380,48 @@ public class CreateActivityBean implements Serializable {
 	 */
 	public void setActivityGear(String activityGear) {
 		this.activityGear = activityGear;
+	}
+
+	/**
+	 * @return the systolic
+	 */
+	public Double getSystolic() {
+		return systolic;
+	}
+
+	/**
+	 * @param systolic the systolic to set
+	 */
+	public void setSystolic(Double systolic) {
+		this.systolic = systolic;
+	}
+
+	/**
+	 * @return the diastolic
+	 */
+	public Double getDiastolic() {
+		return diastolic;
+	}
+
+	/**
+	 * @param diastolic the diastolic to set
+	 */
+	public void setDiastolic(Double diastolic) {
+		this.diastolic = diastolic;
+	}
+
+	/**
+	 * @return the pulse
+	 */
+	public Double getPulse() {
+		return pulse;
+	}
+
+	/**
+	 * @param pulse the pulse to set
+	 */
+	public void setPulse(Double pulse) {
+		this.pulse = pulse;
 	}
 
 	
