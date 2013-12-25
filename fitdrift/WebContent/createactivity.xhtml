@@ -16,16 +16,22 @@
 				<p:tabMenu activeIndex="2">
 					<p:menuitem value="Dashboard" url="/faces/dashboard.xhtml" />
 					<p:menuitem value="Upload Activity" url="/faces/upload.xhtml" />
-					<p:menuitem value="Manual Activity" url="/faces/createactivity.xhtml" />
+					<p:menuitem value="Manual Activity"
+						url="/faces/createactivity.xhtml" />
 					<p:menuitem value="My Maps" url="/faces/mymaps.xhtml" />
 					<p:menuitem value="Preferences" url="/faces/preferences.xhtml" />
 				</p:tabMenu>
-				<p:panelGrid columns="1" styleClass="panelGridCenter">
-					
-					<p:growl id="growls" autoUpdate="true" globalOnly="false" sticky="true"></p:growl>
+				<p:growl id="growls" autoUpdate="true" globalOnly="false"
+					sticky="true"></p:growl>
+				<p:panelGrid columns="2" id="grid">
+					<f:facet name="header">
+						<p:commandButton value="Save" icon="ui-icon-check"
+							action="#{createActivityBean.createActivity}" update="grid"
+							validateClient="true" style="margin:0" />
+					</f:facet>
 
 
-					<p:panelGrid id="grid" columns="3" >
+					<p:panelGrid columns="1">
 						<f:facet name="header">
 							Activity Data
 						</f:facet>
@@ -34,69 +40,81 @@
 							<p:calendar value="#{createActivityBean.activityDate}"
 								id="popupCal" required="true"
 								requiredMessage="Date of Activity is required." />
-	
-							<p:outputLabel for="startTime" value="Start Time (HH:MM:SS)" ></p:outputLabel>
-							<p:inputMask id="startTime" mask="99:99:99" 
-								required="true" value="#{createActivityBean.startTime}"
+
+							<p:outputLabel for="startTime" value="Start Time (HH:MM:SS)"></p:outputLabel>
+							<p:inputMask id="startTime" mask="99:99:99" required="true"
+								value="#{createActivityBean.startTime}"
 								requiredMessage="Start Time is required."
 								validatorMessage="Start Time must be time in 24 hour clock HH:MM:SS, 23:45:56 for example.">
 								<f:validator validatorId="militaryTimeValidator" />
 							</p:inputMask>
-	
+
 							<p:outputLabel for="endTime" value="End Time (HH:MM:SS)"></p:outputLabel>
-							<p:inputMask id="endTime" mask="99:99:99"
-								required="true" value="#{createActivityBean.endTime}"
+							<p:inputMask id="endTime" mask="99:99:99" required="true"
+								value="#{createActivityBean.endTime}"
 								requiredMessage="End Time is required."
 								validatorMessage="End Time must be time in 24 hour clock HH:MM:SS, 23:45:56 for example.">
 								<f:validator validatorId="militaryTimeValidator" />
 							</p:inputMask>
 						</p:panelGrid>
 
-						<p:panelGrid columns="2">
+
+
+
+
+						<p:panelGrid columns="3">
 							<h:panelGrid columns="2" style="margin-bottom:10px;"
 								cellpadding="5">
-								<h:outputText value="Indoors " />
 								<p:selectBooleanCheckbox id="indoors"
 									value="#{createActivityBean.indoors}" />
+								<h:outputText value="Indoors " />
+
 							</h:panelGrid>
-							
+
 							<h:panelGrid columns="2" style="margin-bottom:10px;"
 								cellpadding="5">
-								<h:outputText value="Use My Map " />
 								<p:selectBooleanCheckbox id="useMyMap"
-									value="#{createActivityBean.useMyMap}" >
-									<p:ajax update="myMapInput distance" listener="#{createActivityBean.useMyMapChecked}"/>  
+									value="#{createActivityBean.useMyMap}">
+									<p:ajax update="myMapInput distancePanelGrid"
+										listener="#{createActivityBean.useMyMapChecked}" />
 								</p:selectBooleanCheckbox>
+								<h:outputText value="Use My Map " />
+
 							</h:panelGrid>
-						
-							<p:outputLabel for="myMapInput" value="My Map"></p:outputLabel>
+
 							<p:inputText id="myMapInput"
 								value="#{createActivityBean.mapMapName}"
-								onfocus="PF('dlg').show();" disabled="#{!createActivityBean.useMyMap}">
-	
+								onfocus="PF('dlg').show();"
+								disabled="#{!createActivityBean.useMyMap}">
+
 							</p:inputText>
-	
+						</p:panelGrid>
+						<p:panelGrid columns="2" id="distancePanelGrid">
 							<p:outputLabel for="distance" value="Distance"></p:outputLabel>
-							<p:inputText id="distance" value="#{createActivityBean.distance}" disabled="#{createActivityBean.useMyMap}"
+							<p:inputText id="distance" value="#{createActivityBean.distance}"
+								disabled="#{createActivityBean.useMyMap}" rendered="#{!createActivityBean.useMyMap}"
 								validatorMessage="Distance must be number between 0 and 1000.">
 								<f:validateDoubleRange minimum="0" maximum="1000" />
 							</p:inputText>
-	
-	
-	
+							<h:outputText id="mapDistance" value="#{createActivityBean.distance}" rendered="#{createActivityBean.useMyMap}">
+								<f:convertNumber maxFractionDigits="2"></f:convertNumber>
+							</h:outputText>
+
+
+							
 							
 
+							
+
+
 						</p:panelGrid>
-						
-						<p:panelGrid columns="2">
+						<p:panelGrid columns="3">
 							<p:selectOneMenu value="#{createActivityBean.activityType}">
 								<f:selectItem itemLabel="-Select Activity Type-" itemValue="" />
 								<f:selectItem itemLabel="Cycling" itemValue="1" />
 								<f:selectItem itemLabel="Running" itemValue="2" />
 								<f:selectItem itemLabel="Swimming" itemValue="3" />
 							</p:selectOneMenu>
-							<p:commandButton value="Add Type"></p:commandButton>
-	
 							<p:selectOneMenu>
 								<f:selectItem itemLabel="-Select Gear-" itemValue="" />
 								<f:selectItem itemLabel="Cycling" itemValue="1" />
@@ -104,47 +122,54 @@
 								<f:selectItem itemLabel="Swimming" itemValue="3" />
 							</p:selectOneMenu>
 							<p:commandButton value="Add Gear"></p:commandButton>
-							
 						</p:panelGrid>
-						
+
+
 					</p:panelGrid>
 					
-					<p:panelGrid columns="2" >
-						<f:facet name="header">
+
+						<p:panelGrid columns="2" style="margin:0;">
+							<f:facet name="header">
 							Other Data
 						</f:facet>
-						<p:outputLabel for="weight" value="Weight"></p:outputLabel>
-						<p:inputText id="weight" value="#{createActivityBean.weight}"
-							validatorMessage="Weight must be number between 0 and 1000.">
-							<f:validateDoubleRange minimum="0" maximum="1000" />
-						</p:inputText>
-						<p:outputLabel for="height" value="Height"></p:outputLabel>
-						<p:inputText id="height" value="#{createActivityBean.height}"
-							validatorMessage="Height must be number between 0 and 1000.">
-							<f:validateDoubleRange minimum="0" maximum="1000" />
-						</p:inputText>
-						<p:outputLabel for="waist" value="Waist"></p:outputLabel>
-						<p:inputText id="waist" value="#{createActivityBean.waist}"
-							validatorMessage="Waist must be number between 0 and 1000.">
-							<f:validateDoubleRange minimum="0" maximum="1000" />
-						</p:inputText>
-						<p:outputLabel for="hip" value="Hip"></p:outputLabel>
-						<p:inputText id="hip" value="#{createActivityBean.hip}"
-							validatorMessage="Hip must be number between 0 and 1000.">
-							<f:validateDoubleRange minimum="0" maximum="1000" />
-						</p:inputText>
-						<p:outputLabel for="thigh" value="Thigh"></p:outputLabel>
-						<p:inputText id="thigh" value="#{createActivityBean.thigh}"
-							validatorMessage="Thigh must be number between 0 and 1000.">
-							<f:validateDoubleRange minimum="0" maximum="1000" />
-						</p:inputText>
-					</p:panelGrid>
+							<p:outputLabel for="aveHeartRate" value="Average Heart Rate"></p:outputLabel>
+							<p:inputText id="aveHeartRate" value="#{createActivityBean.aveHeartRate}"
+								validatorMessage="Weight must be number between 0 and 300.">
+								<f:validateDoubleRange minimum="0" maximum="300" />
+							</p:inputText>
+							<p:outputLabel for="calories" value="Calories"></p:outputLabel>
+							<p:inputText id="calories" value="#{createActivityBean.calories}"
+								validatorMessage="Calories must be number between 0 and 20000.">
+								<f:validateDoubleRange minimum="0" maximum="20000" />
+							</p:inputText>
+							<p:outputLabel for="weight" value="Weight"></p:outputLabel>
+							<p:inputText id="weight" value="#{createActivityBean.weight}"
+								validatorMessage="Weight must be number between 0 and 1000.">
+								<f:validateDoubleRange minimum="0" maximum="1000" />
+							</p:inputText>
+							<p:outputLabel for="height" value="Height"></p:outputLabel>
+							<p:inputText id="height" value="#{createActivityBean.height}"
+								validatorMessage="Height must be number between 0 and 1000.">
+								<f:validateDoubleRange minimum="0" maximum="1000" />
+							</p:inputText>
+							<p:outputLabel for="waist" value="Waist"></p:outputLabel>
+							<p:inputText id="waist" value="#{createActivityBean.waist}"
+								validatorMessage="Waist must be number between 0 and 1000.">
+								<f:validateDoubleRange minimum="0" maximum="1000" />
+							</p:inputText>
+							<p:outputLabel for="hip" value="Hip"></p:outputLabel>
+							<p:inputText id="hip" value="#{createActivityBean.hip}"
+								validatorMessage="Hip must be number between 0 and 1000.">
+								<f:validateDoubleRange minimum="0" maximum="1000" />
+							</p:inputText>
+							<p:outputLabel for="thigh" value="Thigh"></p:outputLabel>
+							<p:inputText id="thigh" value="#{createActivityBean.thigh}"
+								validatorMessage="Thigh must be number between 0 and 1000.">
+								<f:validateDoubleRange minimum="0" maximum="1000" />
+							</p:inputText>
+						</p:panelGrid>
 					
-					<f:facet name="footer">
-						<p:commandButton value="Save" icon="ui-icon-check"
-							action="#{createActivityBean.createActivity}" update="grid"
-							validateClient="true" style="margin:0" />
-					</f:facet>
+
 				</p:panelGrid>
 
 
@@ -168,7 +193,7 @@
 						<p:column>
 							<f:facet name="header">Name</f:facet>
 							<p:commandLink value="#{myMap.name}"
-								update=":#{p:component('myMapInput')} :#{p:component('distance')}"
+								update=":#{p:component('myMapInput')} :#{p:component('distancePanelGrid')}"
 								action="#{createActivityBean.addMyMap}"
 								oncomplete="PF('dlg').hide();">
 								<f:setPropertyActionListener value="#{myMap}"

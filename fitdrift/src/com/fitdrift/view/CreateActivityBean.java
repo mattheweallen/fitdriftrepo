@@ -36,16 +36,18 @@ public class CreateActivityBean implements Serializable {
 	private boolean useMyMap;
 	private MyMap selectedMap;
 	private String mapMapName;
-	private String distance;
+	private Double distance;
 	@ManagedProperty(value = "#{userInfoBean}")
     private UserInfoBean userInfoBean;
 	private String startTime;
 	private String endTime;
-	private String weight;
-	private String height;
-	private String waist;
-	private String hip;
-	private String thigh;
+	private Double weight;
+	private Double height;
+	private Double waist;
+	private Double hip;
+	private Double thigh;
+	private Double aveHeartRate;
+	private Double calories;
 
 	/**
 	 * @return the activityDate
@@ -68,14 +70,14 @@ public class CreateActivityBean implements Serializable {
 		a.setName("My Activity on " + activityDate);
 		a.setUser(AthleticgisFacade.findUserByUsername(userInfoBean.getUsername()));
 		a.setDate(new Timestamp(activityDate.getTime()));
-		if(distance != null && distance.length() > 0) {
-			a.setDistance(Double.parseDouble(distance));
+		if(distance != null) {
+			a.setDistance(distance);
 		}
 		//TODO when get back out will have to check whether startTime < endTime. If other way around assume something like started 23:47 and ended 00:15 
 		a.setStartTime(convertTimeStringToLong(startTime));
 		a.setEndTime(convertTimeStringToLong(endTime));
-		if(weight != null && weight.length() > 0) {
-			a.setWeight(Double.parseDouble(weight));
+		if(weight != null) {
+			a.setWeight(weight);
 		}
 		//TODO persistActivityAndActivityPoints look at this method, sets activity time based on first activity point. 
 		AthleticgisFacade.persistActivityAndActivityPoints(a, null);
@@ -134,10 +136,10 @@ public class CreateActivityBean implements Serializable {
 					.findMyMapMarkersByMymap_id(selectedMap.getMymap_id());
 
 			GISCalculator calc = new GISCalculator();
-			Double distance = calc.computeMarkerPathDistance(myMapMarkers) / 1000;
-			DecimalFormat df = new DecimalFormat("#.##");
+			Double d = calc.computeMarkerPathDistance(myMapMarkers) / 1000;
+			//DecimalFormat df = new DecimalFormat("#.##");
 
-			this.distance = df.format(distance);
+			this.distance = d;
 		}
 		return null;
 	}
@@ -188,22 +190,9 @@ public class CreateActivityBean implements Serializable {
 	}
 
 	public void useMyMapChecked() {
+		mapMapName = null;
+		selectedMap = null;
 		distance = null;
-	}
-
-	/**
-	 * @return the distance
-	 */
-	public String getDistance() {
-		return distance;
-	}
-
-	/**
-	 * @param distance
-	 *            the distance to set
-	 */
-	public void setDistance(String distance) {
-		this.distance = distance;
 	}
 
 	/**
@@ -249,72 +238,116 @@ public class CreateActivityBean implements Serializable {
 	}
 
 	/**
+	 * @return the distance
+	 */
+	public Double getDistance() {
+		return distance;
+	}
+
+	/**
+	 * @param distance the distance to set
+	 */
+	public void setDistance(Double distance) {
+		this.distance = distance;
+	}
+
+	/**
 	 * @return the weight
 	 */
-	public String getWeight() {
+	public Double getWeight() {
 		return weight;
 	}
 
 	/**
 	 * @param weight the weight to set
 	 */
-	public void setWeight(String weight) {
+	public void setWeight(Double weight) {
 		this.weight = weight;
 	}
 
 	/**
 	 * @return the height
 	 */
-	public String getHeight() {
+	public Double getHeight() {
 		return height;
 	}
 
 	/**
 	 * @param height the height to set
 	 */
-	public void setHeight(String height) {
+	public void setHeight(Double height) {
 		this.height = height;
 	}
 
 	/**
 	 * @return the waist
 	 */
-	public String getWaist() {
+	public Double getWaist() {
 		return waist;
 	}
 
 	/**
 	 * @param waist the waist to set
 	 */
-	public void setWaist(String waist) {
+	public void setWaist(Double waist) {
 		this.waist = waist;
 	}
 
 	/**
 	 * @return the hip
 	 */
-	public String getHip() {
+	public Double getHip() {
 		return hip;
 	}
 
 	/**
 	 * @param hip the hip to set
 	 */
-	public void setHip(String hip) {
+	public void setHip(Double hip) {
 		this.hip = hip;
 	}
 
 	/**
 	 * @return the thigh
 	 */
-	public String getThigh() {
+	public Double getThigh() {
 		return thigh;
 	}
 
 	/**
 	 * @param thigh the thigh to set
 	 */
-	public void setThigh(String thigh) {
+	public void setThigh(Double thigh) {
 		this.thigh = thigh;
 	}
+
+	/**
+	 * @return the aveHeartRate
+	 */
+	public Double getAveHeartRate() {
+		return aveHeartRate;
+	}
+
+	/**
+	 * @param aveHeartRate the aveHeartRate to set
+	 */
+	public void setAveHeartRate(Double aveHeartRate) {
+		this.aveHeartRate = aveHeartRate;
+	}
+
+	/**
+	 * @return the calories
+	 */
+	public Double getCalories() {
+		return calories;
+	}
+
+	/**
+	 * @param calories the calories to set
+	 */
+	public void setCalories(Double calories) {
+		this.calories = calories;
+	}
+
+	
 }
