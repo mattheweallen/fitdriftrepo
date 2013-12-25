@@ -32,6 +32,8 @@ public class CreateActivityBean implements Serializable {
 	private static final long serialVersionUID = 4050031415234475481L;
 	private Date activityDate;
 	private String activityType;
+	private String activitySubType;
+	private String activityGear;
 	private boolean indoors;
 	private boolean useMyMap;
 	private MyMap selectedMap;
@@ -347,6 +349,34 @@ public class CreateActivityBean implements Serializable {
 	 */
 	public void setCalories(Double calories) {
 		this.calories = calories;
+	}
+
+	/**
+	 * @return the activitySubType
+	 */
+	public String getActivitySubType() {
+		return activitySubType;
+	}
+
+	/**
+	 * @param activitySubType the activitySubType to set
+	 */
+	public void setActivitySubType(String activitySubType) {
+		this.activitySubType = activitySubType;
+	}
+
+	/**
+	 * @return the activityGear
+	 */
+	public String getActivityGear() {
+		return activityGear;
+	}
+
+	/**
+	 * @param activityGear the activityGear to set
+	 */
+	public void setActivityGear(String activityGear) {
+		this.activityGear = activityGear;
 	}
 
 	
