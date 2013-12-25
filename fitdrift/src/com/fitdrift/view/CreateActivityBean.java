@@ -42,6 +42,10 @@ public class CreateActivityBean implements Serializable {
 	private String startTime;
 	private String endTime;
 	private String weight;
+	private String height;
+	private String waist;
+	private String hip;
+	private String thigh;
 
 	/**
 	 * @return the activityDate
@@ -256,5 +260,61 @@ public class CreateActivityBean implements Serializable {
 	 */
 	public void setWeight(String weight) {
 		this.weight = weight;
+	}
+
+	/**
+	 * @return the height
+	 */
+	public String getHeight() {
+		return height;
+	}
+
+	/**
+	 * @param height the height to set
+	 */
+	public void setHeight(String height) {
+		this.height = height;
+	}
+
+	/**
+	 * @return the waist
+	 */
+	public String getWaist() {
+		return waist;
+	}
+
+	/**
+	 * @param waist the waist to set
+	 */
+	public void setWaist(String waist) {
+		this.waist = waist;
+	}
+
+	/**
+	 * @return the hip
+	 */
+	public String getHip() {
+		return hip;
+	}
+
+	/**
+	 * @param hip the hip to set
+	 */
+	public void setHip(String hip) {
+		this.hip = hip;
+	}
+
+	/**
+	 * @return the thigh
+	 */
+	public String getThigh() {
+		return thigh;
+	}
+
+	/**
+	 * @param thigh the thigh to set
+	 */
+	public void setThigh(String thigh) {
+		this.thigh = thigh;
 	}
 }

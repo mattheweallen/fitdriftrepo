@@ -2,6 +2,7 @@ package com.fitdrift.domain.activity;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -14,6 +15,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import com.fitdrift.domain.user.User;
 
@@ -46,6 +48,9 @@ public class MyMap implements Serializable {
 
 	@OneToMany(mappedBy = "myMap", fetch = FetchType.LAZY, orphanRemoval = true)
 	private List<MyMapMarker> myMapMarkers;
+	
+	@Transient
+	private String formattedMapDate;
 
 	/**
 	 * @return the mymap_id
@@ -115,5 +120,14 @@ public class MyMap implements Serializable {
 	 */
 	public void setMyMapMarkers(List<MyMapMarker> myMapMarkers) {
 		this.myMapMarkers = myMapMarkers;
+	}
+
+	/**
+	 * @return the formattedMapDate
+	 */
+	public String getFormattedMapDate() {
+		SimpleDateFormat sdf = new SimpleDateFormat("MM.dd.yyyy");
+		formattedMapDate = sdf.format(date);
+		return formattedMapDate;
 	}
 }

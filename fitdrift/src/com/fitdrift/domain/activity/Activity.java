@@ -2,6 +2,7 @@ package com.fitdrift.domain.activity;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -14,6 +15,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import com.fitdrift.domain.user.User;
 
@@ -67,6 +69,9 @@ public class Activity implements Serializable {
 	
 	@Column
 	private Double weight;
+	
+	@Transient
+	private String formattedActivityDate;
 	
 	/**
 	 * @return the user
@@ -238,5 +243,14 @@ public class Activity implements Serializable {
 	 */
 	public void setWeight(Double weight) {
 		this.weight = weight;
+	}
+
+	/**
+	 * @return the formattedActivityDate
+	 */
+	public String getFormattedActivityDate() {
+		SimpleDateFormat sdf = new SimpleDateFormat("MM.dd.yyyy");
+		formattedActivityDate = sdf.format(date);
+		return formattedActivityDate;
 	}
 }

@@ -30,6 +30,7 @@
 							
 							<h:outputText value="#{feed.title}" style="font-weight: bold" />
 							<br />
+							<br />
 							<h:outputText value="#{feed.description.value}" escape="false" />
 						</p:feedReader>
 					</p:panel>
@@ -48,13 +49,13 @@
 								
 							</p:column>
 
-							<p:column rendered="#{request.isUserInRole('ROLE_ADMIN')}">
+							<p:column style="text-align: center" rendered="#{request.isUserInRole('ROLE_ADMIN')}">
 								<f:facet name="header">User Name</f:facet>
 								<h:outputText value="#{activity.user.username}" />
 
 							</p:column>
 
-							<p:column>
+							<p:column style="text-align: center">
 								<f:facet name="header">Name</f:facet>
 								
 									<h:outputText value="#{activity.name}"></h:outputText>
@@ -62,9 +63,9 @@
 								
 							</p:column>
 
-							<p:column>
+							<p:column style="text-align: center">
 								<f:facet name="header">Date</f:facet>
-								<h:outputText value="#{activity.date}" />
+								<h:outputText value="#{activity.formattedActivityDate}" />
 
 							</p:column>
 

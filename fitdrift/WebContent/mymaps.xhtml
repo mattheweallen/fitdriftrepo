@@ -44,13 +44,13 @@
 
 					</p:column>
 
-					<p:column rendered="#{request.isUserInRole('ROLE_ADMIN')}">
+					<p:column style="text-align: center" rendered="#{request.isUserInRole('ROLE_ADMIN')}">
 						<f:facet name="header">User Name</f:facet>
 						<h:outputText value="#{myMap.user.username}" />
 
 					</p:column>
 
-					<p:column>
+					<p:column style="text-align: center">
 						<f:facet name="header">Name</f:facet>
 
 						<h:outputText value="#{myMap.name}"></h:outputText>
@@ -58,9 +58,9 @@
 
 					</p:column>
 
-					<p:column>
+					<p:column style="text-align: center">
 						<f:facet name="header">Date</f:facet>
-						<h:outputText value="#{myMap.date}" />
+						<h:outputText value="#{myMap.formattedMapDate}" />
 
 					</p:column>
 
