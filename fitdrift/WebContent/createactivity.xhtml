@@ -37,12 +37,12 @@
 						</f:facet>
 						<p:panelGrid columns="2">
 							<p:outputLabel for="popupCal" value="Date of Activity"></p:outputLabel>
-							<p:calendar value="#{createActivityBean.activityDate}"
+							<p:calendar   size="6" styleClass="" value="#{createActivityBean.activityDate}"
 								id="popupCal" required="true"
 								requiredMessage="Date of Activity is required." />
 
 							<p:outputLabel for="startTime" value="Start Time (HH:MM:SS)"></p:outputLabel>
-							<p:inputMask id="startTime" mask="99:99:99" required="true"
+							<p:inputMask style="width : 80px" id="startTime" mask="99:99:99" required="true"
 								value="#{createActivityBean.startTime}"
 								requiredMessage="Start Time is required."
 								validatorMessage="Start Time must be time in 24 hour clock HH:MM:SS, 23:45:56 for example.">
@@ -50,7 +50,7 @@
 							</p:inputMask>
 
 							<p:outputLabel for="endTime" value="End Time (HH:MM:SS)"></p:outputLabel>
-							<p:inputMask id="endTime" mask="99:99:99" required="true"
+							<p:inputMask style="width : 80px" id="endTime" mask="99:99:99" required="true"
 								value="#{createActivityBean.endTime}"
 								requiredMessage="End Time is required."
 								validatorMessage="End Time must be time in 24 hour clock HH:MM:SS, 23:45:56 for example.">
