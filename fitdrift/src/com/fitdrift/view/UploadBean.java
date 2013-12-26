@@ -101,7 +101,7 @@ public class UploadBean implements Serializable {
             		activityPoints.add(activityPoint);
             	}
             }
-            a.setWaypoints(activityPoints);
+            a.setActivitypoints(activityPoints);
             
             
             AthleticgisFacade.persistActivityAndActivityPoints(a, activityPoints);

@@ -110,11 +110,11 @@ public class ActivityDao implements Serializable {
 		EntityManager em = EntityManagerUtil.getEntityManager();
 		em.getTransaction().begin();
 		if(activityPoints != null) {
-			//TODO Should wayPoints in Activity be renamed activityPoints
-			a.setWaypoints(activityPoints);
+			a.setActivitypoints(activityPoints);
 		}
 		
 		//set the timestamp of the activity to the timestamp of the first waypoint
+		//TODO this is a little strange? maybe rethink	
 		if(activityPoints != null && !activityPoints.isEmpty()) {
 			a.setDate(activityPoints.get(0).getTime());
 		}
@@ -204,6 +204,7 @@ public class ActivityDao implements Serializable {
 		myMap.setMyMapMarkers(myMapMarkers);
 		
 		//set myMap date to the first marker date.
+		//TODO maybe rethink?
 		if(myMapMarkers != null && !myMapMarkers.isEmpty()) {
 			myMap.setDate(myMapMarkers.get(0).getTime());
 		}

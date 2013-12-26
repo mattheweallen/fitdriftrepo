@@ -24,7 +24,7 @@ import com.fitdrift.domain.user.User;
  * This hold data related to a summary of an activity.
  * 
  * @author Matthew Allen
- * @version 20131129
+ * @version 20131226
  */
 @Entity
 @Table
@@ -47,13 +47,16 @@ public class Activity implements Serializable {
 	private Timestamp date;
 
 	@OneToMany(mappedBy = "activity", fetch = FetchType.LAZY, orphanRemoval = true)
-	private List<ActivityPoint> waypoints;
+	private List<ActivityPoint> activitypoints;
 	
 	@Column
-	private String type;
+	private Long activitytype_id;
+	
+	@Column
+	private Long activitysubtype_id;
 
 	@Column
-	private String gear;
+	private Long equipmenttype_id;
 	
 	@Column
 	private Boolean indoors;
@@ -118,18 +121,18 @@ public class Activity implements Serializable {
 	}
 
 	/**
-	 * @return the waypoints
+	 * @return the activitypoints
 	 */
-	public List<ActivityPoint> getWaypoints() {
-		return waypoints;
+	public List<ActivityPoint> getActivitypoints() {
+		return activitypoints;
 	}
 
 	/**
 	 * @param waypoints
-	 *            the waypoints to set
+	 *            the activitypoints to set
 	 */
-	public void setWaypoints(List<ActivityPoint> waypoints) {
-		this.waypoints = waypoints;
+	public void setActivitypoints(List<ActivityPoint> activitypoints) {
+		this.activitypoints = activitypoints;
 	}
 
 	/**
@@ -145,34 +148,6 @@ public class Activity implements Serializable {
 	 */
 	public void setDate(Timestamp date) {
 		this.date = date;
-	}
-	
-	/**
-	 * @return the type
-	 */
-	public String getType() {
-		return type;
-	}
-
-	/**
-	 * @param type the type to set
-	 */
-	public void setType(String type) {
-		this.type = type;
-	}
-
-	/**
-	 * @return the gear
-	 */
-	public String getGear() {
-		return gear;
-	}
-
-	/**
-	 * @param gear the gear to set
-	 */
-	public void setGear(String gear) {
-		this.gear = gear;
 	}
 
 	/**
