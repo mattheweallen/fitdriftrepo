@@ -81,9 +81,9 @@ public class CreateActivityBean implements Serializable {
 		//TODO when get back out will have to check whether startTime < endTime. If other way around assume something like started 23:47 and ended 00:15 
 		a.setStartTime(convertTimeStringToLong(startTime));
 		a.setEndTime(convertTimeStringToLong(endTime));
-		if(weight != null) {
-			a.setWeight(weight);
-		}
+//		if(weight != null) {
+//			a.setWeight(weight);
+//		}
 		//TODO persistActivityAndActivityPoints look at this method, sets activity time based on first activity point. 
 		AthleticgisFacade.persistActivityAndActivityPoints(a, null);
 		

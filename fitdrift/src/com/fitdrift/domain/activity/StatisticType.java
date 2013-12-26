@@ -5,12 +5,12 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 /**
- * Entity implementation class for Entity: ActivitySubType
+ * Entity implementation class for Entity: StatisticType
  *
  */
 @Entity
-@Table
-public class ActivitySubType implements Serializable {
+
+public class StatisticType implements Serializable {
 
 	
 	private static final long serialVersionUID = 1L;
@@ -18,12 +18,8 @@ public class ActivitySubType implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(updatable = false, nullable = false)
-	private Long activitysubtype_id;
-
-	@Column
-	private Long activitytype_id;
+	private Long statistictype_id;
 	
 	@Column
 	private String description;
-   
 }

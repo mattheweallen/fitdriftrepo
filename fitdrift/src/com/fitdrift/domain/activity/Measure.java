@@ -1,29 +1,32 @@
 package com.fitdrift.domain.activity;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 
 import javax.persistence.*;
 
 /**
- * Entity implementation class for Entity: ActivitySubType
+ * Entity implementation class for Entity: Measure
  *
  */
 @Entity
 @Table
-public class ActivitySubType implements Serializable {
+public class Measure implements Serializable {
 
 	
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(updatable = false, nullable = false)
-	private Long activitysubtype_id;
-
-	@Column
-	private Long activitytype_id;
+	private Long measure_id;
 	
 	@Column
-	private String description;
-   
+	private Timestamp date;
+	
+	@Column
+	private Long measuretype_id;
+	
+	@Column
+	private Double value;
 }

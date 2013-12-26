@@ -25,8 +25,7 @@ public class ActivityType implements Serializable {
 	@Column
 	private Long activity_id;
 	
-	public ActivityType() {
-		super();
-	}
+	@Column
+	private String description;
    
 }

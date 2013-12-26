@@ -22,9 +22,10 @@ public class Equipment implements Serializable {
 
 	@Column
 	private Long activitytype_id;
-
-	public Equipment() {
-		super();
-	}
-   
+	
+	@Column
+	private String description;
+	
+	@Column 
+	private Double weight;
 }

@@ -49,6 +49,9 @@ public class Activity implements Serializable {
 	@OneToMany(mappedBy = "activity", fetch = FetchType.LAZY, orphanRemoval = true)
 	private List<ActivityPoint> activitypoints;
 	
+	@OneToMany(mappedBy = "activity", fetch = FetchType.LAZY, orphanRemoval = true)
+	private List<Statistic> statistics;
+	
 	@Column
 	private Long activitytype_id;
 	
@@ -69,9 +72,6 @@ public class Activity implements Serializable {
 	
 	@Column
 	private Double distance;
-	
-	@Column
-	private Double weight;
 	
 	@Transient
 	private String formattedActivityDate;
@@ -204,20 +204,6 @@ public class Activity implements Serializable {
 	 */
 	public void setDistance(Double distance) {
 		this.distance = distance;
-	}
-
-	/**
-	 * @return the weight
-	 */
-	public Double getWeight() {
-		return weight;
-	}
-
-	/**
-	 * @param weight the weight to set
-	 */
-	public void setWeight(Double weight) {
-		this.weight = weight;
 	}
 
 	/**
