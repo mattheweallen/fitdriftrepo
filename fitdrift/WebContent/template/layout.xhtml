@@ -14,9 +14,15 @@
     <link rel="shortcut icon" href="#{resource['images/favicon.png']}" type="image/x-icon" />
 	<ui:insert name="scripts">
 	</ui:insert>
+	<ui:insert name="bodyOnLoad">
+		<script type="text/javascript">
+			function bodyOnLoad() {
+				}
+		</script>
+	</ui:insert>
 </h:head>
 
-<h:body>
+<h:body onload="bodyOnLoad()">
 
 <p:layout fullPage="true">
 
