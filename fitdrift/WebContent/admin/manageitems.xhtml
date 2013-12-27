@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:body>
+
+	<ui:composition template="/template/layout.xhtml">
+		<ui:define name="scripts">
+			<title>Manage Items</title>
+
+		</ui:define>
+		<ui:define name="content">
+			<h:form>
+				<p:tabMenu activeIndex="5">
+					<p:menuitem value="Dashboard" url="/faces/dashboard.xhtml" />
+					<p:menuitem value="Upload Activity" url="/faces/upload.xhtml" />
+					<p:menuitem value="Manual Activity" url="/faces/createactivity.xhtml" />
+					<p:menuitem value="My Maps" url="/faces/mymaps.xhtml" />
+					<p:menuitem value="Preferences" url="/faces/preferences.xhtml" />
+					<p:menuitem value="Manage Items" url="/faces/admin/manageitems.xhtml" rendered="#{request.isUserInRole('ROLE_ADMIN')}" />
+				</p:tabMenu>
+
+				<h:outputLabel value="Activity Type"></h:outputLabel>
+
+
+
+			</h:form>
+		</ui:define>
+	</ui:composition>
+
+</h:body>
+</html>

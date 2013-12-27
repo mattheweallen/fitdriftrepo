@@ -5,6 +5,9 @@ import java.util.List;
 
 import com.fitdrift.domain.activity.Activity;
 import com.fitdrift.domain.activity.ActivityPoint;
+import com.fitdrift.domain.activity.ActivitySubType;
+import com.fitdrift.domain.activity.ActivityType;
+import com.fitdrift.domain.activity.Equipment;
 import com.fitdrift.domain.activity.MyMap;
 import com.fitdrift.domain.activity.MyMapMarker;
 import com.fitdrift.domain.user.User;
@@ -201,5 +204,31 @@ public class AthleticgisFacade implements Serializable {
 	 */
 	public static List<MyMap> findMyMapsPaginated(int start, int max) {
 		return ActivityDao.findMyMapsPaginated(start, max);
+	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public static List<ActivityType> findAllActivityType() {
+		return ActivityDao.findAllActivityType();
+	}
+	
+	/**
+	 * 
+	 * @param activitytype_id
+	 * @return
+	 */
+	public static List<ActivitySubType> findAllActivitySubTypeByActivitytype_id(Long activitytype_id) {
+		return ActivityDao.findAllActivitySubTypeByActivitytype_id(activitytype_id);
+	}
+	
+	/**
+	 * 
+	 * @param activitytype_id
+	 * @return
+	 */
+	public static List<Equipment> findAllEquipmentByActivitytype_id(Long activitytype_id) {
+		return ActivityDao.findAllEquipmentByActivitytype_id(activitytype_id);
 	}
 }

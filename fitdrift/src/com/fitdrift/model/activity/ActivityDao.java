@@ -10,6 +10,9 @@ import javax.persistence.TypedQuery;
 
 import com.fitdrift.domain.activity.Activity;
 import com.fitdrift.domain.activity.ActivityPoint;
+import com.fitdrift.domain.activity.ActivitySubType;
+import com.fitdrift.domain.activity.ActivityType;
+import com.fitdrift.domain.activity.Equipment;
 import com.fitdrift.domain.activity.MyMap;
 import com.fitdrift.domain.activity.MyMapMarker;
 import com.fitdrift.domain.user.User;
@@ -389,5 +392,84 @@ public class ActivityDao implements Serializable {
 		
 		em.close();
 		return myMaps;
+	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public static List<ActivityType> findAllActivityType() {
+		EntityManager em = EntityManagerUtil.getEntityManager();
+		
+		TypedQuery<ActivityType> query =
+		  em.createQuery("SELECT at FROM ActivityType at", ActivityType.class);
+		
+		
+		List<ActivityType> activityTypes = query.getResultList();
+		
+		em.close();
+		return activityTypes;
+	}
+	
+	public static List<ActivitySubType> findAllActivitySubTypeByActivitytype_id(Long activitytype_id) {
+		EntityManager em = EntityManagerUtil.getEntityManager();
+		
+		TypedQuery<ActivitySubType> query =
+		  em.createQuery("SELECT ast FROM ActivitySubType ast where ast.activitytype_id=" + activitytype_id, ActivitySubType.class);
+		
+		
+		List<ActivitySubType> activitySubTypes = query.getResultList();
+		
+		em.close();
+		return activitySubTypes;
+	}
+	
+	public static List<Equipment> findAllEquipmentByActivitytype_id(Long activitytype_id) {
+		EntityManager em = EntityManagerUtil.getEntityManager();
+		
+		TypedQuery<Equipment> query =
+		  em.createQuery("SELECT e FROM Equipment e where e.activitytype_id=" + activitytype_id, Equipment.class);
+		
+		
+		List<Equipment> equipment = query.getResultList();
+		
+		em.close();
+		return equipment;
+	}
+	
+	/**
+	 * 
+	 * @param entity
+	 */
+	public static void persistActivityType(ActivityType entity) {
+		EntityManager em = EntityManagerUtil.getEntityManager();
+		em.getTransaction().begin();
+		em.persist(entity);
+		em.getTransaction().commit();
+		em.close();
+	}
+	
+	/**
+	 * 
+	 * @param entity
+	 */
+	public static void persistActivitySubType(ActivitySubType entity) {
+		EntityManager em = EntityManagerUtil.getEntityManager();
+		em.getTransaction().begin();
+		em.persist(entity);
+		em.getTransaction().commit();
+		em.close();
+	}
+	
+	/**
+	 * 
+	 * @param entity
+	 */
+	public static void persistEquipment(Equipment entity) {
+		EntityManager em = EntityManagerUtil.getEntityManager();
+		em.getTransaction().begin();
+		em.persist(entity);
+		em.getTransaction().commit();
+		em.close();
 	}
 }
