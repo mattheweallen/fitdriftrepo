@@ -22,4 +22,32 @@ public class StatisticType implements Serializable {
 	
 	@Column
 	private String description;
+
+	/**
+	 * @return the statistictype_id
+	 */
+	public Long getStatistictype_id() {
+		return statistictype_id;
+	}
+
+	/**
+	 * @param statistictype_id the statistictype_id to set
+	 */
+	public void setStatistictype_id(Long statistictype_id) {
+		this.statistictype_id = statistictype_id;
+	}
+
+	/**
+	 * @return the description
+	 */
+	public String getDescription() {
+		return description;
+	}
+
+	/**
+	 * @param description the description to set
+	 */
+	public void setDescription(String description) {
+		this.description = description;
+	}
 }
