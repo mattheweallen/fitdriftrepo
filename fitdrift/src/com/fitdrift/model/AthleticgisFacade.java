@@ -231,4 +231,28 @@ public class AthleticgisFacade implements Serializable {
 	public static List<Equipment> findAllEquipmentByActivitytype_id(Long activitytype_id) {
 		return ActivityDao.findAllEquipmentByActivitytype_id(activitytype_id);
 	}
+	
+	/**
+	 * 
+	 * @param entity
+	 */
+	public static void persistActivityType(ActivityType entity) {
+		ActivityDao.persistActivityType(entity);
+	}
+	
+	/**
+	 * 
+	 * @param entity
+	 */
+	public static void persistActivitySubType(ActivitySubType entity) {
+		ActivityDao.persistActivitySubType(entity);
+	}
+	
+	/**
+	 * 
+	 * @param entity
+	 */
+	public static void persistEquipment(Equipment entity) {
+		ActivityDao.persistEquipment(entity);
+	}
 }

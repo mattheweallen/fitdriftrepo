@@ -26,8 +26,8 @@
 				</p:tabMenu>
 
 				<h:outputLabel for="activityType" value="Activity Type"></h:outputLabel>
-				<p:inputText id="activityType" ></p:inputText>
-				<p:commandButton update="activityTypes"></p:commandButton>
+				<p:inputText id="activityType" value="#{manageItemsBean.activityTypeDescription}"></p:inputText>
+				<p:commandButton value="Save Activity Type" update="activityTypes selectActivityTypes" actionListener="#{manageItemsBean.addActivityType}"></p:commandButton>
 				<h:dataTable id="activityTypes" value="#{manageItemsBean.activityTypes}" var="at">
 					<h:column>
 						<h:outputText value="#{at.activitytype_id}"></h:outputText>
@@ -36,7 +36,30 @@
 						<h:outputText value="#{at.description}"></h:outputText>
 					</h:column>
 				</h:dataTable>
-
+				<p:selectOneMenu   value="#{manageItemsBean.activityTypeId}"  id="selectActivityTypes" valueChangeListener="#{manageItemsBean.onSelectActivityTypeChange}" >
+					<p:ajax update="activitySubTypesTable" />
+					<f:selectItem itemLabel="-Select Activity Type-" itemValue="" />
+					<f:selectItems value="#{manageItemsBean.activitySelectItems}"  />
+				</p:selectOneMenu>
+				
+				<p:inputText id="activitySubType" value="#{manageItemsBean.activitySubTypeDescription}"></p:inputText>
+				<p:commandButton update="activitySubTypesTable" value="Save Activity Sub Type" actionListener="#{manageItemsBean.addActivitySubType}"></p:commandButton>
+				
+				<h:dataTable id="activitySubTypesTable" value="#{manageItemsBean.activitySubTypes}" var="ast">
+					<h:column>
+						<h:outputText value="#{ast.activitysubtype_id}"></h:outputText>
+					</h:column>
+					
+					<h:column>
+						<h:outputText value="#{ast.activitytype_id}"></h:outputText>
+					</h:column>
+					<h:column>
+						<h:outputText value="#{ast.description}"></h:outputText>
+					</h:column>
+				</h:dataTable>
+				
+				
+				
 
 
 			</h:form>
