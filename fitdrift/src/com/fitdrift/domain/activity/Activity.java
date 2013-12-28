@@ -214,4 +214,67 @@ public class Activity implements Serializable {
 		formattedActivityDate = sdf.format(date);
 		return formattedActivityDate;
 	}
+
+	/**
+	 * @return the statistics
+	 */
+	public List<Statistic> getStatistics() {
+		return statistics;
+	}
+
+	/**
+	 * @param statistics the statistics to set
+	 */
+	public void setStatistics(List<Statistic> statistics) {
+		this.statistics = statistics;
+	}
+
+	/**
+	 * @return the activitytype_id
+	 */
+	public Long getActivitytype_id() {
+		return activitytype_id;
+	}
+
+	/**
+	 * @param activitytype_id the activitytype_id to set
+	 */
+	public void setActivitytype_id(Long activitytype_id) {
+		this.activitytype_id = activitytype_id;
+	}
+
+	/**
+	 * @return the activitysubtype_id
+	 */
+	public Long getActivitysubtype_id() {
+		return activitysubtype_id;
+	}
+
+	/**
+	 * @param activitysubtype_id the activitysubtype_id to set
+	 */
+	public void setActivitysubtype_id(Long activitysubtype_id) {
+		this.activitysubtype_id = activitysubtype_id;
+	}
+
+	/**
+	 * @return the equipmenttype_id
+	 */
+	public Long getEquipmenttype_id() {
+		return equipmenttype_id;
+	}
+
+	/**
+	 * @param equipmenttype_id the equipmenttype_id to set
+	 */
+	public void setEquipmenttype_id(Long equipmenttype_id) {
+		this.equipmenttype_id = equipmenttype_id;
+	}
+
+	/**
+	 * @param formattedActivityDate the formattedActivityDate to set
+	 */
+	public void setFormattedActivityDate(String formattedActivityDate) {
+		this.formattedActivityDate = formattedActivityDate;
+	}
 }

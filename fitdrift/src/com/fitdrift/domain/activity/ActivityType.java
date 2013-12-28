@@ -23,9 +23,34 @@ public class ActivityType implements Serializable {
 	private Long activitytype_id;
 	
 	@Column
-	private Long activity_id;
-	
-	@Column
 	private String description;
+
+	/**
+	 * @return the activitytype_id
+	 */
+	public Long getActivitytype_id() {
+		return activitytype_id;
+	}
+
+	/**
+	 * @param activitytype_id the activitytype_id to set
+	 */
+	public void setActivitytype_id(Long activitytype_id) {
+		this.activitytype_id = activitytype_id;
+	}
+
+	/**
+	 * @return the description
+	 */
+	public String getDescription() {
+		return description;
+	}
+
+	/**
+	 * @param description the description to set
+	 */
+	public void setDescription(String description) {
+		this.description = description;
+	}
    
 }

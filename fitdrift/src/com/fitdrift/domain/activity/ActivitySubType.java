@@ -25,5 +25,47 @@ public class ActivitySubType implements Serializable {
 	
 	@Column
 	private String description;
+
+	/**
+	 * @return the activitysubtype_id
+	 */
+	public Long getActivitysubtype_id() {
+		return activitysubtype_id;
+	}
+
+	/**
+	 * @param activitysubtype_id the activitysubtype_id to set
+	 */
+	public void setActivitysubtype_id(Long activitysubtype_id) {
+		this.activitysubtype_id = activitysubtype_id;
+	}
+
+	/**
+	 * @return the activitytype_id
+	 */
+	public Long getActivitytype_id() {
+		return activitytype_id;
+	}
+
+	/**
+	 * @param activitytype_id the activitytype_id to set
+	 */
+	public void setActivitytype_id(Long activitytype_id) {
+		this.activitytype_id = activitytype_id;
+	}
+
+	/**
+	 * @return the description
+	 */
+	public String getDescription() {
+		return description;
+	}
+
+	/**
+	 * @param description the description to set
+	 */
+	public void setDescription(String description) {
+		this.description = description;
+	}
    
 }

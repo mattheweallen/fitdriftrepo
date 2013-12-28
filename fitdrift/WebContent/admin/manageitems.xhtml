@@ -25,7 +25,14 @@
 					<p:menuitem value="Manage Items" url="/faces/admin/manageitems.xhtml" rendered="#{request.isUserInRole('ROLE_ADMIN')}" />
 				</p:tabMenu>
 
-				<h:outputLabel value="Activity Type"></h:outputLabel>
+				<h:outputLabel for="activityType" value="Activity Type"></h:outputLabel>
+				<p:inputText id="activityType" ></p:inputText>
+				<p:commandButton update="activityTypes"></p:commandButton>
+				<h:dataTable id="activityTypes" value="#{manageItemsBean.activityTypes}" var="at">
+					<h:column>
+						<h:outputText value="#{at}"></h:outputText>
+					</h:column>
+				</h:dataTable>
 
 
 

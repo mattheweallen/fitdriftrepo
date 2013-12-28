@@ -29,4 +29,60 @@ public class Measure implements Serializable {
 	
 	@Column
 	private Double value;
+
+	/**
+	 * @return the measure_id
+	 */
+	public Long getMeasure_id() {
+		return measure_id;
+	}
+
+	/**
+	 * @param measure_id the measure_id to set
+	 */
+	public void setMeasure_id(Long measure_id) {
+		this.measure_id = measure_id;
+	}
+
+	/**
+	 * @return the date
+	 */
+	public Timestamp getDate() {
+		return date;
+	}
+
+	/**
+	 * @param date the date to set
+	 */
+	public void setDate(Timestamp date) {
+		this.date = date;
+	}
+
+	/**
+	 * @return the measuretype_id
+	 */
+	public Long getMeasuretype_id() {
+		return measuretype_id;
+	}
+
+	/**
+	 * @param measuretype_id the measuretype_id to set
+	 */
+	public void setMeasuretype_id(Long measuretype_id) {
+		this.measuretype_id = measuretype_id;
+	}
+
+	/**
+	 * @return the value
+	 */
+	public Double getValue() {
+		return value;
+	}
+
+	/**
+	 * @param value the value to set
+	 */
+	public void setValue(Double value) {
+		this.value = value;
+	}
 }
