@@ -36,7 +36,7 @@
 						<h:outputText value="#{at.description}"></h:outputText>
 					</h:column>
 				</h:dataTable>
-				<p:selectOneMenu   value="#{manageItemsBean.activityTypeId}"  id="selectActivityTypes" valueChangeListener="#{manageItemsBean.onSelectActivityTypeChange}" >
+				<p:selectOneMenu   value="#{manageItemsBean.activityTypeId}"  id="selectActivityTypes" >
 					<p:ajax update="activitySubTypesTable" />
 					<f:selectItem itemLabel="-Select Activity Type-" itemValue="" />
 					<f:selectItems value="#{manageItemsBean.activitySelectItems}"  />

@@ -43,11 +43,6 @@ public class ManageItemsBean {
 		this.activityTypes = activityTypes;
 	}
 	
-	public void onSelectActivityTypeChange(ValueChangeEvent e) {
-		//e.getNewValue().getClass();
-		System.out.println("act id is " + activityTypeId + " new value is " + e.getNewValue().toString());
-	}
-	
 	public List<ActivitySubType> getActivitySubTypes() {
 		if(activityTypeId != null) {
 			return AthleticgisFacade.findAllActivitySubTypeByActivitytype_id(activityTypeId);
