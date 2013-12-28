@@ -23,58 +23,23 @@
 				</p:tabMenu>
 				<p:growl id="growls" autoUpdate="true" globalOnly="false"
 					sticky="true"></p:growl>
-				<p:panelGrid columns="2" id="grid">
+				<p:panelGrid columns="1" id="grid">
 					<f:facet name="header">
-						<p:commandButton value="Save" icon="ui-icon-check"
-							action="#{createActivityBean.createActivity}" update="grid"
-							validateClient="true" style="margin:0" />
+						
+							<p:commandButton value="Save" icon="ui-icon-check"
+								action="#{createActivityBean.createActivity}" update="grid"
+								validateClient="true" style="margin:0" />
+						
 					</f:facet>
 
 
-					<p:panelGrid columns="1">
-						<f:facet name="header">
-							Activity Data
-						</f:facet>
-						<p:panelGrid columns="2">
-
-							<p:outputLabel for="inputActivityName" value="Activity Name"></p:outputLabel>
-							<p:inputText id="inputActivityName"
-								value="#{createActivityBean.activityName}" style="width : 400px"
-								size="40"
-								placeholder="#{createActivityBean.defaultActivityName}"></p:inputText>
-						</p:panelGrid>
+					
 
 						<p:panelGrid columns="2">
-							<p:panelGrid columns="2">
-								<p:outputLabel for="popupCal" value="Date of Activity"></p:outputLabel>
-								<p:calendar size="6" styleClass="dateTimeField"
-									value="#{createActivityBean.activityDate}" id="popupCal"
-									required="true" requiredMessage="Date of Activity is required." />
-
-
-
-
-								<p:outputLabel for="startTime" value="Start Time (HH:MM:SS)"></p:outputLabel>
-								<p:inputMask style="width : 80px" id="startTime" mask="99:99:99"
-									required="true" value="#{createActivityBean.startTime}"
-									requiredMessage="Start Time is required."
-									validatorMessage="Start Time must be time in 24 hour clock HH:MM:SS, 23:45:56 for example.">
-									<f:validator validatorId="militaryTimeValidator" />
-								</p:inputMask>
-
-								<p:outputLabel for="endTime" value="End Time (HH:MM:SS)"></p:outputLabel>
-								<p:inputMask style="width : 80px" id="endTime" mask="99:99:99"
-									required="true" value="#{createActivityBean.endTime}"
-									requiredMessage="End Time is required."
-									validatorMessage="End Time must be time in 24 hour clock HH:MM:SS, 23:45:56 for example.">
-									<f:validator validatorId="militaryTimeValidator" />
-								</p:inputMask>
-							</p:panelGrid>
-
 							<p:panelGrid columns="1">
 								<p:selectOneMenu value="#{createActivityBean.activityTypeId}">
 									<p:ajax update="aSType" />
-									<f:selectItem itemLabel="-Select Activity Type-" itemValue="" />
+									<f:selectItem itemLabel="-Select Type-" itemValue="" />
 									<f:selectItems value="#{createActivityBean.activityTypeSelectItems}"  />
 									<!--  <f:selectItem itemLabel="Calisthenics" itemValue="1" />
 									<f:selectItem itemLabel="Cycling" itemValue="2" />
@@ -87,7 +52,7 @@
 									<f:selectItem itemLabel="Weight Training" itemValue="9" />-->
 								</p:selectOneMenu>
 								<p:selectOneMenu value="#{createActivityBean.activitySubTypeId}" id="aSType">
-									<f:selectItem itemLabel="-Select Activity Sub Type-"
+									<f:selectItem itemLabel="-Select Sub Type-"
 										itemValue="" />
 									<f:selectItems value="#{createActivityBean.activitySubTypeSelectItems}"  />
 									<!--  <f:selectItem itemLabel="Cycling Cyclocross" itemValue="1" />
@@ -115,11 +80,45 @@
 								<p:commandButton value="Add Gear"></p:commandButton>
 
 							</p:panelGrid>
+							<p:panelGrid columns="2">
+								<p:outputLabel for="popupCal" value="Date of Activity"></p:outputLabel>
+								<p:calendar size="6" styleClass="dateTimeField"
+									value="#{createActivityBean.activityDate}" id="popupCal"
+									required="true" requiredMessage="Date of Activity is required." />
+
+
+
+
+								<p:outputLabel for="startTime" value="Start Time (HH:MM:SS)"></p:outputLabel>
+								<p:inputMask style="width : 80px" id="startTime" mask="99:99:99"
+									required="true" value="#{createActivityBean.startTime}"
+									requiredMessage="Start Time is required."
+									validatorMessage="Start Time must be time in 24 hour clock HH:MM:SS, 23:45:56 for example.">
+									<f:validator validatorId="militaryTimeValidator" />
+								</p:inputMask>
+
+								<p:outputLabel for="endTime" value="End Time (HH:MM:SS)"></p:outputLabel>
+								<p:inputMask style="width : 80px" id="endTime" mask="99:99:99"
+									required="true" value="#{createActivityBean.endTime}"
+									requiredMessage="End Time is required."
+									validatorMessage="End Time must be time in 24 hour clock HH:MM:SS, 23:45:56 for example.">
+									<f:validator validatorId="militaryTimeValidator" />
+								</p:inputMask>
+							</p:panelGrid>
+
+							
 
 						</p:panelGrid>
 
 
+						<p:panelGrid columns="2">
 
+							<p:outputLabel for="inputActivityName" value="Activity Name"></p:outputLabel>
+							<p:inputText id="inputActivityName"
+								value="#{createActivityBean.activityName}" style="width : 400px"
+								size="40"
+								placeholder="#{createActivityBean.defaultActivityName}"></p:inputText>
+						</p:panelGrid>
 
 						<p:panelGrid columns="3">
 							<h:panelGrid columns="2" style="margin-bottom:10px;"
@@ -173,7 +172,7 @@
 
 
 
-					</p:panelGrid>
+					
 
 
 					<p:panelGrid columns="2" style="margin:0;">
