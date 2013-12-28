@@ -1,3 +1,7 @@
+.dateTimeField input {
+   width : 80px;
+}
+
 .logoFont {
         font-family:"Lucida Sans Unicode", "Lucida Grande", sans-serif;
         font-size:1.875em;

@@ -53,6 +53,8 @@ public class CreateActivityBean implements Serializable {
 	private Double systolic;
 	private Double diastolic;
 	private Double pulse;
+	private String activityName;
+	private String defaultActivityName;
 
 	/**
 	 * @return the activityDate
@@ -424,5 +426,25 @@ public class CreateActivityBean implements Serializable {
 		this.pulse = pulse;
 	}
 
+	/**
+	 * @return the activityName
+	 */
+	public String getActivityName() {
+		return activityName;
+	}
+
+	/**
+	 * @param activityName the activityName to set
+	 */
+	public void setActivityName(String activityName) {
+		this.activityName = activityName;
+	}
+
+	/**
+	 * @return the defaultActivityName
+	 */
+	public String getDefaultActivityName() {
+		return "My Activity on " + new Date();
+	}
 	
 }
