@@ -15,6 +15,7 @@ import javax.faces.model.SelectItem;
 import com.fitdrift.domain.activity.Activity;
 import com.fitdrift.domain.activity.ActivitySubType;
 import com.fitdrift.domain.activity.ActivityType;
+import com.fitdrift.domain.activity.Measure;
 import com.fitdrift.domain.activity.MyMap;
 import com.fitdrift.domain.activity.MyMapMarker;
 import com.fitdrift.model.AthleticgisFacade;
@@ -80,23 +81,43 @@ public class CreateActivityBean implements Serializable {
 	}
 
 	public String createActivity() {
-		Activity a = new Activity();
-		//TODO maybe replace Activity with Activity Type
-		a.setName("My Activity on " + activityDate);
-		a.setUser(AthleticgisFacade.findUserByUsername(userInfoBean.getUsername()));
-		a.setDate(new Timestamp(activityDate.getTime()));
-		if(distance != null) {
-			a.setDistance(distance);
+		if(activityTypeId == 5L) { //measurement
+			Measure m = new Measure();
+			m.setDate(new Timestamp(activityDate.getTime()));
+			m.setMeasuretype_id(activitySubTypeId);
+			m.setValue(distance);
+			AthleticgisFacade.persistMeasure(m);
+		} else {
+			Activity a = new Activity();
+			//TODO maybe replace Activity with Activity Type
+			if(activityName != null) {
+				a.setName(activityName);
+			} else {
+				a.setName(getDefaultActivityName());
+			}
+			a.setUser(AthleticgisFacade.findUserByUsername(userInfoBean.getUsername()));
+			a.setDate(new Timestamp(activityDate.getTime()));
+			if(distance != null) {
+				a.setDistance(distance);
+			}
+			//TODO when get back out will have to check whether startTime < endTime. If other way around assume something like started 23:47 and ended 00:15 
+			a.setStartTime(convertTimeStringToLong(startTime));
+			a.setEndTime(convertTimeStringToLong(endTime));
+			
+			if(activityTypeId != null) {
+				a.setActivitytype_id(activityTypeId);
+			}
+			
+			if(activitySubTypeId != null) {
+				a.setActivitysubtype_id(activitySubTypeId);
+			}
+			
+	//		if(weight != null) {
+	//			a.setWeight(weight);
+	//		}
+			//TODO persistActivityAndActivityPoints look at this method, sets activity time based on first activity point. 
+			AthleticgisFacade.persistActivityAndActivityPoints(a, null);
 		}
-		//TODO when get back out will have to check whether startTime < endTime. If other way around assume something like started 23:47 and ended 00:15 
-		a.setStartTime(convertTimeStringToLong(startTime));
-		a.setEndTime(convertTimeStringToLong(endTime));
-//		if(weight != null) {
-//			a.setWeight(weight);
-//		}
-		//TODO persistActivityAndActivityPoints look at this method, sets activity time based on first activity point. 
-		AthleticgisFacade.persistActivityAndActivityPoints(a, null);
-		
 			
 		return "dashboard?faces-redirect=true";
 	}

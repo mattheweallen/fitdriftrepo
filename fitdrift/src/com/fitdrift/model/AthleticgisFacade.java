@@ -8,6 +8,7 @@ import com.fitdrift.domain.activity.ActivityPoint;
 import com.fitdrift.domain.activity.ActivitySubType;
 import com.fitdrift.domain.activity.ActivityType;
 import com.fitdrift.domain.activity.Equipment;
+import com.fitdrift.domain.activity.Measure;
 import com.fitdrift.domain.activity.MyMap;
 import com.fitdrift.domain.activity.MyMapMarker;
 import com.fitdrift.domain.user.User;
@@ -254,5 +255,13 @@ public class AthleticgisFacade implements Serializable {
 	 */
 	public static void persistEquipment(Equipment entity) {
 		ActivityDao.persistEquipment(entity);
+	}
+	
+	/**
+	 * 
+	 * @param entity
+	 */
+	public static void persistMeasure(Object entity) {
+		ActivityDao.persistMeasure(entity);
 	}
 }

@@ -13,6 +13,7 @@ import com.fitdrift.domain.activity.ActivityPoint;
 import com.fitdrift.domain.activity.ActivitySubType;
 import com.fitdrift.domain.activity.ActivityType;
 import com.fitdrift.domain.activity.Equipment;
+import com.fitdrift.domain.activity.Measure;
 import com.fitdrift.domain.activity.MyMap;
 import com.fitdrift.domain.activity.MyMapMarker;
 import com.fitdrift.domain.user.User;
@@ -466,6 +467,18 @@ public class ActivityDao implements Serializable {
 	 * @param entity
 	 */
 	public static void persistEquipment(Equipment entity) {
+		EntityManager em = EntityManagerUtil.getEntityManager();
+		em.getTransaction().begin();
+		em.persist(entity);
+		em.getTransaction().commit();
+		em.close();
+	}
+	
+	/**
+	 * 
+	 * @param entity
+	 */
+	public static void persistMeasure(Object entity) {
 		EntityManager em = EntityManagerUtil.getEntityManager();
 		em.getTransaction().begin();
 		em.persist(entity);
