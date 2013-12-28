@@ -13,6 +13,7 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.model.SelectItem;
 
 import com.fitdrift.domain.activity.Activity;
+import com.fitdrift.domain.activity.ActivitySubType;
 import com.fitdrift.domain.activity.ActivityType;
 import com.fitdrift.domain.activity.MyMap;
 import com.fitdrift.domain.activity.MyMapMarker;
@@ -58,7 +59,10 @@ public class CreateActivityBean implements Serializable {
 	private Double pulse;
 	private String activityName;
 	//private String defaultActivityName;
-	private List<SelectItem> activitySelectItems;
+	private List<SelectItem> activityTypeSelectItems;
+	private List<SelectItem> activitySubTypeSelectItems;
+	private Long activityTypeId;
+	private Long activitySubTypeId;
 
 	/**
 	 * @return the activityDate
@@ -452,25 +456,77 @@ public class CreateActivityBean implements Serializable {
 	}
 
 	/**
-	 * @return the activitySelectItems
+	 * @return the activityTypeSelectItems
 	 */
-	public List<SelectItem> getActivitySelectItems() {
-		if(activitySelectItems == null) {
+	public List<SelectItem> getActivityTypeSelectItems() {
+		if(activityTypeSelectItems == null) {
 			List<ActivityType> activityTypes = AthleticgisFacade.findAllActivityType(); 
-			activitySelectItems = new ArrayList<SelectItem>();
+			activityTypeSelectItems = new ArrayList<SelectItem>();
 			for(ActivityType at : activityTypes) {
-				activitySelectItems.add(new SelectItem(at.getActivitytype_id(), at.getDescription()));
+				activityTypeSelectItems.add(new SelectItem(at.getActivitytype_id(), at.getDescription()));
 			}
 		}
-		
-		return activitySelectItems;
+		return activityTypeSelectItems;
 	}
 
 	/**
-	 * @param activitySelectItems the activitySelectItems to set
+	 * @param activityTypeSelectItems the activityTypeSelectItems to set
 	 */
-	public void setActivitySelectItems(List<SelectItem> activitySelectItems) {
-		this.activitySelectItems = activitySelectItems;
+	public void setActivityTypeSelectItems(List<SelectItem> activityTypeSelectItems) {
+		this.activityTypeSelectItems = activityTypeSelectItems;
+	}
+
+	/**
+	 * @return the activitySubTypeSelectItems
+	 */
+	public List<SelectItem> getActivitySubTypeSelectItems() {
+		if(activityTypeId != null) {
+			List<ActivitySubType> activitySubTypes = AthleticgisFacade.findAllActivitySubTypeByActivitytype_id(activityTypeId);
+			activitySubTypeSelectItems = new ArrayList<SelectItem>();
+			for(ActivitySubType ast : activitySubTypes) {
+				activitySubTypeSelectItems.add(new SelectItem(ast.getActivitysubtype_id(), ast.getDescription()));
+			}
+		} else {
+			return null;
+		}
+		return activitySubTypeSelectItems;
+	}
+
+	/**
+	 * @param activitySubTypeSelectItems the activitySubTypeSelectItems to set
+	 */
+	public void setActivitySubTypeSelectItems(
+			List<SelectItem> activitySubTypeSelectItems) {
+		this.activitySubTypeSelectItems = activitySubTypeSelectItems;
+	}
+	
+
+	/**
+	 * @return the activityTypeId
+	 */
+	public Long getActivityTypeId() {
+		return activityTypeId;
+	}
+
+	/**
+	 * @param activityTypeId the activityTypeId to set
+	 */
+	public void setActivityTypeId(Long activityTypeId) {
+		this.activityTypeId = activityTypeId;
+	}
+
+	/**
+	 * @return the activitySubTypeId
+	 */
+	public Long getActivitySubTypeId() {
+		return activitySubTypeId;
+	}
+
+	/**
+	 * @param activitySubTypeId the activitySubTypeId to set
+	 */
+	public void setActivitySubTypeId(Long activitySubTypeId) {
+		this.activitySubTypeId = activitySubTypeId;
 	}
 	
 }

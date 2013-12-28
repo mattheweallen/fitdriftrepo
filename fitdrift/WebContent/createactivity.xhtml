@@ -72,9 +72,10 @@
 							</p:panelGrid>
 
 							<p:panelGrid columns="1">
-								<p:selectOneMenu value="#{createActivityBean.activityType}">
+								<p:selectOneMenu value="#{createActivityBean.activityTypeId}">
+									<p:ajax update="aSType" />
 									<f:selectItem itemLabel="-Select Activity Type-" itemValue="" />
-									<f:selectItems value="#{createActivityBean.activitySelectItems}"  />
+									<f:selectItems value="#{createActivityBean.activityTypeSelectItems}"  />
 									<!--  <f:selectItem itemLabel="Calisthenics" itemValue="1" />
 									<f:selectItem itemLabel="Cycling" itemValue="2" />
 									<f:selectItem itemLabel="Group Exercise" itemValue="3" />
@@ -85,10 +86,11 @@
 									<f:selectItem itemLabel="Swimming" itemValue="8" />
 									<f:selectItem itemLabel="Weight Training" itemValue="9" />-->
 								</p:selectOneMenu>
-								<p:selectOneMenu value="#{createActivityBean.activitySubType}">
+								<p:selectOneMenu value="#{createActivityBean.activitySubTypeId}" id="aSType">
 									<f:selectItem itemLabel="-Select Activity Sub Type-"
 										itemValue="" />
-									<f:selectItem itemLabel="Cycling Cyclocross" itemValue="1" />
+									<f:selectItems value="#{createActivityBean.activitySubTypeSelectItems}"  />
+									<!--  <f:selectItem itemLabel="Cycling Cyclocross" itemValue="1" />
 									<f:selectItem itemLabel="Cycling Indoors" itemValue="2" />
 									<f:selectItem itemLabel="Cycling Mountain" itemValue="3" />
 									<f:selectItem itemLabel="Cycling Road" itemValue="4" />
@@ -102,7 +104,7 @@
 									<f:selectItem itemLabel="Ski Roller" itemValue="5" />
 									<f:selectItem itemLabel="Ski Telemark" itemValue="6" />
 									<f:selectItem itemLabel="Medidation/Prayer" itemValue="7" />
-									<f:selectItem itemLabel="Sleep" itemValue="8" />
+									<f:selectItem itemLabel="Sleep" itemValue="8" />-->
 								</p:selectOneMenu>
 								<p:selectOneMenu value="#{createActivityBean.activityGear}">
 									<f:selectItem itemLabel="-Select Gear-" itemValue="" />
