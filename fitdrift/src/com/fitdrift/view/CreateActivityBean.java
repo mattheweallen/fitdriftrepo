@@ -3,14 +3,17 @@ package com.fitdrift.view;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
+import javax.faces.model.SelectItem;
 
 import com.fitdrift.domain.activity.Activity;
+import com.fitdrift.domain.activity.ActivityType;
 import com.fitdrift.domain.activity.MyMap;
 import com.fitdrift.domain.activity.MyMapMarker;
 import com.fitdrift.model.AthleticgisFacade;
@@ -54,7 +57,8 @@ public class CreateActivityBean implements Serializable {
 	private Double diastolic;
 	private Double pulse;
 	private String activityName;
-	private String defaultActivityName;
+	//private String defaultActivityName;
+	private List<SelectItem> activitySelectItems;
 
 	/**
 	 * @return the activityDate
@@ -445,6 +449,28 @@ public class CreateActivityBean implements Serializable {
 	 */
 	public String getDefaultActivityName() {
 		return "My Activity on " + new Date();
+	}
+
+	/**
+	 * @return the activitySelectItems
+	 */
+	public List<SelectItem> getActivitySelectItems() {
+		if(activitySelectItems == null) {
+			List<ActivityType> activityTypes = AthleticgisFacade.findAllActivityType(); 
+			activitySelectItems = new ArrayList<SelectItem>();
+			for(ActivityType at : activityTypes) {
+				activitySelectItems.add(new SelectItem(at.getActivitytype_id(), at.getDescription()));
+			}
+		}
+		
+		return activitySelectItems;
+	}
+
+	/**
+	 * @param activitySelectItems the activitySelectItems to set
+	 */
+	public void setActivitySelectItems(List<SelectItem> activitySelectItems) {
+		this.activitySelectItems = activitySelectItems;
 	}
 	
 }

@@ -74,7 +74,8 @@
 							<p:panelGrid columns="1">
 								<p:selectOneMenu value="#{createActivityBean.activityType}">
 									<f:selectItem itemLabel="-Select Activity Type-" itemValue="" />
-									<f:selectItem itemLabel="Calisthenics" itemValue="1" />
+									<f:selectItems value="#{createActivityBean.activitySelectItems}"  />
+									<!--  <f:selectItem itemLabel="Calisthenics" itemValue="1" />
 									<f:selectItem itemLabel="Cycling" itemValue="2" />
 									<f:selectItem itemLabel="Group Exercise" itemValue="3" />
 									<f:selectItem itemLabel="Medidation/Prayer" itemValue="4" />
@@ -82,7 +83,7 @@
 									<f:selectItem itemLabel="Ski" itemValue="6" />
 									<f:selectItem itemLabel="Sleep" itemValue="7" />
 									<f:selectItem itemLabel="Swimming" itemValue="8" />
-									<f:selectItem itemLabel="Weight Training" itemValue="9" />
+									<f:selectItem itemLabel="Weight Training" itemValue="9" />-->
 								</p:selectOneMenu>
 								<p:selectOneMenu value="#{createActivityBean.activitySubType}">
 									<f:selectItem itemLabel="-Select Activity Sub Type-"
