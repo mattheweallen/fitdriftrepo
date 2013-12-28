@@ -30,7 +30,10 @@
 				<p:commandButton update="activityTypes"></p:commandButton>
 				<h:dataTable id="activityTypes" value="#{manageItemsBean.activityTypes}" var="at">
 					<h:column>
-						<h:outputText value="#{at}"></h:outputText>
+						<h:outputText value="#{at.activitytype_id}"></h:outputText>
+					</h:column>
+					<h:column>
+						<h:outputText value="#{at.description}"></h:outputText>
 					</h:column>
 				</h:dataTable>
 
