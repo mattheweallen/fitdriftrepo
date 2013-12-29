@@ -119,7 +119,7 @@ public class ActivityDao implements Serializable {
 		
 		//set the timestamp of the activity to the timestamp of the first waypoint
 		//TODO this is a little strange? maybe rethink	
-		if(activityPoints != null && !activityPoints.isEmpty()) {
+		if(activityPoints != null && !activityPoints.isEmpty() && !a.getUseMyMap()) {
 			a.setDate(activityPoints.get(0).getTime());
 		}
 		
@@ -437,4 +437,6 @@ public class ActivityDao implements Serializable {
 		em.close();
 		return equipment;
 	}
+	
+	
 }

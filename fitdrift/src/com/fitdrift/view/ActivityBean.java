@@ -18,6 +18,7 @@ import org.primefaces.model.map.LatLng;
 import org.primefaces.model.map.MapModel;
 import org.primefaces.model.map.Polyline;
 
+import com.fitdrift.domain.activity.Activity;
 import com.fitdrift.domain.activity.ActivityPoint;
 import com.fitdrift.model.AthleticgisFacade;
 import com.fitdrift.util.gis.GISCalculator;
@@ -45,23 +46,40 @@ public class ActivityBean implements Serializable {
 		polyline.setStrokeWeight(2);
 		polyline.setStrokeColor("#FF0000");
 		polyline.setStrokeOpacity(1.0);
+		
+		Activity act = AthleticgisFacade.findActivityById(Long.parseLong(activityId));
+		
 		List<ActivityPoint> activityPoints = AthleticgisFacade
 				.findActivityPointsByActivityId(Long.parseLong(activityId));
+		
+//		Double distance = act.getDistance();
+//		
+//		Boolean userMap = false; 
+//		if(act.getUseMyMap() != null) {
+//			userMap = act.getUseMyMap(); 
+//		}
 		
 		if(activityPoints != null && activityPoints.size() > 0) {
 			for (ActivityPoint ap : activityPoints) {
 				polyline.getPaths().add(
 						new LatLng(ap.getLatitude(), ap.getLongitude()));
 			}
-			GISCalculator calc = new GISCalculator();
-		    Double distance = calc.computePathDistance(activityPoints)/1000;
-		    DecimalFormat df = new DecimalFormat("#.##");
-		    addMessage(new FacesMessage(FacesMessage.SEVERITY_INFO, "Distance", "Your total distance is " + df.format(distance) + " miles."));
+			//GISCalculator calc = new GISCalculator();
+			//distance = calc.computePathDistance(activityPoints);
+		
+			//DecimalFormat df = new DecimalFormat("#.##");
+			if(act.getDistance() != null) {
+				DecimalFormat df = new DecimalFormat("#.##");
+				addMessage(new FacesMessage(FacesMessage.SEVERITY_INFO, "Distance", "Your total distance is " + df.format(act.getDistance()) + " miles."));
+			}
 			
 			polylineModel.addOverlay(polyline);
-		} else {
+		}  else {
 			emptyMap = true;
 		}
+		
+		//Double distance = AthleticgisFacade.findActivityById(activityId);
+	    
 	}
 	
 	public MapModel getPolylineModel() {

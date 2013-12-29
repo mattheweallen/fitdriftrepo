@@ -119,7 +119,7 @@ public class CreatePathBean implements Serializable {
         m.setTime(new Timestamp(new Date().getTime()));
         myMapMarkers.add(m);
         GISCalculator calc = new GISCalculator();
-        Double distance = calc.computeMarkerPathDistance(myMapMarkers)/1000;
+        Double distance = calc.computeMarkerPathDistance(myMapMarkers)*0.000621371; //convert meters to miles
         DecimalFormat df = new DecimalFormat("#.##");
         addMessage(new FacesMessage(FacesMessage.SEVERITY_INFO, "Point Added", "Lat:" + df.format(lat) + ", Lng:" + df.format(lng) + ". Your total distance is " + df.format(distance) + " miles."));  
     }

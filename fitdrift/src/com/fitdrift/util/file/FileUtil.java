@@ -19,6 +19,7 @@ import com.fitdrift.util.file.gpx.GPXParser;
 import com.fitdrift.util.file.gpx.beans.GPX;
 import com.fitdrift.util.file.gpx.beans.Track;
 import com.fitdrift.util.file.gpx.beans.Waypoint;
+import com.fitdrift.util.gis.GISCalculator;
 
 /**
  * Utility class for files.
@@ -75,7 +76,14 @@ public class FileUtil {
 			}
 		}
 		a.setActivitypoints(activityPoints);
+		
+		//distance TODO is elevation non null
+		GISCalculator gisc = new GISCalculator();
+		
+		a.setDistance(gisc.computePathDistance(activityPoints) * 0.000621371); //0.000621371 convert meters to miles
 
+		//distance
+		
 		AthleticgisFacade.persistActivityAndActivityPoints(a, activityPoints);
 
 		in.close();
@@ -96,6 +104,13 @@ public class FileUtil {
 //		for(ActivityPoint ap : activityPoints) {
 //			System.out.println("Lat: " + ap.getLatitude() + "," + "Long: " + ap.getLongitude() + "," + "Elevation: " + ap.getElevation() + "," + "Time: " + ap.getTime());
 //		}
+		//distance TODO is elevation non null, and is distance already in FIT file?
+		GISCalculator gisc = new GISCalculator();
+		
+		a.setDistance(gisc.computePathDistance(activityPoints) * 0.000621371); //0.000621371 convert meters to miles
+
+		//distance
+		
 		AthleticgisFacade.persistActivityAndActivityPoints(a, activityPoints);
 	}
 

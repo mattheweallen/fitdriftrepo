@@ -33,7 +33,7 @@ public class GISCalculator {
 									.getElevation(), aps.get(i + 1)
 									.getElevation());
 		}
-		return distance*0.621371; //convert km to miles
+		return distance; //convert meters to miles
 	}
 	
 	public double computeMarkerPathDistance(List<MyMapMarker> markers) {
@@ -46,7 +46,7 @@ public class GISCalculator {
 									.getElevation(), markers.get(i + 1)
 									.getElevation());
 		}
-		return distance*0.621371; //convert km to miles
+		return distance; //convert meters to miles
 	}
 
 	/*

@@ -119,7 +119,7 @@ public class CreateActivityBean implements Serializable {
 			a.setIndoors(indoors);
 			
 			//TODO maybe replace Activity with Activity Type
-			if(activityName != null) {
+			if(activityName != null && activityName.length() > 0) {
 				a.setName(activityName);
 			} else {
 				a.setName(getDefaultActivityName());
@@ -142,6 +142,9 @@ public class CreateActivityBean implements Serializable {
 			}
 			
 			a.setUseMyMap(useMyMap);
+			
+			List<ActivityPoint> aps = null;
+			
 			if(useMyMap) {
 				if (selectedMap != null) {
 //					System.out.println(selectedMap.getName());
@@ -159,14 +162,14 @@ public class CreateActivityBean implements Serializable {
 							.findMyMapMarkersByMymap_id(selectedMap.getMymap_id());
 					if(myMapMarkers != null && myMapMarkers.size() > 0) {
 					
-						List<ActivityPoint> aps = new ArrayList<ActivityPoint>();
+						aps = new ArrayList<ActivityPoint>();
 						for(MyMapMarker mp : myMapMarkers) {
 							ActivityPoint ap = new ActivityPoint();
 							ap.setLatitude(mp.getLatitude());
 							ap.setLongitude(mp.getLongitude());
 							aps.add(ap);
 						}
-						a.setActivitypoints(aps);
+						//a.setActivitypoints(aps);
 						
 					}
 				}
@@ -176,7 +179,7 @@ public class CreateActivityBean implements Serializable {
 	//			a.setWeight(weight);
 	//		}
 			//TODO persistActivityAndActivityPoints look at this method, sets activity time based on first activity point. 
-			AthleticgisFacade.persistActivityAndActivityPoints(a, null);
+			AthleticgisFacade.persistActivityAndActivityPoints(a, aps);
 		}
 			
 		return "dashboard?faces-redirect=true";
@@ -232,7 +235,7 @@ public class CreateActivityBean implements Serializable {
 					.findMyMapMarkersByMymap_id(selectedMap.getMymap_id());
 
 			GISCalculator calc = new GISCalculator();
-			Double d = calc.computeMarkerPathDistance(myMapMarkers) / 1000;
+			Double d = calc.computeMarkerPathDistance(myMapMarkers) * 0.000621371; //convert meters to miles
 			//DecimalFormat df = new DecimalFormat("#.##");
 
 			this.distance = d;
