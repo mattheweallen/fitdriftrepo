@@ -93,7 +93,9 @@ public class CreateActivityBean implements Serializable {
 			Measure m = new Measure();
 			m.setDate(new Timestamp(activityDate.getTime()));
 			m.setMeasuretype_id(selectedActivitySubType.getActivitysubtype_id());
-			m.setValue(distance);
+			if("Weight".equals(selectedActivitySubType.getDescription()) ) {
+				m.setValue(weight);
+			}
 			AthleticgisFacade.persist(m);
 		} else {
 			Activity a = new Activity();
