@@ -22,16 +22,21 @@ public class ManageItemsBean {
 	private String activitySubTypeDescription;
 	
 	
-	private List<SelectItem> activitySelectItems = new ArrayList<SelectItem>();
+	//private List<SelectItem> activitySelectItems = new ArrayList<SelectItem>();
 	private List<ActivityType> activityTypes;
-	private Long activityTypeId;
+	//private Long activityTypeId;
+	private ActivityType selectedActivityType;
+	
+	public void onChangeValue(ValueChangeEvent e) {
+		System.out.println(e.getNewValue());
+	}
 	
 	public List<ActivityType> getActivityTypes() {
 		if(activityTypes == null) {
 			activityTypes = AthleticgisFacade.findAllActivityType(); 
-			for(ActivityType at : activityTypes) {
-				activitySelectItems.add(new SelectItem(at.getActivitytype_id(), at.getDescription()));
-			}
+//			for(ActivityType at : activityTypes) {
+//				activitySelectItems.add(new SelectItem(at.getActivitytype_id(), at.getDescription()));
+//			}
 		}
 		return activityTypes;
 	}
@@ -44,8 +49,8 @@ public class ManageItemsBean {
 	}
 	
 	public List<ActivitySubType> getActivitySubTypes() {
-		if(activityTypeId != null) {
-			return AthleticgisFacade.findAllActivitySubTypeByActivitytype_id(activityTypeId);
+		if(selectedActivityType != null) {
+			return AthleticgisFacade.findAllActivitySubTypeByActivitytype_id(selectedActivityType.getActivitytype_id());
 		} else {
 			return null;
 		}
@@ -60,15 +65,15 @@ public class ManageItemsBean {
 		AthleticgisFacade.persist(at);
 		//return null;
 		activityTypes = AthleticgisFacade.findAllActivityType(); 
-		activitySelectItems.clear();
-		for(ActivityType a : activityTypes) {
-			activitySelectItems.add(new SelectItem(a.getActivitytype_id(), a.getDescription()));
-		}
+	//	activitySelectItems.clear();
+//		for(ActivityType a : activityTypes) {
+//			activitySelectItems.add(new SelectItem(a.getActivitytype_id(), a.getDescription()));
+//		}
 	}
 	
 	public void addActivitySubType(ActionEvent event) {
 		ActivitySubType ast = new ActivitySubType();
-		ast.setActivitytype_id(activityTypeId);
+		ast.setActivitytype_id(selectedActivityType.getActivitytype_id());
 		ast.setDescription(activitySubTypeDescription);
 		AthleticgisFacade.persist(ast);
 		//return null;
@@ -106,32 +111,46 @@ public class ManageItemsBean {
 		this.activitySubTypeDescription = activitySubTypeDescription;
 	}
 
+//	/**
+//	 * @return the activitySelectItems
+//	 */
+//	public List<SelectItem> getActivitySelectItems() {
+//		return activitySelectItems;
+//	}
+//
+//	/**
+//	 * @param activitySelectItems the activitySelectItems to set
+//	 */
+//	public void setActivitySelectItems(List<SelectItem> activitySelectItems) {
+//		this.activitySelectItems = activitySelectItems;
+//	}
+
+//	/**
+//	 * @return the activityTypeId
+//	 */
+//	public Long getActivityTypeId() {
+//		return activityTypeId;
+//	}
+//
+//	/**
+//	 * @param activityTypeId the activityTypeId to set
+//	 */
+//	public void setActivityTypeId(Long activityTypeId) {
+//		this.activityTypeId = activityTypeId;
+//	}
+
 	/**
-	 * @return the activitySelectItems
+	 * @return the selectedActivityType
 	 */
-	public List<SelectItem> getActivitySelectItems() {
-		return activitySelectItems;
+	public ActivityType getSelectedActivityType() {
+		return selectedActivityType;
 	}
 
 	/**
-	 * @param activitySelectItems the activitySelectItems to set
+	 * @param selectedActivityType the selectedActivityType to set
 	 */
-	public void setActivitySelectItems(List<SelectItem> activitySelectItems) {
-		this.activitySelectItems = activitySelectItems;
-	}
-
-	/**
-	 * @return the activityTypeId
-	 */
-	public Long getActivityTypeId() {
-		return activityTypeId;
-	}
-
-	/**
-	 * @param activityTypeId the activityTypeId to set
-	 */
-	public void setActivityTypeId(Long activityTypeId) {
-		this.activityTypeId = activityTypeId;
+	public void setSelectedActivityType(ActivityType selectedActivityType) {
+		this.selectedActivityType = selectedActivityType;
 	}
 
 }

@@ -52,5 +52,23 @@ public class ActivityType implements Serializable {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-   
+	
+	@Override
+	public boolean equals(Object obj) {
+		return (obj instanceof ActivityType) && (activitytype_id != null)
+	            ? activitytype_id.equals(((ActivityType) obj).getActivitytype_id())
+	            : (obj == this);
+	}
+	
+	@Override
+    public int hashCode() {
+        return (activitytype_id != null)
+            ? (this.getClass().hashCode() + activitytype_id.hashCode())
+            : super.hashCode();
+    }
+	
+	@Override
+	public String toString() {
+		return activitytype_id + ":" + description;
+	}
 }
