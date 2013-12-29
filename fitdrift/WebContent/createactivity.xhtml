@@ -38,7 +38,7 @@
 					<p:panelGrid columns="2">
 						<p:panelGrid columns="1">
 							<p:selectOneMenu converter="com.fitdrift.view.ActivityTypeConverter" value="#{createActivityBean.selectedActivityType}">
-								<p:ajax update="aSType" />
+								<p:ajax update="grid" />
 								<f:selectItem itemLabel="-Select Type-" itemValue="" />
 								<f:selectItems var="actType" itemValue="#{actType}" itemLabel="#{actType.description}"
 									value="#{createActivityBean.activityTypes}" />
@@ -54,6 +54,7 @@
 							</p:selectOneMenu>
 							<p:selectOneMenu converter="com.fitdrift.view.ActivitySubTypeConverter" value="#{createActivityBean.selectedActivitySubType}"
 								id="aSType">
+								<p:ajax update="grid" />
 								<f:selectItem itemLabel="-Select Sub Type-" itemValue="" />
 								<f:selectItems value="#{createActivityBean.activitySubTypes}" var="aSubType" itemLabel="#{aSubType.description}" itemValue="#{aSubType}"
 									 />
@@ -82,15 +83,16 @@
 							<p:commandButton value="Add Gear"></p:commandButton>
 
 						</p:panelGrid>
-						<p:panelGrid columns="2">
+						<p:panelGrid columns="1" >
+						<p:panelGrid columns="2" >
 							<p:outputLabel for="popupCal" value="Date of Activity"></p:outputLabel>
 							<p:calendar size="6" styleClass="dateTimeField"
 								value="#{createActivityBean.activityDate}" id="popupCal"
 								required="true" requiredMessage="Date of Activity is required." />
 
+						</p:panelGrid>
 
-
-
+						<p:panelGrid columns="2" rendered="#{createActivityBean.selectedActivityType eq null and createActivityBean.selectedActivityType.description ne 'Measurement'}">
 							<p:outputLabel for="startTime" value="Start Time (HH:MM:SS)"></p:outputLabel>
 							<p:inputMask style="width : 80px" id="startTime" mask="99:99:99"
 								required="true" value="#{createActivityBean.startTime}"
@@ -98,6 +100,8 @@
 								validatorMessage="Start Time must be time in 24 hour clock HH:MM:SS, 23:45:56 for example.">
 								<f:validator validatorId="militaryTimeValidator" />
 							</p:inputMask>
+
+						
 
 							<p:outputLabel for="endTime" value="End Time (HH:MM:SS)"></p:outputLabel>
 							<p:inputMask style="width : 80px" id="endTime" mask="99:99:99"
@@ -108,12 +112,12 @@
 							</p:inputMask>
 						</p:panelGrid>
 
-
+						</p:panelGrid>
 
 					</p:panelGrid>
 
 
-					<p:panelGrid columns="2">
+					<p:panelGrid columns="2" >
 
 						<p:outputLabel for="inputActivityName" value="Activity Name"></p:outputLabel>
 						<p:inputText id="inputActivityName"
@@ -121,13 +125,13 @@
 							size="40" placeholder="#{createActivityBean.defaultActivityName}"></p:inputText>
 					</p:panelGrid>
 					<h:panelGrid columns="2" style="margin-bottom:10px;"
-						cellpadding="5">
+						cellpadding="5" rendered="#{createActivityBean.selectedActivityType eq null and createActivityBean.selectedActivityType.description ne 'Measurement'}">
 						<p:selectBooleanCheckbox id="indoors"
 							value="#{createActivityBean.indoors}" />
 						<h:outputText value="Indoors " />
 
 					</h:panelGrid>
-					<p:panelGrid columns="2">
+					<p:panelGrid columns="2" rendered="#{createActivityBean.selectedActivityType eq null and createActivityBean.selectedActivityType.description ne 'Measurement'}">
 
 
 						<h:panelGrid columns="2" style="margin-bottom:10px;"
@@ -148,7 +152,7 @@
 
 						</p:inputText>
 					</p:panelGrid>
-					<p:panelGrid columns="2" id="distancePanelGrid">
+					<p:panelGrid columns="2" id="distancePanelGrid" rendered="#{createActivityBean.selectedActivityType eq null and createActivityBean.selectedActivityType.description ne 'Measurement'}">
 						<p:outputLabel for="distance" value="Distance"></p:outputLabel>
 						<p:inputText id="distance" value="#{createActivityBean.distance}"
 							disabled="#{createActivityBean.useMyMap}"
@@ -175,8 +179,8 @@
 
 
 
-
-					<p:panelGrid columns="2">
+					
+					<p:panelGrid columns="2" rendered="#{createActivityBean.selectedActivitySubType.description eq 'Average Heart Rate'}">
 
 						<p:outputLabel for="aveHeartRate" value="Average Heart Rate"></p:outputLabel>
 						<p:inputText id="aveHeartRate"
@@ -191,14 +195,14 @@
 						</p:inputText>
 
 					</p:panelGrid>
-					<p:panelGrid columns="2">
+					<p:panelGrid columns="2" rendered="#{createActivityBean.selectedActivitySubType.description eq 'Weight'}">
 						<p:outputLabel for="weight" value="Weight"></p:outputLabel>
 						<p:inputText id="weight" value="#{createActivityBean.weight}"
 							validatorMessage="Weight must be number between 0 and 1000.">
 							<f:validateDoubleRange minimum="0" maximum="1000" />
 						</p:inputText>
 					</p:panelGrid>
-					<p:panelGrid columns="2">
+					<p:panelGrid columns="2" rendered="#{createActivityBean.selectedActivitySubType.description eq 'Blood Pressure'}">
 						<h:outputText value="Blood Pressure"></h:outputText>
 						<p:panelGrid columns="2">
 
@@ -222,29 +226,29 @@
 							</p:inputText>
 						</p:panelGrid>
 					</p:panelGrid>
-					<p:panelGrid columns="2">
+					<p:panelGrid columns="2" rendered="#{createActivityBean.selectedActivitySubType.description eq 'Height'}">
 						<p:outputLabel for="height" value="Height"></p:outputLabel>
 						<p:inputText id="height" value="#{createActivityBean.height}"
 							validatorMessage="Height must be number between 0 and 1000.">
 							<f:validateDoubleRange minimum="0" maximum="1000" />
 						</p:inputText>
 					</p:panelGrid>
-					<p:panelGrid columns="2">
+					<p:panelGrid columns="2" rendered="#{createActivityBean.selectedActivitySubType.description eq 'Waist'}">
 						<p:outputLabel for="waist" value="Waist"></p:outputLabel>
 						<p:inputText id="waist" value="#{createActivityBean.waist}"
 							validatorMessage="Waist must be number between 0 and 1000.">
 							<f:validateDoubleRange minimum="0" maximum="1000" />
 						</p:inputText>
 					</p:panelGrid>
-					<p:panelGrid columns="2">
+					<p:panelGrid columns="2" rendered="#{createActivityBean.selectedActivitySubType.description eq 'Hip'}">
 						<p:outputLabel for="hip" value="Hip"></p:outputLabel>
 						<p:inputText id="hip" value="#{createActivityBean.hip}"
 							validatorMessage="Hip must be number between 0 and 1000.">
 							<f:validateDoubleRange minimum="0" maximum="1000" />
 						</p:inputText>
 					</p:panelGrid>
-					<p:panelGrid columns="2">
-						<p:outputLabel for="thigh" value="Thigh"></p:outputLabel>
+					<p:panelGrid columns="2" rendered="#{createActivityBean.selectedActivitySubType.description eq 'Thigh'}">
+						<p:outputLabel for="thigh" value="Thigh" ></p:outputLabel>
 						<p:inputText id="thigh" value="#{createActivityBean.thigh}"
 							validatorMessage="Thigh must be number between 0 and 1000.">
 							<f:validateDoubleRange minimum="0" maximum="1000" />
