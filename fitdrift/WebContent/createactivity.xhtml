@@ -55,8 +55,8 @@
 							<p:selectOneMenu converter="com.fitdrift.view.ActivitySubTypeConverter" value="#{createActivityBean.selectedActivitySubType}"
 								id="aSType">
 								<f:selectItem itemLabel="-Select Sub Type-" itemValue="" />
-								<f:selectItems var="#{aSubType}" itemLabel="#{aSubType.description}" itemValue="#{aSubType}"
-									value="#{createActivityBean.activitySubTypes}" />
+								<f:selectItems value="#{createActivityBean.activitySubTypes}" var="aSubType" itemLabel="#{aSubType.description}" itemValue="#{aSubType}"
+									 />
 								<!--  <f:selectItem itemLabel="Cycling Cyclocross" itemValue="1" />
 									<f:selectItem itemLabel="Cycling Indoors" itemValue="2" />
 									<f:selectItem itemLabel="Cycling Mountain" itemValue="3" />
