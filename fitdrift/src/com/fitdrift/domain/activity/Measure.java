@@ -5,6 +5,8 @@ import java.sql.Timestamp;
 
 import javax.persistence.*;
 
+import com.fitdrift.domain.user.User;
+
 /**
  * Entity implementation class for Entity: Measure
  *
@@ -29,6 +31,10 @@ public class Measure implements Serializable {
 	
 	@Column
 	private Double value;
+	
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "user_id")
+	private User user;
 
 	/**
 	 * @return the measure_id
@@ -84,5 +90,19 @@ public class Measure implements Serializable {
 	 */
 	public void setValue(Double value) {
 		this.value = value;
+	}
+
+	/**
+	 * @return the user
+	 */
+	public User getUser() {
+		return user;
+	}
+
+	/**
+	 * @param user the user to set
+	 */
+	public void setUser(User user) {
+		this.user = user;
 	}
 }

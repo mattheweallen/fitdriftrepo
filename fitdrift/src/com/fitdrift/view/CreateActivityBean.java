@@ -93,8 +93,23 @@ public class CreateActivityBean implements Serializable {
 			Measure m = new Measure();
 			m.setDate(new Timestamp(activityDate.getTime()));
 			m.setMeasuretype_id(selectedActivitySubType.getActivitysubtype_id());
+			m.setUser(AthleticgisFacade.findUserByUsername(userInfoBean.getUsername()));
 			if("Weight".equals(selectedActivitySubType.getDescription()) ) {
 				m.setValue(weight);
+			} else if("Height".equals(selectedActivitySubType.getDescription()) ) {
+				m.setValue(height);
+			} else if("Pulse".equals(selectedActivitySubType.getDescription()) ) {
+				m.setValue(pulse);
+			} else if("Waist".equals(selectedActivitySubType.getDescription()) ) {
+				m.setValue(waist);
+			} else if("Hip".equals(selectedActivitySubType.getDescription()) ) {
+				m.setValue(hip);
+			} else if("Thigh".equals(selectedActivitySubType.getDescription()) ) {
+				m.setValue(thigh);
+			} else if("Systolic".equals(selectedActivitySubType.getDescription()) ) {
+				m.setValue(systolic);
+			} else if("Diastolic".equals(selectedActivitySubType.getDescription()) ) {
+				m.setValue(diastolic);
 			}
 			AthleticgisFacade.persist(m);
 		} else {
