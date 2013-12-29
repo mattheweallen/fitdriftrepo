@@ -57,16 +57,20 @@ public class ManageItemsBean {
 		//selectedActivityType = null;
 		ActivityType at = new ActivityType();
 		at.setDescription(activityTypeDescription);
-		AthleticgisFacade.persistActivityType(at);
+		AthleticgisFacade.persist(at);
 		//return null;
 		activityTypes = AthleticgisFacade.findAllActivityType(); 
+		activitySelectItems.clear();
+		for(ActivityType a : activityTypes) {
+			activitySelectItems.add(new SelectItem(a.getActivitytype_id(), a.getDescription()));
+		}
 	}
 	
 	public void addActivitySubType(ActionEvent event) {
 		ActivitySubType ast = new ActivitySubType();
 		ast.setActivitytype_id(activityTypeId);
 		ast.setDescription(activitySubTypeDescription);
-		AthleticgisFacade.persistActivitySubType(ast);
+		AthleticgisFacade.persist(ast);
 		//return null;
 	}
 	

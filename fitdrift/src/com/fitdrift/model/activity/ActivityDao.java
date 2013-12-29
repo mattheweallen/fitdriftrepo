@@ -72,7 +72,7 @@ public class ActivityDao implements Serializable {
 	 * 
 	 * @param entity
 	 */
-	public static void persist(Activity entity) {
+	public static void persist(Object entity) {
 		EntityManager em = EntityManagerUtil.getEntityManager();
 		em.getTransaction().begin();
 		em.persist(entity);
@@ -436,53 +436,5 @@ public class ActivityDao implements Serializable {
 		
 		em.close();
 		return equipment;
-	}
-	
-	/**
-	 * 
-	 * @param entity
-	 */
-	public static void persistActivityType(ActivityType entity) {
-		EntityManager em = EntityManagerUtil.getEntityManager();
-		em.getTransaction().begin();
-		em.persist(entity);
-		em.getTransaction().commit();
-		em.close();
-	}
-	
-	/**
-	 * 
-	 * @param entity
-	 */
-	public static void persistActivitySubType(ActivitySubType entity) {
-		EntityManager em = EntityManagerUtil.getEntityManager();
-		em.getTransaction().begin();
-		em.persist(entity);
-		em.getTransaction().commit();
-		em.close();
-	}
-	
-	/**
-	 * 
-	 * @param entity
-	 */
-	public static void persistEquipment(Equipment entity) {
-		EntityManager em = EntityManagerUtil.getEntityManager();
-		em.getTransaction().begin();
-		em.persist(entity);
-		em.getTransaction().commit();
-		em.close();
-	}
-	
-	/**
-	 * 
-	 * @param entity
-	 */
-	public static void persistMeasure(Object entity) {
-		EntityManager em = EntityManagerUtil.getEntityManager();
-		em.getTransaction().begin();
-		em.persist(entity);
-		em.getTransaction().commit();
-		em.close();
 	}
 }

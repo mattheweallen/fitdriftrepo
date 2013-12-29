@@ -237,31 +237,7 @@ public class AthleticgisFacade implements Serializable {
 	 * 
 	 * @param entity
 	 */
-	public static void persistActivityType(ActivityType entity) {
-		ActivityDao.persistActivityType(entity);
-	}
-	
-	/**
-	 * 
-	 * @param entity
-	 */
-	public static void persistActivitySubType(ActivitySubType entity) {
-		ActivityDao.persistActivitySubType(entity);
-	}
-	
-	/**
-	 * 
-	 * @param entity
-	 */
-	public static void persistEquipment(Equipment entity) {
-		ActivityDao.persistEquipment(entity);
-	}
-	
-	/**
-	 * 
-	 * @param entity
-	 */
-	public static void persistMeasure(Object entity) {
-		ActivityDao.persistMeasure(entity);
+	public static void persist(Object entity) {
+		ActivityDao.persist(entity);
 	}
 }

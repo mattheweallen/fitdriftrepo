@@ -69,6 +69,9 @@ public class CreateActivityBean implements Serializable {
 	 * @return the activityDate
 	 */
 	public Date getActivityDate() {
+		if(activityDate == null) {
+			activityDate = new Date();
+		}
 		return activityDate;
 	}
 
@@ -86,7 +89,7 @@ public class CreateActivityBean implements Serializable {
 			m.setDate(new Timestamp(activityDate.getTime()));
 			m.setMeasuretype_id(activitySubTypeId);
 			m.setValue(distance);
-			AthleticgisFacade.persistMeasure(m);
+			AthleticgisFacade.persist(m);
 		} else {
 			Activity a = new Activity();
 			//TODO maybe replace Activity with Activity Type

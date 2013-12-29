@@ -176,10 +176,8 @@
 
 
 
-					<p:panelGrid columns="2" style="margin:0;">
-						<f:facet name="header">
-							Other Data
-						</f:facet>
+					<p:panelGrid columns="2">
+
 						<p:outputLabel for="aveHeartRate" value="Average Heart Rate"></p:outputLabel>
 						<p:inputText id="aveHeartRate"
 							value="#{createActivityBean.aveHeartRate}"
@@ -191,11 +189,16 @@
 							validatorMessage="Calories must be number between 0 and 20000.">
 							<f:validateDoubleRange minimum="0" maximum="20000" />
 						</p:inputText>
+
+					</p:panelGrid>
+					<p:panelGrid columns="2">
 						<p:outputLabel for="weight" value="Weight"></p:outputLabel>
 						<p:inputText id="weight" value="#{createActivityBean.weight}"
 							validatorMessage="Weight must be number between 0 and 1000.">
 							<f:validateDoubleRange minimum="0" maximum="1000" />
 						</p:inputText>
+					</p:panelGrid>
+					<p:panelGrid columns="2">
 						<h:outputText value="Blood Pressure"></h:outputText>
 						<p:panelGrid columns="2">
 
@@ -218,21 +221,29 @@
 								<f:validateDoubleRange minimum="0" maximum="1000" />
 							</p:inputText>
 						</p:panelGrid>
+					</p:panelGrid>
+					<p:panelGrid columns="2">
 						<p:outputLabel for="height" value="Height"></p:outputLabel>
 						<p:inputText id="height" value="#{createActivityBean.height}"
 							validatorMessage="Height must be number between 0 and 1000.">
 							<f:validateDoubleRange minimum="0" maximum="1000" />
 						</p:inputText>
+					</p:panelGrid>
+					<p:panelGrid columns="2">
 						<p:outputLabel for="waist" value="Waist"></p:outputLabel>
 						<p:inputText id="waist" value="#{createActivityBean.waist}"
 							validatorMessage="Waist must be number between 0 and 1000.">
 							<f:validateDoubleRange minimum="0" maximum="1000" />
 						</p:inputText>
+					</p:panelGrid>
+					<p:panelGrid columns="2">
 						<p:outputLabel for="hip" value="Hip"></p:outputLabel>
 						<p:inputText id="hip" value="#{createActivityBean.hip}"
 							validatorMessage="Hip must be number between 0 and 1000.">
 							<f:validateDoubleRange minimum="0" maximum="1000" />
 						</p:inputText>
+					</p:panelGrid>
+					<p:panelGrid columns="2">
 						<p:outputLabel for="thigh" value="Thigh"></p:outputLabel>
 						<p:inputText id="thigh" value="#{createActivityBean.thigh}"
 							validatorMessage="Thigh must be number between 0 and 1000.">
