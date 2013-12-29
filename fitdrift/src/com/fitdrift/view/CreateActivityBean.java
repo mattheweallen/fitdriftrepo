@@ -506,7 +506,7 @@ public class CreateActivityBean implements Serializable {
 	 * @return the activitySubTypeSelectItems
 	 */
 	public List<SelectItem> getActivitySubTypeSelectItems() {
-		if(selectedActivityType.getActivitytype_id() != null) {
+		if(selectedActivityType != null && selectedActivityType.getActivitytype_id() != null) {
 			List<ActivitySubType> activitySubTypes = AthleticgisFacade.findAllActivitySubTypeByActivitytype_id(selectedActivityType.getActivitytype_id());
 			activitySubTypeSelectItems = new ArrayList<SelectItem>();
 			for(ActivitySubType ast : activitySubTypes) {
