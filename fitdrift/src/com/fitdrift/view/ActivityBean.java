@@ -56,7 +56,7 @@ public class ActivityBean implements Serializable {
 			GISCalculator calc = new GISCalculator();
 		    Double distance = calc.computePathDistance(activityPoints)/1000;
 		    DecimalFormat df = new DecimalFormat("#.##");
-		    addMessage(new FacesMessage(FacesMessage.SEVERITY_INFO, "Distance", "Your total distance is " + df.format(distance) + " km."));
+		    addMessage(new FacesMessage(FacesMessage.SEVERITY_INFO, "Distance", "Your total distance is " + df.format(distance) + " miles."));
 			
 			polylineModel.addOverlay(polyline);
 		} else {

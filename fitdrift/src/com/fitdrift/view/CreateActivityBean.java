@@ -13,6 +13,7 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.model.SelectItem;
 
 import com.fitdrift.domain.activity.Activity;
+import com.fitdrift.domain.activity.ActivityPoint;
 import com.fitdrift.domain.activity.ActivitySubType;
 import com.fitdrift.domain.activity.ActivityType;
 import com.fitdrift.domain.activity.Measure;
@@ -114,6 +115,9 @@ public class CreateActivityBean implements Serializable {
 			AthleticgisFacade.persist(m);
 		} else {
 			Activity a = new Activity();
+			
+			a.setIndoors(indoors);
+			
 			//TODO maybe replace Activity with Activity Type
 			if(activityName != null) {
 				a.setName(activityName);
@@ -135,6 +139,37 @@ public class CreateActivityBean implements Serializable {
 			
 			if(selectedActivitySubType != null && selectedActivitySubType.getActivitysubtype_id() != null) {
 				a.setActivitysubtype_id(selectedActivitySubType.getActivitysubtype_id());
+			}
+			
+			a.setUseMyMap(useMyMap);
+			if(useMyMap) {
+				if (selectedMap != null) {
+//					System.out.println(selectedMap.getName());
+//					this.mapMapName = selectedMap.getName();
+//
+//					List<MyMapMarker> myMapMarkers = AthleticgisFacade
+//							.findMyMapMarkersByMymap_id(selectedMap.getMymap_id());
+//
+//					GISCalculator calc = new GISCalculator();
+//					Double d = calc.computeMarkerPathDistance(myMapMarkers) / 1000;
+//					//DecimalFormat df = new DecimalFormat("#.##");
+//
+//					this.distance = d;
+					List<MyMapMarker> myMapMarkers = AthleticgisFacade
+							.findMyMapMarkersByMymap_id(selectedMap.getMymap_id());
+					if(myMapMarkers != null && myMapMarkers.size() > 0) {
+					
+						List<ActivityPoint> aps = new ArrayList<ActivityPoint>();
+						for(MyMapMarker mp : myMapMarkers) {
+							ActivityPoint ap = new ActivityPoint();
+							ap.setLatitude(mp.getLatitude());
+							ap.setLongitude(mp.getLongitude());
+							aps.add(ap);
+						}
+						a.setActivitypoints(aps);
+						
+					}
+				}
 			}
 			
 	//		if(weight != null) {

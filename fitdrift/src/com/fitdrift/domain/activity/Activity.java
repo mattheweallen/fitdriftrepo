@@ -73,6 +73,9 @@ public class Activity implements Serializable {
 	@Column
 	private Double distance;
 	
+	@Column
+	private Boolean useMyMap;
+	
 	@Transient
 	private String formattedActivityDate;
 	
@@ -276,5 +279,19 @@ public class Activity implements Serializable {
 	 */
 	public void setFormattedActivityDate(String formattedActivityDate) {
 		this.formattedActivityDate = formattedActivityDate;
+	}
+
+	/**
+	 * @return the useMyMap
+	 */
+	public Boolean getUseMyMap() {
+		return useMyMap;
+	}
+
+	/**
+	 * @param useMyMap the useMyMap to set
+	 */
+	public void setUseMyMap(Boolean useMyMap) {
+		this.useMyMap = useMyMap;
 	}
 }

@@ -64,7 +64,7 @@ public class ViewMyMapBean implements Serializable {
                 Double distance = calc.computeMarkerPathDistance(myMapMarkers) / 1000;
                 DecimalFormat df = new DecimalFormat("#.##");
                 addMessage(new FacesMessage(FacesMessage.SEVERITY_INFO, "Distance",
-                                "Your total distance is " + df.format(distance) + " km."));
+                                "Your total distance is " + df.format(distance) + " miles."));
         }
 
         public void addMessage(FacesMessage message) {

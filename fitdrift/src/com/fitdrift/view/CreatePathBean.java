@@ -121,7 +121,7 @@ public class CreatePathBean implements Serializable {
         GISCalculator calc = new GISCalculator();
         Double distance = calc.computeMarkerPathDistance(myMapMarkers)/1000;
         DecimalFormat df = new DecimalFormat("#.##");
-        addMessage(new FacesMessage(FacesMessage.SEVERITY_INFO, "Point Added", "Lat:" + df.format(lat) + ", Lng:" + df.format(lng) + ". Your total distance is " + df.format(distance) + " km."));  
+        addMessage(new FacesMessage(FacesMessage.SEVERITY_INFO, "Point Added", "Lat:" + df.format(lat) + ", Lng:" + df.format(lng) + ". Your total distance is " + df.format(distance) + " miles."));  
     }
     
     /**
