@@ -37,11 +37,11 @@
 
 					<p:panelGrid columns="2">
 						<p:panelGrid columns="1">
-							<p:selectOneMenu value="#{createActivityBean.activityTypeId}">
+							<p:selectOneMenu converter="com.fitdrift.view.ActivityTypeConverter" value="#{createActivityBean.selectedActivityType}">
 								<p:ajax update="aSType" />
 								<f:selectItem itemLabel="-Select Type-" itemValue="" />
-								<f:selectItems
-									value="#{createActivityBean.activityTypeSelectItems}" />
+								<f:selectItems var="actType" itemValue="#{actType}" itemLabel="#{actType.description}"
+									value="#{createActivityBean.activityTypes}" />
 								<!--  <f:selectItem itemLabel="Calisthenics" itemValue="1" />
 									<f:selectItem itemLabel="Cycling" itemValue="2" />
 									<f:selectItem itemLabel="Group Exercise" itemValue="3" />

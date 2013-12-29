@@ -27,9 +27,9 @@ public class ManageItemsBean {
 	//private Long activityTypeId;
 	private ActivityType selectedActivityType;
 	
-	public void onChangeValue(ValueChangeEvent e) {
-		System.out.println(e.getNewValue());
-	}
+//	public void onChangeValue(ValueChangeEvent e) {
+//		System.out.println(e.getNewValue());
+//	}
 	
 	public List<ActivityType> getActivityTypes() {
 		if(activityTypes == null) {

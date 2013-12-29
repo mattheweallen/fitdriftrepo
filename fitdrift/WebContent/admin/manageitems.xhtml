@@ -36,7 +36,7 @@
 						<h:outputText value="#{at.description}"></h:outputText>
 					</h:column>
 				</h:dataTable>
-				<p:selectOneMenu converter="com.fitdrift.view.ActivityTypeConverter"  value="#{manageItemsBean.selectedActivityType}"  id="selectActivityTypes" valueChangeListener="#{manageItemsBean.onChangeValue}">
+				<p:selectOneMenu converter="com.fitdrift.view.ActivityTypeConverter"  value="#{manageItemsBean.selectedActivityType}"  id="selectActivityTypes">
 					<p:ajax update="activitySubTypesTable" />
 					<f:selectItem itemLabel="-Select Activity Type-" itemValue="" />
 					<f:selectItems value="#{manageItemsBean.activityTypes}" var="actType" itemValue="#{actType}" itemLabel="#{actType.description}"/>
