@@ -61,11 +61,14 @@ public class CreateActivityBean implements Serializable {
 	private String activityName;
 	//private String defaultActivityName;
 	//private List<SelectItem> activityTypeSelectItems;
-	private List<SelectItem> activitySubTypeSelectItems;
+	//private List<SelectItem> activitySubTypeSelectItems;
 	//private Long activityTypeId;
 	private ActivityType selectedActivityType;
-	private Long activitySubTypeId;
+	//private Long activitySubTypeId;
 	private List<ActivityType> activityTypes;
+	
+	private ActivitySubType selectedActivitySubType;
+	private List<ActivitySubType> activitySubTypes;
 
 	/**
 	 * @return the activityDate
@@ -89,7 +92,7 @@ public class CreateActivityBean implements Serializable {
 		if("Measurement".equals(selectedActivityType.getDescription())) { //measurement
 			Measure m = new Measure();
 			m.setDate(new Timestamp(activityDate.getTime()));
-			m.setMeasuretype_id(activitySubTypeId);
+			m.setMeasuretype_id(selectedActivitySubType.getActivitysubtype_id());
 			m.setValue(distance);
 			AthleticgisFacade.persist(m);
 		} else {
@@ -113,8 +116,8 @@ public class CreateActivityBean implements Serializable {
 				a.setActivitytype_id(selectedActivityType.getActivitytype_id());
 			}
 			
-			if(activitySubTypeId != null) {
-				a.setActivitysubtype_id(activitySubTypeId);
+			if(selectedActivitySubType != null && selectedActivitySubType.getActivitysubtype_id() != null) {
+				a.setActivitysubtype_id(selectedActivitySubType.getActivitysubtype_id());
 			}
 			
 	//		if(weight != null) {
@@ -502,43 +505,21 @@ public class CreateActivityBean implements Serializable {
 //		this.activityTypeSelectItems = activityTypeSelectItems;
 //	}
 
-	/**
-	 * @return the activitySubTypeSelectItems
-	 */
-	public List<SelectItem> getActivitySubTypeSelectItems() {
-		if(selectedActivityType != null && selectedActivityType.getActivitytype_id() != null) {
-			List<ActivitySubType> activitySubTypes = AthleticgisFacade.findAllActivitySubTypeByActivitytype_id(selectedActivityType.getActivitytype_id());
-			activitySubTypeSelectItems = new ArrayList<SelectItem>();
-			for(ActivitySubType ast : activitySubTypes) {
-				activitySubTypeSelectItems.add(new SelectItem(ast.getActivitysubtype_id(), ast.getDescription()));
-			}
-		} else {
-			return null;
-		}
-		return activitySubTypeSelectItems;
-	}
-
-	/**
-	 * @param activitySubTypeSelectItems the activitySubTypeSelectItems to set
-	 */
-	public void setActivitySubTypeSelectItems(
-			List<SelectItem> activitySubTypeSelectItems) {
-		this.activitySubTypeSelectItems = activitySubTypeSelectItems;
-	}
-
-	/**
-	 * @return the activitySubTypeId
-	 */
-	public Long getActivitySubTypeId() {
-		return activitySubTypeId;
-	}
-
-	/**
-	 * @param activitySubTypeId the activitySubTypeId to set
-	 */
-	public void setActivitySubTypeId(Long activitySubTypeId) {
-		this.activitySubTypeId = activitySubTypeId;
-	}
+//	/**
+//	 * @return the activitySubTypeSelectItems
+//	 */
+//	public List<SelectItem> getActivitySubTypeSelectItems() {
+//		if(selectedActivityType != null && selectedActivityType.getActivitytype_id() != null) {
+//			List<ActivitySubType> activitySubTypes = AthleticgisFacade.findAllActivitySubTypeByActivitytype_id(selectedActivityType.getActivitytype_id());
+//			activitySubTypeSelectItems = new ArrayList<SelectItem>();
+//			for(ActivitySubType ast : activitySubTypes) {
+//				activitySubTypeSelectItems.add(new SelectItem(ast.getActivitysubtype_id(), ast.getDescription()));
+//			}
+//		} else {
+//			return null;
+//		}
+//		return activitySubTypeSelectItems;
+//	}
 
 	/**
 	 * @return the selectedActivityType
@@ -570,6 +551,39 @@ public class CreateActivityBean implements Serializable {
 	 */
 	public void setActivityTypes(List<ActivityType> activityTypes) {
 		this.activityTypes = activityTypes;
+	}
+
+	/**
+	 * @return the selectedActivitySubType
+	 */
+	public ActivitySubType getSelectedActivitySubType() {
+		return selectedActivitySubType;
+	}
+
+	/**
+	 * @param selectedActivitySubType the selectedActivitySubType to set
+	 */
+	public void setSelectedActivitySubType(ActivitySubType selectedActivitySubType) {
+		this.selectedActivitySubType = selectedActivitySubType;
+	}
+
+	/**
+	 * @return the activitySubTypes
+	 */
+	public List<ActivitySubType> getActivitySubTypes() {
+		if(selectedActivityType != null && selectedActivityType.getActivitytype_id() != null) {
+			activitySubTypes = AthleticgisFacade.findAllActivitySubTypeByActivitytype_id(selectedActivityType.getActivitytype_id());
+		} else {
+			return null;
+		}
+		return activitySubTypes;
+	}
+
+	/**
+	 * @param activitySubTypes the activitySubTypes to set
+	 */
+	public void setActivitySubTypes(List<ActivitySubType> activitySubTypes) {
+		this.activitySubTypes = activitySubTypes;
 	}
 	
 	

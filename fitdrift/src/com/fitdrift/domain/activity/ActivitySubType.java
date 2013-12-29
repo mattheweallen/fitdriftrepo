@@ -68,4 +68,22 @@ public class ActivitySubType implements Serializable {
 		this.description = description;
 	}
    
+	@Override
+	public boolean equals(Object obj) {
+		return (obj instanceof ActivitySubType) && (activitysubtype_id != null)
+	            ? activitysubtype_id.equals(((ActivitySubType) obj).getActivitysubtype_id())
+	            : (obj == this);
+	}
+	
+	@Override
+    public int hashCode() {
+        return (activitysubtype_id != null)
+            ? (this.getClass().hashCode() + activitysubtype_id.hashCode())
+            : super.hashCode();
+    }
+	
+	@Override
+	public String toString() {
+		return activitysubtype_id + ":" + activitytype_id + ":" + description;
+	}
 }
