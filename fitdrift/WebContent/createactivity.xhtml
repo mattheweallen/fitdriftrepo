@@ -212,7 +212,7 @@
 					
 					
 					<p:panelGrid columns="2"
-						rendered="#{createActivityBean.selectedActivitySubType ne null and createActivityBean.selectedActivitySubType.description eq 'Weight'}">
+						rendered="#{createActivityBean.selectedActivityType ne null and createActivityBean.selectedActivityType.description eq 'Measurement' and createActivityBean.selectedActivitySubType.description eq 'Weight'}">
 						<p:outputLabel for="weight" value="Weight"></p:outputLabel>
 						<p:inputText id="weight" value="#{createActivityBean.weight}"
 							required="true" requiredMessage="Weight is required."
