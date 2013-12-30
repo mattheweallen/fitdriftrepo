@@ -32,20 +32,21 @@
 
 					</f:facet>
 
-
-
-
-					<p:panelGrid columns="2">
-						<p:panelGrid columns="1">
-							<p:selectOneMenu
-								converter="com.fitdrift.view.ActivityTypeConverter"
-								value="#{createActivityBean.selectedActivityType}">
-								<p:ajax update="grid" />
-								<f:selectItem itemLabel="-Select Type-" itemValue="" />
-								<f:selectItems var="actType" itemValue="#{actType}"
-									itemLabel="#{actType.description}"
-									value="#{createActivityBean.activityTypes}" />
-								<!--  <f:selectItem itemLabel="Calisthenics" itemValue="1" />
+					<p:panelGrid columns="5">
+						<p:outputLabel for="popupCal" value="Date of Activity"></p:outputLabel>
+						<p:calendar size="6" styleClass="dateTimeField"
+							value="#{createActivityBean.activityDate}" id="popupCal"
+							required="true" requiredMessage="Date of Activity is required." />
+						<p:outputLabel for="actType" value="Activity"></p:outputLabel>
+						<p:selectOneMenu
+							converter="com.fitdrift.view.ActivityTypeConverter"
+							value="#{createActivityBean.selectedActivityType}" id="actType">
+							<p:ajax update="grid" />
+							<f:selectItem itemLabel="-Select Type-" itemValue="" />
+							<f:selectItems var="actType" itemValue="#{actType}"
+								itemLabel="#{actType.description}"
+								value="#{createActivityBean.activityTypes}" />
+							<!--  <f:selectItem itemLabel="Calisthenics" itemValue="1" />
 									<f:selectItem itemLabel="Cycling" itemValue="2" />
 									<f:selectItem itemLabel="Group Exercise" itemValue="3" />
 									<f:selectItem itemLabel="Medidation/Prayer" itemValue="4" />
@@ -54,19 +55,19 @@
 									<f:selectItem itemLabel="Sleep" itemValue="7" />
 									<f:selectItem itemLabel="Swimming" itemValue="8" />
 									<f:selectItem itemLabel="Weight Training" itemValue="9" />-->
-							</p:selectOneMenu>
-							<p:selectOneMenu required="#{createActivityBean.selectedActivityType ne null and createActivityBean.selectedActivityType.description eq 'Measurement'}"
-								requiredMessage="Subtype is required."
-								
-								converter="com.fitdrift.view.ActivitySubTypeConverter"
-								value="#{createActivityBean.selectedActivitySubType}"
-								id="aSType">
-								<p:ajax update="grid" />
-								<f:selectItem itemLabel="-Select Sub Type-" itemValue="" />
-								<f:selectItems value="#{createActivityBean.activitySubTypes}"
-									var="aSubType" itemLabel="#{aSubType.description}"
-									itemValue="#{aSubType}" />
-								<!--  <f:selectItem itemLabel="Cycling Cyclocross" itemValue="1" />
+						</p:selectOneMenu>
+
+						<p:selectOneMenu
+							required="#{createActivityBean.selectedActivityType ne null and createActivityBean.selectedActivityType.description eq 'Measurement'}"
+							requiredMessage="Subtype is required."
+							converter="com.fitdrift.view.ActivitySubTypeConverter"
+							value="#{createActivityBean.selectedActivitySubType}" id="aSType">
+							<p:ajax update="grid" />
+							<f:selectItem itemLabel="-Select Sub Type-" itemValue="" />
+							<f:selectItems value="#{createActivityBean.activitySubTypes}"
+								var="aSubType" itemLabel="#{aSubType.description}"
+								itemValue="#{aSubType}" />
+							<!--  <f:selectItem itemLabel="Cycling Cyclocross" itemValue="1" />
 									<f:selectItem itemLabel="Cycling Indoors" itemValue="2" />
 									<f:selectItem itemLabel="Cycling Mountain" itemValue="3" />
 									<f:selectItem itemLabel="Cycling Road" itemValue="4" />
@@ -81,7 +82,83 @@
 									<f:selectItem itemLabel="Ski Telemark" itemValue="6" />
 									<f:selectItem itemLabel="Medidation/Prayer" itemValue="7" />
 									<f:selectItem itemLabel="Sleep" itemValue="8" />-->
-							</p:selectOneMenu>
+						</p:selectOneMenu>
+
+					</p:panelGrid>
+					<p:panelGrid columns="3"
+						rendered="#{createActivityBean.selectedActivityType ne null and createActivityBean.selectedActivityType.description ne 'Measurement'}">
+
+						<p:outputLabel for="inputActivityName" value="Activity Name"></p:outputLabel>
+						<p:inputText id="inputActivityName"
+							value="#{createActivityBean.activityName}" style="width : 400px"
+							size="40" placeholder="#{createActivityBean.defaultActivityName}"></p:inputText>
+
+						<h:panelGrid columns="2" style="margin-bottom:10px;"
+							cellpadding="5">
+							<p:selectBooleanCheckbox id="indoors"
+								value="#{createActivityBean.indoors}" />
+							<h:outputText value="Indoors " />
+
+						</h:panelGrid>
+
+					</p:panelGrid>
+
+
+					<p:panelGrid columns="4"
+						rendered="#{createActivityBean.selectedActivityType ne null and createActivityBean.selectedActivityType.description ne 'Measurement'}">
+						<p:outputLabel for="startTime" value="Start Time (HH:MM:SS)"></p:outputLabel>
+						<p:inputMask style="width : 80px" id="startTime" mask="99:99:99"
+							required="true" value="#{createActivityBean.startTime}"
+							requiredMessage="Start Time is required."
+							validatorMessage="Start Time must be time in 24 hour clock HH:MM:SS, 23:45:56 for example.">
+							<f:validator validatorId="militaryTimeValidator" />
+						</p:inputMask>
+
+
+
+						<p:outputLabel for="endTime" value="End Time (HH:MM:SS)"></p:outputLabel>
+						<p:inputMask style="width : 80px" id="endTime" mask="99:99:99"
+							required="true" value="#{createActivityBean.endTime}"
+							requiredMessage="End Time is required."
+							validatorMessage="End Time must be time in 24 hour clock HH:MM:SS, 23:45:56 for example.">
+							<f:validator validatorId="militaryTimeValidator" />
+						</p:inputMask>
+					</p:panelGrid>
+
+
+
+					<p:panelGrid columns="2"
+						rendered="#{createActivityBean.selectedActivityType ne null and createActivityBean.selectedActivityType.description ne 'Measurement'}">
+
+
+						<h:panelGrid columns="2" style="margin-bottom:10px;"
+							cellpadding="5">
+							<p:selectBooleanCheckbox id="useMyMap"
+								value="#{createActivityBean.useMyMap}">
+								<p:ajax update="myMapInput distancePanelGrid"
+									listener="#{createActivityBean.useMyMapChecked}" />
+							</p:selectBooleanCheckbox>
+							<h:outputText value="Use My Map " />
+
+						</h:panelGrid>
+
+						<p:inputText id="myMapInput" style="width : 400px" size="40"
+							value="#{createActivityBean.mapMapName}"
+							onfocus="PF('dlg').show();"
+							disabled="#{!createActivityBean.useMyMap}">
+
+						</p:inputText>
+					</p:panelGrid>
+
+
+
+					<p:panelGrid columns="2">
+
+
+
+						<p:panelGrid columns="2">
+
+
 							<p:selectOneMenu value="#{createActivityBean.activityGear}"
 								rendered="#{createActivityBean.selectedActivityType eq null or createActivityBean.selectedActivityType.description ne 'Measurement'}">
 								<f:selectItem itemLabel="-Select Gear-" itemValue="" />
@@ -93,35 +170,16 @@
 								rendered="#{createActivityBean.selectedActivityType eq null or createActivityBean.selectedActivityType.description ne 'Measurement'}"></p:commandButton>
 
 						</p:panelGrid>
+
+
+
+
 						<p:panelGrid columns="1">
-							<p:panelGrid columns="2">
-								<p:outputLabel for="popupCal" value="Date of Activity"></p:outputLabel>
-								<p:calendar size="6" styleClass="dateTimeField"
-									value="#{createActivityBean.activityDate}" id="popupCal"
-									required="true" requiredMessage="Date of Activity is required." />
-
-							</p:panelGrid>
-
-							<p:panelGrid columns="2"
-								rendered="#{createActivityBean.selectedActivityType eq null or createActivityBean.selectedActivityType.description ne 'Measurement'}">
-								<p:outputLabel for="startTime" value="Start Time (HH:MM:SS)"></p:outputLabel>
-								<p:inputMask style="width : 80px" id="startTime" mask="99:99:99"
-									required="true" value="#{createActivityBean.startTime}"
-									requiredMessage="Start Time is required."
-									validatorMessage="Start Time must be time in 24 hour clock HH:MM:SS, 23:45:56 for example.">
-									<f:validator validatorId="militaryTimeValidator" />
-								</p:inputMask>
 
 
 
-								<p:outputLabel for="endTime" value="End Time (HH:MM:SS)"></p:outputLabel>
-								<p:inputMask style="width : 80px" id="endTime" mask="99:99:99"
-									required="true" value="#{createActivityBean.endTime}"
-									requiredMessage="End Time is required."
-									validatorMessage="End Time must be time in 24 hour clock HH:MM:SS, 23:45:56 for example.">
-									<f:validator validatorId="militaryTimeValidator" />
-								</p:inputMask>
-							</p:panelGrid>
+
+
 
 							<p:panelGrid columns="2"
 								rendered="#{createActivityBean.selectedActivitySubType.description eq 'Average Heart Rate'}">
@@ -149,7 +207,7 @@
 									<f:validateDoubleRange minimum="0" maximum="1000" />
 								</p:inputText>
 							</p:panelGrid>
-							
+
 							<!-- Rethink Not Being Used now. Currently Done individual sys, dia, pulse -->
 							<!--  <p:panelGrid columns="2"
 								rendered="#{createActivityBean.selectedActivitySubType.description eq 'Blood Pressure'}">
@@ -180,35 +238,37 @@
 								</p:panelGrid>
 							</p:panelGrid> -->
 							<!-- End Rethink Not Being Used now. Currently Done individual sys, dia, pulse -->
-							
-							
-							<p:panelGrid columns="2" rendered="#{createActivityBean.selectedActivitySubType.description eq 'Systolic'}">
+
+
+							<p:panelGrid columns="2"
+								rendered="#{createActivityBean.selectedActivitySubType.description eq 'Systolic'}">
 
 
 
-									<p:outputLabel for="systolic" value="SYS mmHg"></p:outputLabel>
-									<p:inputText id="systolic" required="true"
-										requiredMessage="Systolic is required."
-										value="#{createActivityBean.systolic}"
-										validatorMessage="Systolic must be number between 0 and 1000.">
-										<f:validateDoubleRange minimum="0" maximum="1000" />
-									</p:inputText>
+								<p:outputLabel for="systolic" value="SYS mmHg"></p:outputLabel>
+								<p:inputText id="systolic" required="true"
+									requiredMessage="Systolic is required."
+									value="#{createActivityBean.systolic}"
+									validatorMessage="Systolic must be number between 0 and 1000.">
+									<f:validateDoubleRange minimum="0" maximum="1000" />
+								</p:inputText>
 							</p:panelGrid>
-							
-							<p:panelGrid columns="2" rendered="#{createActivityBean.selectedActivitySubType.description eq 'Diastolic'}">
+
+							<p:panelGrid columns="2"
+								rendered="#{createActivityBean.selectedActivitySubType.description eq 'Diastolic'}">
 
 
 
-									<p:outputLabel for="diastolic" value="DIA mmHg"></p:outputLabel>
-									<p:inputText id="diastolic" required="true"
-										requiredMessage="Diastolic is required."
-										value="#{createActivityBean.diastolic}"
-										validatorMessage="Diastolic must be number between 0 and 1000.">
-										<f:validateDoubleRange minimum="0" maximum="1000" />
-									</p:inputText>
+								<p:outputLabel for="diastolic" value="DIA mmHg"></p:outputLabel>
+								<p:inputText id="diastolic" required="true"
+									requiredMessage="Diastolic is required."
+									value="#{createActivityBean.diastolic}"
+									validatorMessage="Diastolic must be number between 0 and 1000.">
+									<f:validateDoubleRange minimum="0" maximum="1000" />
+								</p:inputText>
 							</p:panelGrid>
-							
-							
+
+
 							<p:panelGrid columns="2"
 								rendered="#{createActivityBean.selectedActivitySubType.description eq 'Height'}">
 								<p:outputLabel for="height" value="Height"></p:outputLabel>
@@ -262,44 +322,9 @@
 					</p:panelGrid>
 
 
-					<p:panelGrid columns="2"
-						rendered="#{createActivityBean.selectedActivityType eq null or createActivityBean.selectedActivityType.description ne 'Measurement'}">
-
-						<p:outputLabel for="inputActivityName" value="Activity Name"></p:outputLabel>
-						<p:inputText id="inputActivityName"
-							value="#{createActivityBean.activityName}" style="width : 400px"
-							size="40" placeholder="#{createActivityBean.defaultActivityName}"></p:inputText>
-					</p:panelGrid>
-					<h:panelGrid columns="2" style="margin-bottom:10px;"
-						cellpadding="5"
-						rendered="#{createActivityBean.selectedActivityType eq null or createActivityBean.selectedActivityType.description ne 'Measurement'}">
-						<p:selectBooleanCheckbox id="indoors"
-							value="#{createActivityBean.indoors}" />
-						<h:outputText value="Indoors " />
-
-					</h:panelGrid>
-					<p:panelGrid columns="2"
-						rendered="#{createActivityBean.selectedActivityType eq null or createActivityBean.selectedActivityType.description ne 'Measurement'}">
 
 
-						<h:panelGrid columns="2" style="margin-bottom:10px;"
-							cellpadding="5">
-							<p:selectBooleanCheckbox id="useMyMap"
-								value="#{createActivityBean.useMyMap}">
-								<p:ajax update="myMapInput distancePanelGrid"
-									listener="#{createActivityBean.useMyMapChecked}" />
-							</p:selectBooleanCheckbox>
-							<h:outputText value="Use My Map " />
 
-						</h:panelGrid>
-
-						<p:inputText id="myMapInput" style="width : 400px" size="40"
-							value="#{createActivityBean.mapMapName}"
-							onfocus="PF('dlg').show();"
-							disabled="#{!createActivityBean.useMyMap}">
-
-						</p:inputText>
-					</p:panelGrid>
 					<p:panelGrid columns="2" id="distancePanelGrid"
 						rendered="#{createActivityBean.selectedActivityType eq null or createActivityBean.selectedActivityType.description ne 'Measurement'}">
 						<p:outputLabel for="distance" value="Distance"></p:outputLabel>
