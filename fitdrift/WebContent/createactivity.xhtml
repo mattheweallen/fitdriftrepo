@@ -104,7 +104,7 @@
 					</p:panelGrid>
 
 
-					<p:panelGrid columns="5"
+					<p:panelGrid columns="4"
 						rendered="#{createActivityBean.selectedActivityType ne null and createActivityBean.selectedActivityType.description ne 'Measurement'}">
 						<p:outputLabel for="startTime" value="Start Time (HH:MM:SS)"></p:outputLabel>
 						<p:inputMask style="width : 80px" id="startTime" mask="99:99:99"
@@ -123,14 +123,9 @@
 							validatorMessage="End Time must be time in 24 hour clock HH:MM:SS, 23:45:56 for example.">
 							<f:validator validatorId="militaryTimeValidator" />
 						</p:inputMask>
+
 						
-						<p:selectOneMenu value="#{createActivityBean.activityGear}">
-							<f:selectItem itemLabel="-Select Gear-" itemValue="" />
-							<f:selectItem itemLabel="Cycling" itemValue="1" />
-							<f:selectItem itemLabel="Running" itemValue="2" />
-							<f:selectItem itemLabel="Swimming" itemValue="3" />
-						</p:selectOneMenu>
-						
+
 					</p:panelGrid>
 
 
@@ -160,7 +155,7 @@
 						<p:panelGrid columns="2" id="distancePanelGrid">
 							<p:outputLabel for="distance" value="Distance"></p:outputLabel>
 							<p:inputText id="distance" value="#{createActivityBean.distance}"
-								style="width : 100px" disabled="#{createActivityBean.useMyMap}"
+								style="width : 70px" disabled="#{createActivityBean.useMyMap}"
 								validatorMessage="Distance must be number between 0 and 1000.">
 								<f:validateDoubleRange minimum="0" maximum="1000" />
 								<f:convertNumber maxFractionDigits="2"></f:convertNumber>
@@ -178,54 +173,56 @@
 
 
 					</p:panelGrid>
+					
+					
+					<p:panelGrid columns="6"
+						rendered="#{createActivityBean.selectedActivityType ne null and createActivityBean.selectedActivityType.description ne 'Measurement'}">
+						
+						<p:outputLabel for="calories" value="Calories"></p:outputLabel>
+						<p:inputText id="calories" value="#{createActivityBean.calories}" style="width : 70px"
+							validatorMessage="Calories must be number between 0 and 20000.">
+							<f:validateDoubleRange minimum="0" maximum="20000" />
+						</p:inputText>
+						
+						
+						
+						<p:outputLabel for="aveHeartRate" value="Average Heart Rate"></p:outputLabel>
+						<p:inputText id="aveHeartRate" style="width : 70px"
+							value="#{createActivityBean.aveHeartRate}"
+							validatorMessage="Weight must be number between 0 and 300.">
+							<f:validateDoubleRange minimum="0" maximum="300" />
+						</p:inputText>
+						
+						<p:outputLabel for="selectGear" value="Gear"></p:outputLabel>
+						
+						<p:selectOneMenu value="#{createActivityBean.activityGear}" id="selectGear">
+							<f:selectItem itemLabel="-Select Gear-" itemValue="" />
+							<f:selectItem itemLabel="Cycling" itemValue="1" />
+							<f:selectItem itemLabel="Running" itemValue="2" />
+							<f:selectItem itemLabel="Swimming" itemValue="3" />
+						</p:selectOneMenu>
+						
 
+					</p:panelGrid>
+					
 
+					
 
-					<p:panelGrid columns="2">
+					
+					
+					
+					<p:panelGrid columns="2"
+						rendered="#{createActivityBean.selectedActivitySubType ne null and createActivityBean.selectedActivitySubType.description eq 'Weight'}">
+						<p:outputLabel for="weight" value="Weight"></p:outputLabel>
+						<p:inputText id="weight" value="#{createActivityBean.weight}"
+							required="true" requiredMessage="Weight is required."
+							validatorMessage="Weight must be number between 0 and 1000.">
+							<f:validateDoubleRange minimum="0" maximum="1000" />
+						</p:inputText>
+					</p:panelGrid>
 
-
-
-
-
-
-
-
-						<p:panelGrid columns="1">
-
-
-
-
-
-
-							<p:panelGrid columns="2"
-								rendered="#{createActivityBean.selectedActivitySubType.description eq 'Average Heart Rate'}">
-
-								<p:outputLabel for="aveHeartRate" value="Average Heart Rate"></p:outputLabel>
-								<p:inputText id="aveHeartRate"
-									value="#{createActivityBean.aveHeartRate}"
-									validatorMessage="Weight must be number between 0 and 300.">
-									<f:validateDoubleRange minimum="0" maximum="300" />
-								</p:inputText>
-								<p:outputLabel for="calories" value="Calories"></p:outputLabel>
-								<p:inputText id="calories"
-									value="#{createActivityBean.calories}"
-									validatorMessage="Calories must be number between 0 and 20000.">
-									<f:validateDoubleRange minimum="0" maximum="20000" />
-								</p:inputText>
-
-							</p:panelGrid>
-							<p:panelGrid columns="2"
-								rendered="#{createActivityBean.selectedActivitySubType.description eq 'Weight'}">
-								<p:outputLabel for="weight" value="Weight"></p:outputLabel>
-								<p:inputText id="weight" value="#{createActivityBean.weight}"
-									required="true" requiredMessage="Weight is required."
-									validatorMessage="Weight must be number between 0 and 1000.">
-									<f:validateDoubleRange minimum="0" maximum="1000" />
-								</p:inputText>
-							</p:panelGrid>
-
-							<!-- Rethink Not Being Used now. Currently Done individual sys, dia, pulse -->
-							<!--  <p:panelGrid columns="2"
+					<!-- Rethink Not Being Used now. Currently Done individual sys, dia, pulse -->
+					<!--  <p:panelGrid columns="2"
 								rendered="#{createActivityBean.selectedActivitySubType.description eq 'Blood Pressure'}">
 								<h:outputText value="Blood Pressure"></h:outputText>
 								<p:panelGrid columns="2">
@@ -253,104 +250,84 @@
 									</p:inputText>
 								</p:panelGrid>
 							</p:panelGrid> -->
-							<!-- End Rethink Not Being Used now. Currently Done individual sys, dia, pulse -->
+					<!-- End Rethink Not Being Used now. Currently Done individual sys, dia, pulse -->
 
 
-							<p:panelGrid columns="2"
-								rendered="#{createActivityBean.selectedActivitySubType.description eq 'Systolic'}">
-
-
-
-								<p:outputLabel for="systolic" value="SYS mmHg"></p:outputLabel>
-								<p:inputText id="systolic" required="true"
-									requiredMessage="Systolic is required."
-									value="#{createActivityBean.systolic}"
-									validatorMessage="Systolic must be number between 0 and 1000.">
-									<f:validateDoubleRange minimum="0" maximum="1000" />
-								</p:inputText>
-							</p:panelGrid>
-
-							<p:panelGrid columns="2"
-								rendered="#{createActivityBean.selectedActivitySubType.description eq 'Diastolic'}">
+					<p:panelGrid columns="2"
+						rendered="#{createActivityBean.selectedActivitySubType.description eq 'Systolic'}">
 
 
 
-								<p:outputLabel for="diastolic" value="DIA mmHg"></p:outputLabel>
-								<p:inputText id="diastolic" required="true"
-									requiredMessage="Diastolic is required."
-									value="#{createActivityBean.diastolic}"
-									validatorMessage="Diastolic must be number between 0 and 1000.">
-									<f:validateDoubleRange minimum="0" maximum="1000" />
-								</p:inputText>
-							</p:panelGrid>
+						<p:outputLabel for="systolic" value="SYS mmHg"></p:outputLabel>
+						<p:inputText id="systolic" required="true"
+							requiredMessage="Systolic is required."
+							value="#{createActivityBean.systolic}"
+							validatorMessage="Systolic must be number between 0 and 1000.">
+							<f:validateDoubleRange minimum="0" maximum="1000" />
+						</p:inputText>
+					</p:panelGrid>
+
+					<p:panelGrid columns="2"
+						rendered="#{createActivityBean.selectedActivitySubType.description eq 'Diastolic'}">
 
 
-							<p:panelGrid columns="2"
-								rendered="#{createActivityBean.selectedActivitySubType.description eq 'Height'}">
-								<p:outputLabel for="height" value="Height"></p:outputLabel>
-								<p:inputText id="height" value="#{createActivityBean.height}"
-									required="true" requiredMessage="Height is required."
-									validatorMessage="Height must be number between 0 and 1000.">
-									<f:validateDoubleRange minimum="0" maximum="1000" />
-								</p:inputText>
-							</p:panelGrid>
-							<p:panelGrid columns="2"
-								rendered="#{createActivityBean.selectedActivitySubType.description eq 'Pulse'}">
-								<p:outputLabel for="pulse" value="Pulse/min"></p:outputLabel>
-								<p:inputText id="pulse" value="#{createActivityBean.pulse}"
-									required="true" requiredMessage="Pulse is required."
-									validatorMessage="Pulse must be number between 0 and 1000.">
-									<f:validateDoubleRange minimum="0" maximum="1000" />
-								</p:inputText>
-							</p:panelGrid>
 
-							<p:panelGrid columns="2"
-								rendered="#{createActivityBean.selectedActivitySubType.description eq 'Waist'}">
-								<p:outputLabel for="waist" value="Waist"></p:outputLabel>
-								<p:inputText id="waist" value="#{createActivityBean.waist}"
-									required="true" requiredMessage="Waist is required."
-									validatorMessage="Waist must be number between 0 and 1000.">
-									<f:validateDoubleRange minimum="0" maximum="1000" />
-								</p:inputText>
-							</p:panelGrid>
-							<p:panelGrid columns="2"
-								rendered="#{createActivityBean.selectedActivitySubType.description eq 'Hip'}">
-								<p:outputLabel for="hip" value="Hip"></p:outputLabel>
-								<p:inputText id="hip" value="#{createActivityBean.hip}"
-									required="true" requiredMessage="Hip is required."
-									validatorMessage="Hip must be number between 0 and 1000.">
-									<f:validateDoubleRange minimum="0" maximum="1000" />
-								</p:inputText>
-							</p:panelGrid>
-							<p:panelGrid columns="2"
-								rendered="#{createActivityBean.selectedActivitySubType.description eq 'Thigh'}">
-								<p:outputLabel for="thigh" value="Thigh"></p:outputLabel>
-								<p:inputText id="thigh" value="#{createActivityBean.thigh}"
-									required="true" requiredMessage="Hip is required."
-									validatorMessage="Thigh must be number between 0 and 1000.">
-									<f:validateDoubleRange minimum="0" maximum="1000" />
-								</p:inputText>
-							</p:panelGrid>
-
-
-						</p:panelGrid>
-
+						<p:outputLabel for="diastolic" value="DIA mmHg"></p:outputLabel>
+						<p:inputText id="diastolic" required="true"
+							requiredMessage="Diastolic is required."
+							value="#{createActivityBean.diastolic}"
+							validatorMessage="Diastolic must be number between 0 and 1000.">
+							<f:validateDoubleRange minimum="0" maximum="1000" />
+						</p:inputText>
 					</p:panelGrid>
 
 
+					<p:panelGrid columns="2"
+						rendered="#{createActivityBean.selectedActivitySubType.description eq 'Height'}">
+						<p:outputLabel for="height" value="Height"></p:outputLabel>
+						<p:inputText id="height" value="#{createActivityBean.height}"
+							required="true" requiredMessage="Height is required."
+							validatorMessage="Height must be number between 0 and 1000.">
+							<f:validateDoubleRange minimum="0" maximum="1000" />
+						</p:inputText>
+					</p:panelGrid>
+					<p:panelGrid columns="2"
+						rendered="#{createActivityBean.selectedActivitySubType.description eq 'Pulse'}">
+						<p:outputLabel for="pulse" value="Pulse/min"></p:outputLabel>
+						<p:inputText id="pulse" value="#{createActivityBean.pulse}"
+							required="true" requiredMessage="Pulse is required."
+							validatorMessage="Pulse must be number between 0 and 1000.">
+							<f:validateDoubleRange minimum="0" maximum="1000" />
+						</p:inputText>
+					</p:panelGrid>
 
-
-
-
-
-
-
-
-
-
-
-
-
+					<p:panelGrid columns="2"
+						rendered="#{createActivityBean.selectedActivitySubType.description eq 'Waist'}">
+						<p:outputLabel for="waist" value="Waist"></p:outputLabel>
+						<p:inputText id="waist" value="#{createActivityBean.waist}"
+							required="true" requiredMessage="Waist is required."
+							validatorMessage="Waist must be number between 0 and 1000.">
+							<f:validateDoubleRange minimum="0" maximum="1000" />
+						</p:inputText>
+					</p:panelGrid>
+					<p:panelGrid columns="2"
+						rendered="#{createActivityBean.selectedActivitySubType.description eq 'Hip'}">
+						<p:outputLabel for="hip" value="Hip"></p:outputLabel>
+						<p:inputText id="hip" value="#{createActivityBean.hip}"
+							required="true" requiredMessage="Hip is required."
+							validatorMessage="Hip must be number between 0 and 1000.">
+							<f:validateDoubleRange minimum="0" maximum="1000" />
+						</p:inputText>
+					</p:panelGrid>
+					<p:panelGrid columns="2"
+						rendered="#{createActivityBean.selectedActivitySubType.description eq 'Thigh'}">
+						<p:outputLabel for="thigh" value="Thigh"></p:outputLabel>
+						<p:inputText id="thigh" value="#{createActivityBean.thigh}"
+							required="true" requiredMessage="Hip is required."
+							validatorMessage="Thigh must be number between 0 and 1000.">
+							<f:validateDoubleRange minimum="0" maximum="1000" />
+						</p:inputText>
+					</p:panelGrid>
 				</p:panelGrid>
 
 
