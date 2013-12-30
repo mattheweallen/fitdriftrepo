@@ -536,7 +536,13 @@ public class CreateActivityBean implements Serializable {
 	 * @return the defaultActivityName
 	 */
 	public String getDefaultActivityName() {
-		return "My Activity on " + new Date();
+		String actStr = "Activity";
+		
+		if(selectedActivityType != null) {
+			actStr = selectedActivityType.getDescription();
+		}
+		
+		return "My " + actStr +  " on " + new Date();
 	}
 
 //	/**
