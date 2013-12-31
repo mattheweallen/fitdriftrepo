@@ -146,11 +146,15 @@ public class CreatePathBean implements Serializable {
 	    	if(myMapName != null && myMapName.length() > 0) {
 	    		myMap.setName(myMapName);
 	    	} else {
-	    		myMap.setName("My Map Created " +(new Date()).toString());
+	    		myMap.setName(getMyMapDefaultName());
 	    	}
 	    	AthleticgisFacade.persistMapAndMyMapMarkers(myMap, myMapMarkers);
     	}
     	return "mymaps?faces-redirect=true";
+    }
+    
+    public String getMyMapDefaultName() {
+    	return "My Map Created " +(new Date()).toString();
     }
     
     /**
