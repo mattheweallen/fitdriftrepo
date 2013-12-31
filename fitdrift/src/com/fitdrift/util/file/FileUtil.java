@@ -82,6 +82,9 @@ public class FileUtil {
 		
 		a.setDistance(gisc.computePathDistance(activityPoints) * 0.000621371); //0.000621371 convert meters to miles
 
+		//user defined MyMap not used
+		a.setUseMyMap(false);
+		
 		//distance
 		
 		AthleticgisFacade.persistActivityAndActivityPoints(a, activityPoints);
@@ -108,7 +111,9 @@ public class FileUtil {
 		GISCalculator gisc = new GISCalculator();
 		
 		a.setDistance(gisc.computePathDistance(activityPoints) * 0.000621371); //0.000621371 convert meters to miles
-
+		
+		//user defined MyMap not used
+		a.setUseMyMap(false);
 		//distance
 		
 		AthleticgisFacade.persistActivityAndActivityPoints(a, activityPoints);

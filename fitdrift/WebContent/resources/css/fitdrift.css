@@ -1,3 +1,12 @@
+/*.ui-panelgrid td, .ui-panelgrid tr
+{
+    border-style: none !important
+}
+
+.ui-layout-pane {
+    border: 0;
+}*/
+
 .dateTimeField input {
    width : 80px;
 }

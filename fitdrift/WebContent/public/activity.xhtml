@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:body>
+
+	<ui:composition template="/template/layout.xhtml">
+		<ui:define name="scripts">
+			<title>Fitdrift Activity</title>
+			<script type="text/javascript"
+				src="https://maps.googleapis.com/maps/api/js?key=AIzaSyApDXRNzq6eGqWKUbufj3MzhJ4P0RF0Ghw&amp;sensor=false">
+				
+			</script>
+		</ui:define>
+		<ui:define name="header">
+			<h:panelGrid columns="2" width="100%"
+				columnClasses="headerCol1,headerCol2" styleClass="header">
+				<h:graphicImage library="images" name="fitdrift20131208_chrome.png"
+					style="padding:0 0 0 10px" />
+				<!--  <h:outputLabel value="Athletic GIS" styleClass="logoFont"></h:outputLabel>-->
+
+			</h:panelGrid>
+		</ui:define>
+		<ui:define name="content">
+			
+
+			<p:gmap id="map_canvas" fitBounds="true" type="HYBRID"
+				style="width:100%;height:600px"
+				model="#{activityBean.polylineModel}">
+
+			</p:gmap>
+			
+			<p:growl id="messages" showDetail="true" sticky="true"
+				autoUpdate="true" />
+			
+
+		</ui:define>
+	</ui:composition>
+
+</h:body>
+</html>

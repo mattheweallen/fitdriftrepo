@@ -18,7 +18,8 @@
 
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
-			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/fitdrift" />
+			  <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/fitdrift" /> 
+			<!--<property name="javax.persistence.jdbc.url" value="jdbc:mysql://athena.fitdrift.com:3306/fitdrift" />-->
 			<property name="javax.persistence.jdbc.user" value="fitdrift" />
 			<property name="javax.persistence.jdbc.password" value="ripple93" />
 

@@ -10,6 +10,7 @@
 	<http pattern="/resources/css/**" security="none"/>
 	<http pattern="/resources/js/**" security="none"/>
 	<http pattern="/resources/img/**" security="none"/>
+	<http pattern="/resources/images/**" security="none"/>
 	
 	<global-method-security secured-annotations="enabled">
 	</global-method-security>
@@ -19,8 +20,12 @@
 	</beans:bean>
 
 	<http auto-config="true">
-
+		<intercept-url pattern="/public/activity*" access="ROLE_ANONYMOUS,ROLE_USER,ROLE_ADMIN" />
+		<intercept-url pattern="/faces/public/activity*" access="ROLE_ANONYMOUS,ROLE_USER,ROLE_ADMIN" />
+		
+		
 		<intercept-url pattern="/login*" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+		
 		<intercept-url pattern="/favicon.ico" access="ROLE_ANONYMOUS" />
 		<intercept-url pattern="/rfres/**" access="ROLE_ANONYMOUS" /> <!-- Rich Faces -->
 		<intercept-url pattern="/javax.faces.resource/**" access="ROLE_ANONYMOUS" /> <!-- JSF -->
