@@ -14,16 +14,24 @@
 			<title>Manage Items</title>
 
 		</ui:define>
-		<ui:define name="content">
+		
+		<ui:define name="menu">
 			<h:form>
 				<p:tabMenu activeIndex="5">
 					<p:menuitem value="Dashboard" url="/faces/dashboard.xhtml" />
 					<p:menuitem value="Upload Activity" url="/faces/upload.xhtml" />
-					<p:menuitem value="Manual Activity" url="/faces/createactivity.xhtml" />
+					<p:menuitem value="Manual Activity"
+						url="/faces/createactivity.xhtml" />
 					<p:menuitem value="My Maps" url="/faces/mymaps.xhtml" />
 					<p:menuitem value="Preferences" url="/faces/preferences.xhtml" />
 					<p:menuitem value="Manage Items" url="/faces/admin/manageitems.xhtml" rendered="#{request.isUserInRole('ROLE_ADMIN')}" />
 				</p:tabMenu>
+			</h:form>
+		</ui:define>
+		
+		<ui:define name="content">
+			<h:form>
+				
 
 				<h:outputLabel for="activityType" value="Activity Type"></h:outputLabel>
 				<p:inputText id="activityType" value="#{manageItemsBean.activityTypeDescription}"></p:inputText>

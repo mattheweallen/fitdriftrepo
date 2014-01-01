@@ -14,8 +14,9 @@
 			<title>Fitdrift Upload</title>
 
 		</ui:define>
-		<ui:define name="content">
-			<h:form enctype="multipart/form-data">
+		
+		<ui:define name="menu">
+			<h:form>
 				<p:tabMenu activeIndex="1">
 					<p:menuitem value="Dashboard" url="/faces/dashboard.xhtml" />
 					<p:menuitem value="Upload Activity" url="/faces/upload.xhtml" />
@@ -23,7 +24,14 @@
 						url="/faces/createactivity.xhtml" />
 					<p:menuitem value="My Maps" url="/faces/mymaps.xhtml" />
 					<p:menuitem value="Preferences" url="/faces/preferences.xhtml" />
+					<p:menuitem value="Manage Items" url="/faces/admin/manageitems.xhtml" rendered="#{request.isUserInRole('ROLE_ADMIN')}" />
 				</p:tabMenu>
+			</h:form>
+		</ui:define>
+		
+		<ui:define name="content">
+			<h:form enctype="multipart/form-data">
+				
 
 				<h:outputLabel
 					value="Select up to 25 valid .FIT and/or .GPX files To Upload: "></h:outputLabel>

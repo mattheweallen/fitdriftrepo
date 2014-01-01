@@ -13,15 +13,24 @@
 			<title>Fitdrift Preferences</title>
 			
 		</ui:define>
-		<ui:define name="content">
+		
+		<ui:define name="menu">
 			<h:form>
 				<p:tabMenu activeIndex="4">
 					<p:menuitem value="Dashboard" url="/faces/dashboard.xhtml" />
 					<p:menuitem value="Upload Activity" url="/faces/upload.xhtml" />
-					<p:menuitem value="Manual Activity" url="/faces/createactivity.xhtml" />
+					<p:menuitem value="Manual Activity"
+						url="/faces/createactivity.xhtml" />
 					<p:menuitem value="My Maps" url="/faces/mymaps.xhtml" />
 					<p:menuitem value="Preferences" url="/faces/preferences.xhtml" />
+					<p:menuitem value="Manage Items" url="/faces/admin/manageitems.xhtml" rendered="#{request.isUserInRole('ROLE_ADMIN')}" />
 				</p:tabMenu>
+			</h:form>
+		</ui:define>
+		
+		<ui:define name="content">
+			<h:form>
+				
 				<h:panelGrid columns="2" cellpadding="10">
 					<h:outputText value="Theme:" />
 					<p:themeSwitcher value="#{themeSwitcherBean.theme}"

@@ -13,7 +13,7 @@
 		<ui:define name="scripts">
 			<title>Fitdrift Dashboard</title>
 		</ui:define>
-		<ui:define name="content">
+		<ui:define name="menu">
 			<h:form>
 				<p:tabMenu activeIndex="0">
 					<p:menuitem value="Dashboard" url="/faces/dashboard.xhtml" />
@@ -24,6 +24,11 @@
 					<p:menuitem value="Preferences" url="/faces/preferences.xhtml" />
 					<p:menuitem value="Manage Items" url="/faces/admin/manageitems.xhtml" rendered="#{request.isUserInRole('ROLE_ADMIN')}" />
 				</p:tabMenu>
+			</h:form>
+		</ui:define>
+		<ui:define name="content">
+			<h:form>
+				
 				<p:dashboard id="board" model="#{dashboardBean.model}">
 					<p:panel id="weather" header="Weather">
 						<p:feedReader
