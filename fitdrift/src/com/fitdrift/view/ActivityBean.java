@@ -44,7 +44,7 @@ public class ActivityBean implements Serializable {
     public void initialize() {
 		Polyline polyline = new Polyline();
 		polyline.setStrokeWeight(2);
-		polyline.setStrokeColor("#FF0000");
+		polyline.setStrokeColor("#FF8C00");
 		polyline.setStrokeOpacity(1.0);
 		
 		Activity act = AthleticgisFacade.findActivityById(Long.parseLong(activityId));

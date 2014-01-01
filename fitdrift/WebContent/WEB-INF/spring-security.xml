@@ -20,7 +20,7 @@
 	</beans:bean>
 
 	<http auto-config="true">
-		<intercept-url pattern="/public/activity*" access="ROLE_ANONYMOUS,ROLE_USER,ROLE_ADMIN" />
+		<intercept-url pattern="/public/**" access="ROLE_ANONYMOUS,ROLE_USER,ROLE_ADMIN" />
 		
 		<intercept-url pattern="/login*" access="IS_AUTHENTICATED_ANONYMOUSLY" />
 		
@@ -29,7 +29,9 @@
 		<intercept-url pattern="/javax.faces.resource/**" access="ROLE_ANONYMOUS,ROLE_USER,ROLE_ADMIN" /> <!-- JSF -->
 		
 		<intercept-url pattern="/admin/**" access="ROLE_ADMIN" />
-		<intercept-url pattern="/faces/admin/**" access="ROLE_ADMIN" />
+		
+		<!-- Does this need to be here -->
+		<!--  <intercept-url pattern="/faces/admin/**" access="ROLE_ADMIN" />-->
 		
 		<intercept-url pattern="/**" access="ROLE_USER,ROLE_ADMIN" />
 

@@ -1,5 +1,6 @@
 package com.fitdrift.view.admin;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,7 +17,12 @@ import com.fitdrift.model.AthleticgisFacade;
 
 @ManagedBean
 @ViewScoped
-public class ManageItemsBean {
+public class ManageItemsBean implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8346671629203770523L;
+
 	private String activityTypeDescription;
 	
 	private String activitySubTypeDescription;
