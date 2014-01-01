@@ -28,7 +28,7 @@ import com.fitdrift.util.gis.GISCalculator;
  * 
  * @author Matthew Allen
  * @version 20131207
- *
+ * 
  */
 @ManagedBean
 @ViewScoped
@@ -37,53 +37,61 @@ public class ActivityBean implements Serializable {
 	String activityName;
 	private MapModel polylineModel = new DefaultMapModel();
 	@ManagedProperty(value = "#{request.getParameter('activityId')}")
-    private String activityId;
+	private String activityId;
 	private Boolean emptyMap = false;
-	
+
 	@PostConstruct
-    public void initialize() {
+	public void initialize() {
 		Polyline polyline = new Polyline();
 		polyline.setStrokeWeight(2);
 		polyline.setStrokeColor("#FF8C00");
 		polyline.setStrokeOpacity(1.0);
-		
-		Activity act = AthleticgisFacade.findActivityById(Long.parseLong(activityId));
-		
-		List<ActivityPoint> activityPoints = AthleticgisFacade
-				.findActivityPointsByActivityId(Long.parseLong(activityId));
-		
-//		Double distance = act.getDistance();
-//		
-//		Boolean userMap = false; 
-//		if(act.getUseMyMap() != null) {
-//			userMap = act.getUseMyMap(); 
-//		}
-		
-		if(activityPoints != null && activityPoints.size() > 0) {
+
+		List<ActivityPoint> activityPoints = null;
+		Activity act = null;
+		if (activityId != null) {
+			act = AthleticgisFacade.findActivityById(Long
+					.parseLong(activityId));
+
+			activityPoints = AthleticgisFacade
+					.findActivityPointsByActivityId(Long.parseLong(activityId));
+
+		}
+
+		// Double distance = act.getDistance();
+		//
+		// Boolean userMap = false;
+		// if(act.getUseMyMap() != null) {
+		// userMap = act.getUseMyMap();
+		// }
+
+		if (act != null && activityPoints != null && activityPoints.size() > 0) {
 			for (ActivityPoint ap : activityPoints) {
 				polyline.getPaths().add(
 						new LatLng(ap.getLatitude(), ap.getLongitude()));
 			}
-			//GISCalculator calc = new GISCalculator();
-			//distance = calc.computePathDistance(activityPoints);
-		
-			//DecimalFormat df = new DecimalFormat("#.##");
-			if(act.getDistance() != null) {
+			// GISCalculator calc = new GISCalculator();
+			// distance = calc.computePathDistance(activityPoints);
+
+			// DecimalFormat df = new DecimalFormat("#.##");
+			if (act.getDistance() != null) {
 				DecimalFormat df = new DecimalFormat("#.##");
-				addMessage(new FacesMessage(FacesMessage.SEVERITY_INFO, "Distance", "Your total distance is " + df.format(act.getDistance()) + " miles."));
+				addMessage(new FacesMessage(FacesMessage.SEVERITY_INFO,
+						"Distance", "Your total distance is "
+								+ df.format(act.getDistance()) + " miles."));
 			}
-			
+
 			polylineModel.addOverlay(polyline);
-		}  else {
+		} else {
 			emptyMap = true;
 		}
-		
-		//Double distance = AthleticgisFacade.findActivityById(activityId);
-	    
+
+		// Double distance = AthleticgisFacade.findActivityById(activityId);
+
 	}
-	
+
 	public MapModel getPolylineModel() {
-		
+
 		return polylineModel;
 	}
 
@@ -105,31 +113,34 @@ public class ActivityBean implements Serializable {
 	}
 
 	public String getActivityName() {
-		if(activityId != null) {
-			activityName = AthleticgisFacade.findActivityById(Long.parseLong(activityId)).getName();
+		if (activityId != null) {
+			activityName = AthleticgisFacade.findActivityById(
+					Long.parseLong(activityId)).getName();
 		}
 		return activityName;
 	}
-	
+
 	public void setActivityName(String activityName) {
 		this.activityName = activityName;
 	}
-	
+
 	public String updateActivity() {
-		Map<String,String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
+		Map<String, String> params = FacesContext.getCurrentInstance()
+				.getExternalContext().getRequestParameterMap();
 		String aId = params.get("activityId");
 		Long id = Long.parseLong(aId);
-		if(activityName != null && activityName.length() > 0) {
+		if (activityName != null && activityName.length() > 0) {
 			AthleticgisFacade.mergeActivity(activityName, id);
 		}
 		return "dashboard?faces-redirect=true";
 	}
-	
+
 	public String removeActivity() {
-		Map<String,String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
+		Map<String, String> params = FacesContext.getCurrentInstance()
+				.getExternalContext().getRequestParameterMap();
 		String aId = params.get("activityId");
 		Long id = Long.parseLong(aId);
-		
+
 		AthleticgisFacade.removeActivity(id);
 		return "dashboard?faces-redirect=true";
 	}
@@ -142,7 +153,8 @@ public class ActivityBean implements Serializable {
 	}
 
 	/**
-	 * @param emptyMap the emptyMap to set
+	 * @param emptyMap
+	 *            the emptyMap to set
 	 */
 	public void setEmptyMap(Boolean emptyMap) {
 		this.emptyMap = emptyMap;

@@ -8,44 +8,58 @@
 
 <h:head>
 	<meta name="description" content="Fitdrift is a fitness diary."></meta>
-	<meta name="keywords" content="fitness,diary,exercise,gps,population,health,wellness"></meta>
+	<meta name="keywords"
+		content="fitness,diary,exercise,gps,population,health,wellness"></meta>
 	<link href="#{resource['css/fitdrift.css']}" rel="stylesheet" />
-    <link href="#{resource['css/bootstrap.css']}" rel="stylesheet" />
-    <link rel="shortcut icon" href="#{resource['images/favicon.png']}" type="image/x-icon" />
+	<link href="#{resource['css/bootstrap.css']}" rel="stylesheet" />
+	<link rel="shortcut icon" href="#{resource['images/favicon.png']}"
+		type="image/x-icon" />
 	<ui:insert name="scripts">
 	</ui:insert>
 	<ui:insert name="bodyOnLoad">
 		<script type="text/javascript">
 			function bodyOnLoad() {
-				}
+			}
 		</script>
 	</ui:insert>
 </h:head>
 
 <h:body onload="bodyOnLoad()">
 
-<p:layout fullPage="true">
+	<p:layout fullPage="true" >
 
-		<p:layoutUnit position="north" size="50" resizable="false"
+		<p:layoutUnit position="north"  resizable="true"
 			closable="false" collapsible="false">
 			<ui:insert name="header">
 				<ui:include src="/template/header.xhtml" />
 			</ui:insert>
-
+			
 		</p:layoutUnit>
 
-		<p:layoutUnit position="south" size="50" resizable="false"
+		<p:layoutUnit position="south" resizable="true" 
 			closable="false" collapsible="false">
+			<p:separator></p:separator>
 			<ui:insert name="footer">
 				<ui:include src="/template/footer.xhtml" />
 			</ui:insert>
 		</p:layoutUnit>
 
-		<p:layoutUnit position="center">
-			<ui:insert name="content">
-			</ui:insert>
-		</p:layoutUnit>
+		<p:layoutUnit position="center" >
+			<p:layout fullPage="false">
 
+				<p:layoutUnit position="north" resizable="true" 
+					closable="false" collapsible="false" >
+					<ui:insert name="menu">
+					</ui:insert>
+					<p:separator></p:separator>
+				</p:layoutUnit>
+
+				<p:layoutUnit position="center">
+					<ui:insert name="content">
+					</ui:insert>
+				</p:layoutUnit>
+			</p:layout>
+		</p:layoutUnit>
 	</p:layout>
 
 </h:body>

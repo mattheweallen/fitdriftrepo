@@ -7,6 +7,10 @@
     border: 0;
 }*/
 
+.ui-layout-pane {
+    border: 0;
+}
+
 .dateTimeField input {
    width : 80px;
 }
@@ -44,8 +48,8 @@
         /*background-color:#b0e0e6;*/
         /*background-color: #000000;*/ 
         /*background-color: none;*/
-        border-top-left-radius:2em;
-        border-top-right-radius:2em;
+        /*border-top-left-radius:2em;
+        border-top-right-radius:2em;*/
         
         /*width : 100%; background-color:#b0e0e6; height : 33px; position:absolute; top:0; /*padding-top: 15px; padding-left: 20px;*/
 }
@@ -128,15 +132,17 @@
 }
 
 .headerCol1 {
-        
+        padding:0;
         width: 50%;
         text-align: left;
+        
 }
 
 .headerCol2 {
-        
+        padding:0;
         width: 50%;
         text-align: right;
+        
 }
 
 .viewCol1 {
