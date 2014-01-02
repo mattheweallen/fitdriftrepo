@@ -36,8 +36,8 @@ public class DashboardBean implements Serializable {
 	public DashboardBean() {  
         model = new DefaultDashboardModel();  
         DashboardColumn column1 = new DefaultDashboardColumn();  
-        DashboardColumn column2 = new DefaultDashboardColumn();  
-        DashboardColumn column3 = new DefaultDashboardColumn();  
+       // DashboardColumn column2 = new DefaultDashboardColumn();  
+       // DashboardColumn column3 = new DefaultDashboardColumn();  
         
         column1.addWidget("weather");
         column1.addWidget("activities");  

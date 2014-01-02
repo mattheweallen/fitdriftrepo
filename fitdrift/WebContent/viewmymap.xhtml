@@ -25,10 +25,23 @@
 				src="https://maps.googleapis.com/maps/api/js?key=AIzaSyApDXRNzq6eGqWKUbufj3MzhJ4P0RF0Ghw&amp;sensor=false">
 				
 			</script>
+			<style type="text/css">
+		      
+		      #dPanel {
+		        position: absolute;
+		        top: 5px;
+		        left: 50%;
+		        margin-left: -180px;
+		        z-index: 5;
+		        background-color: #fff;
+		        padding: 5px;
+		        border: 1px solid #999;
+		      }
+    		</style>
 		</ui:define>
 		
 		<ui:define name="menu">
-			
+			<p:separator></p:separator>
 		</ui:define>
 		
 		<ui:define name="content">
@@ -61,6 +74,19 @@
 				model="#{viewMyMapBean.polylineModel}" widgetVar="map">
 			</p:gmap>
 			
+			<div id="dPanel" >
+				<table>
+					<tr>
+						<td>
+							<h:outputLabel for="distance" value="Distance:"></h:outputLabel>
+						</td>
+      					<td>
+      						<h:inputText value="#{viewMyMapBean.distStr}" id="distance" style="width:80px"/>
+      					</td>
+      				</tr>
+      			</table>
+      		</div>
+			
 			<script type="text/javascript">
 								
 				function initialize() {
@@ -78,6 +104,12 @@
 
 		                gmap.setOptions({styles: styles});
 						/////
+						
+						gmap.setOptions({styles: styles});
+						/////
+						
+						gmap.controls[google.maps.ControlPosition.TOP_CENTER].push(
+							      document.getElementById('dPanel'));
 				}
 				
 				google.maps.event.addDomListener(window, 'load', initialize);

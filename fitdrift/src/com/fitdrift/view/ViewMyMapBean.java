@@ -36,6 +36,7 @@ public class ViewMyMapBean implements Serializable {
         private String mymap_id;
         private MapModel polylineModel = new DefaultMapModel();
         private String myMapName;
+        private String distStr;
 
         @PostConstruct
         public void initialize() {
@@ -63,8 +64,9 @@ public class ViewMyMapBean implements Serializable {
                 GISCalculator calc = new GISCalculator();
                 Double distance = calc.computeMarkerPathDistance(myMapMarkers) / 1000;
                 DecimalFormat df = new DecimalFormat("#.##");
-                addMessage(new FacesMessage(FacesMessage.SEVERITY_INFO, "Distance",
-                                "Your total distance is " + df.format(distance) + " miles."));
+                distStr = df.format(distance) + " miles";
+               // addMessage(new FacesMessage(FacesMessage.SEVERITY_INFO, "Distance",
+               //                 "Your total distance is " + df.format(distance) + " miles."));
         }
 
         public void addMessage(FacesMessage message) {
@@ -114,4 +116,18 @@ public class ViewMyMapBean implements Serializable {
                 
                 this.myMapName = myMapName;
         }
+
+		/**
+		 * @return the distStr
+		 */
+		public String getDistStr() {
+			return distStr;
+		}
+
+		/**
+		 * @param distStr the distStr to set
+		 */
+		public void setDistStr(String distStr) {
+			this.distStr = distStr;
+		}
 }
