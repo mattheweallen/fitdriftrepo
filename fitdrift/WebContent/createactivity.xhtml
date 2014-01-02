@@ -47,12 +47,17 @@
 
 								</f:facet>
 
-								<p:panelGrid columns="5">
+								<p:panelGrid columns="2">
 									<p:outputLabel for="popupCal" value="Date of Activity"></p:outputLabel>
 									<p:calendar size="6" styleClass="dateTimeField"
 										value="#{createActivityBean.activityDate}" id="popupCal"
 										required="true"
 										requiredMessage="Date of Activity is required." />
+									
+
+								</p:panelGrid>
+
+								<p:panelGrid columns="3">
 									<p:outputLabel for="actType" value="Activity"></p:outputLabel>
 									<p:selectOneMenu
 										converter="com.fitdrift.view.ActivityTypeConverter"
@@ -101,10 +106,7 @@
 									<f:selectItem itemLabel="Medidation/Prayer" itemValue="7" />
 									<f:selectItem itemLabel="Sleep" itemValue="8" />-->
 									</p:selectOneMenu>
-
 								</p:panelGrid>
-
-
 
 								<p:panelGrid columns="5"
 									rendered="#{createActivityBean.selectedActivityType ne null and createActivityBean.selectedActivityType.description ne 'Measurement'}">
