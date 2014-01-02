@@ -33,8 +33,8 @@
 
 	<p:layout fullPage="true">
 
-		<p:layoutUnit position="north" resizable="true" closable="false"
-			collapsible="false">
+		<p:layoutUnit  position="north" resizable="false" closable="false"
+			collapsible="true" gutter="-15">
 			<ui:insert name="header">
 				<ui:include src="/template/header.xhtml" />
 			</ui:insert>
@@ -43,15 +43,16 @@
 			
 		</p:layoutUnit>
 
-		<p:layoutUnit position="south" resizable="true" closable="false"
-			collapsible="false">
+		<p:layoutUnit position="south" resizable="false" closable="false"
+			collapsible="true" gutter="-15">
 			<p:separator></p:separator>
 			<ui:insert name="footer">
 				<ui:include src="/template/footer.xhtml" />
 			</ui:insert>
 		</p:layoutUnit>
 
-		<p:layoutUnit position="center">
+		<p:layoutUnit position="center" resizable="false" closable="false"
+			collapsible="false">
 
 
 
