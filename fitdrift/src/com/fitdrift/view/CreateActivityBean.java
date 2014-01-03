@@ -40,8 +40,8 @@ public class CreateActivityBean implements Serializable {
 	private String activityType;
 	private String activitySubType;
 	private String activityGear;
-	private boolean indoors;
-	private boolean useMyMap;
+	private boolean indoors = false;
+	private boolean useMyMap = false;
 	private MyMap selectedMap;
 	private String mapMapName;
 	private Double distance;
