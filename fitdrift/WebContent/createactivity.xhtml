@@ -33,11 +33,11 @@
 				sticky="true"></p:growl>
 
 			<p:layout>
-				<p:layoutUnit position="center" >
+				<p:layoutUnit position="center">
 
 					<h:form>
-						<h:panelGrid columns="1" id="grid" >
-							<p:panelGrid columns="1" >
+						<h:panelGrid columns="1" id="grid">
+							<p:panelGrid columns="1" style="width:700px">
 								<f:facet name="header">
 
 									<p:commandButton value="Save" icon="ui-icon-check"
@@ -47,16 +47,17 @@
 
 								</f:facet>
 
-								<p:panelGrid columns="2">
+								<p:panelGrid style="width:675px" columns="2">
+
 									<p:outputLabel for="popupCal" value="Date of Activity"></p:outputLabel>
+
 									<p:calendar size="6" styleClass="dateTimeField"
 										value="#{createActivityBean.activityDate}" id="popupCal"
 										required="true"
 										requiredMessage="Date of Activity is required." />
 
-
-								
 									<p:outputLabel for="actType" value="Activity"></p:outputLabel>
+
 									<p:selectOneMenu
 										converter="com.fitdrift.view.ActivityTypeConverter"
 										value="#{createActivityBean.selectedActivityType}"
@@ -76,8 +77,11 @@
 									<f:selectItem itemLabel="Swimming" itemValue="8" />
 									<f:selectItem itemLabel="Weight Training" itemValue="9" />-->
 									</p:selectOneMenu>
-								
+
+
 									<p:outputLabel for="aSType" value="Sub Activity"></p:outputLabel>
+
+
 									<p:selectOneMenu
 										required="#{createActivityBean.selectedActivityType ne null and createActivityBean.selectedActivityType.description eq 'Measurement'}"
 										requiredMessage="Subtype is required."
@@ -290,7 +294,7 @@
 					</h:form>
 
 				</p:layoutUnit>
-				<p:layoutUnit position="east">
+				<p:layoutUnit position="east" size="600">
 					<p:panelGrid columns="1" id="mapGrid" style="width:400px">
 						<h:outputText value="My Map Here"
 							rendered="#{activityBean.emptyMap}"></h:outputText>
