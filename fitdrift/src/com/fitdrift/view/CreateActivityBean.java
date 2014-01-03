@@ -228,7 +228,7 @@ public class CreateActivityBean implements Serializable {
 	public String addMyMap() {
 
 		if (selectedMap != null) {
-			System.out.println(selectedMap.getName());
+			//System.out.println(selectedMap.getName());
 			this.mapMapName = selectedMap.getName();
 
 			List<MyMapMarker> myMapMarkers = AthleticgisFacade
