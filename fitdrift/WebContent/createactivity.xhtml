@@ -68,14 +68,14 @@
 											itemLabel="#{actType.description}"
 											value="#{createActivityBean.activityTypes}" />
 										<!--  <f:selectItem itemLabel="Calisthenics" itemValue="1" />
-									<f:selectItem itemLabel="Cycling" itemValue="2" />
-									<f:selectItem itemLabel="Group Exercise" itemValue="3" />
-									<f:selectItem itemLabel="Medidation/Prayer" itemValue="4" />
-									<f:selectItem itemLabel="Running" itemValue="5" />
-									<f:selectItem itemLabel="Ski" itemValue="6" />
-									<f:selectItem itemLabel="Sleep" itemValue="7" />
-									<f:selectItem itemLabel="Swimming" itemValue="8" />
-									<f:selectItem itemLabel="Weight Training" itemValue="9" />-->
+                                                                        <f:selectItem itemLabel="Cycling" itemValue="2" />
+                                                                        <f:selectItem itemLabel="Group Exercise" itemValue="3" />
+                                                                        <f:selectItem itemLabel="Medidation/Prayer" itemValue="4" />
+                                                                        <f:selectItem itemLabel="Running" itemValue="5" />
+                                                                        <f:selectItem itemLabel="Ski" itemValue="6" />
+                                                                        <f:selectItem itemLabel="Sleep" itemValue="7" />
+                                                                        <f:selectItem itemLabel="Swimming" itemValue="8" />
+                                                                        <f:selectItem itemLabel="Weight Training" itemValue="9" />-->
 									</p:selectOneMenu>
 
 
@@ -94,20 +94,20 @@
 											var="aSubType" itemLabel="#{aSubType.description}"
 											itemValue="#{aSubType}" />
 										<!--  <f:selectItem itemLabel="Cycling Cyclocross" itemValue="1" />
-									<f:selectItem itemLabel="Cycling Indoors" itemValue="2" />
-									<f:selectItem itemLabel="Cycling Mountain" itemValue="3" />
-									<f:selectItem itemLabel="Cycling Road" itemValue="4" />
-									<f:selectItem itemLabel="Cycling Track" itemValue="5" />
-									<f:selectItem itemLabel="Running Outside" itemValue="6" />
-									<f:selectItem itemLabel="Running Treadmill" itemValue="7" />
-									<f:selectItem itemLabel="Swimming" itemValue="3" />
-									<f:selectItem itemLabel="Calisthenics" itemValue="3" />
-									<f:selectItem itemLabel="Ski Alpine" itemValue="4" />
-									<f:selectItem itemLabel="Ski Nordic" itemValue="5" />
-									<f:selectItem itemLabel="Ski Roller" itemValue="5" />
-									<f:selectItem itemLabel="Ski Telemark" itemValue="6" />
-									<f:selectItem itemLabel="Medidation/Prayer" itemValue="7" />
-									<f:selectItem itemLabel="Sleep" itemValue="8" />-->
+                                                                        <f:selectItem itemLabel="Cycling Indoors" itemValue="2" />
+                                                                        <f:selectItem itemLabel="Cycling Mountain" itemValue="3" />
+                                                                        <f:selectItem itemLabel="Cycling Road" itemValue="4" />
+                                                                        <f:selectItem itemLabel="Cycling Track" itemValue="5" />
+                                                                        <f:selectItem itemLabel="Running Outside" itemValue="6" />
+                                                                        <f:selectItem itemLabel="Running Treadmill" itemValue="7" />
+                                                                        <f:selectItem itemLabel="Swimming" itemValue="3" />
+                                                                        <f:selectItem itemLabel="Calisthenics" itemValue="3" />
+                                                                        <f:selectItem itemLabel="Ski Alpine" itemValue="4" />
+                                                                        <f:selectItem itemLabel="Ski Nordic" itemValue="5" />
+                                                                        <f:selectItem itemLabel="Ski Roller" itemValue="5" />
+                                                                        <f:selectItem itemLabel="Ski Telemark" itemValue="6" />
+                                                                        <f:selectItem itemLabel="Medidation/Prayer" itemValue="7" />
+                                                                        <f:selectItem itemLabel="Sleep" itemValue="8" />-->
 									</p:selectOneMenu>
 								</p:panelGrid>
 
@@ -140,15 +140,7 @@
 										</p:inputMask>
 
 
-										<p:outputLabel for="selectGear" value="Gear"></p:outputLabel>
 
-										<p:selectOneMenu value="#{createActivityBean.activityGear}"
-											id="selectGear">
-											<f:selectItem itemLabel="-Select Gear-" itemValue="" />
-											<f:selectItem itemLabel="Cycling" itemValue="1" />
-											<f:selectItem itemLabel="Running" itemValue="2" />
-											<f:selectItem itemLabel="Swimming" itemValue="3" />
-										</p:selectOneMenu>
 
 										<h:panelGrid columns="2" style="margin-bottom:10px;"
 											cellpadding="5">
@@ -157,10 +149,25 @@
 											<h:outputText value="Indoors " />
 
 										</h:panelGrid>
+										<p:panelGrid columns="2">
+											<p:selectOneMenu value="#{createActivityBean.activityGear}"
+												id="selectGear">
+												<f:selectItem itemLabel="-Select Gear-" itemValue="" />
+												<f:selectItem itemLabel="Cycling" itemValue="1" />
+												<f:selectItem itemLabel="Running" itemValue="2" />
+												<f:selectItem itemLabel="Swimming" itemValue="3" />
+											</p:selectOneMenu>
+											<p:commandButton value="Add Gear"></p:commandButton>
+										</p:panelGrid>
+
+
+
 										<h:panelGrid columns="2" style="margin-bottom:10px;"
 											cellpadding="5">
-											<p:selectBooleanCheckbox id="useMyMap" onchange="handleOnChange(this)" 
-												value="#{createActivityBean.useMyMap}" widgetVar="useMyMapCheck">
+											<p:selectBooleanCheckbox id="useMyMap"
+												onchange="handleOnChange(this)"
+												value="#{createActivityBean.useMyMap}"
+												widgetVar="useMyMapCheck">
 												<p:ajax update="myMapInput distance"
 													listener="#{createActivityBean.useMyMapChecked}" />
 											</p:selectBooleanCheckbox>
@@ -168,7 +175,7 @@
 
 										</h:panelGrid>
 
-										<p:outputLabel for="myMapInput" value="Map Name"></p:outputLabel>
+
 										<p:inputText id="myMapInput" style="width : 400px" size="40"
 											value="#{createActivityBean.mapMapName}"
 											onfocus="PF('dlg').show();"
@@ -349,50 +356,37 @@
 			</p:dialog>
 
 			<!-- End Dialog -->
-			
+
 			<script type="text/javascript">
-				
-				
-				
 				function handleOnChange(target) {
-				
-					if(target.checked) {
+
+					if (target.checked) {
 						PF('dlg').show();
 					}
 				}
-				
-				
 
-				
-				
-				
-				
-				
 				function initialize() {
-						////
-						var gmap = PF('map').getMap();
-						
-						var styles = [
-						  {
-						    featureType: "poi",
-						    stylers: [
-						      { visibility: "off" }
-						    ]
-						  }
-						]
+					////
+					var gmap = PF('map').getMap();
 
-		                gmap.setOptions({styles: styles});
-						/////
-						
-						gmap.controls[google.maps.ControlPosition.TOP_CENTER].push(
-							      document.getElementById('panel'));
-						document.getElementById('distance').value = 0 + ' Miles';
+					var styles = [ {
+						featureType : "poi",
+						stylers : [ {
+							visibility : "off"
+						} ]
+					} ]
+
+					gmap.setOptions({
+						styles : styles
+					});
+					/////
+
+					gmap.controls[google.maps.ControlPosition.TOP_CENTER]
+							.push(document.getElementById('panel'));
+					document.getElementById('distance').value = 0 + ' Miles';
 				}
-				
-				/*google.maps.event.addDomListener(window, 'load', initialize);*/
-				
 
-				
+				/*google.maps.event.addDomListener(window, 'load', initialize);*/
 			</script>
 		</ui:define>
 	</ui:composition>
