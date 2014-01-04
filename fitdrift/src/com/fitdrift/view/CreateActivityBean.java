@@ -80,6 +80,7 @@ public class CreateActivityBean implements Serializable {
 
 	private MapModel polylineModel = new DefaultMapModel();
 	private String coordinates;
+	private String gearName;
 
 	public void initialize() {
 		Polyline polyline = new Polyline();
@@ -285,6 +286,10 @@ public class CreateActivityBean implements Serializable {
 		//initialize();
 		
 		return polylineModel;
+	}
+	
+	public String addGear() {
+		return null;
 	}
 	
 	public String addMyMap() {
@@ -777,6 +782,20 @@ public class CreateActivityBean implements Serializable {
 	 */
 	public void setCoordinates(String coordinates) {
 		this.coordinates = coordinates;
+	}
+
+	/**
+	 * @return the gearName
+	 */
+	public String getGearName() {
+		return gearName;
+	}
+
+	/**
+	 * @param gearName the gearName to set
+	 */
+	public void setGearName(String gearName) {
+		this.gearName = gearName;
 	}
 
 	
