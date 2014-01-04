@@ -32,8 +32,7 @@
 			<p:growl id="growls" autoUpdate="true" globalOnly="false"
 				sticky="true"></p:growl>
 
-			<p:layout>
-				<p:layoutUnit position="center">
+			
 
 					<h:form>
 						<h:panelGrid columns="1" id="grid">
@@ -300,20 +299,6 @@
 						</h:panelGrid>
 					</h:form>
 
-				</p:layoutUnit>
-				<p:layoutUnit position="east" size="600">
-					<p:panelGrid columns="1" id="mapGrid" style="width:400px">
-						<h:outputText value="My Map Here"
-							rendered="#{activityBean.emptyMap}"></h:outputText>
-						<p:gmap id="map_canvas" fitBounds="true" type="HYBRID"
-							rendered="#{!activityBean.emptyMap}"
-							style="width:100%;height:400px"
-							model="#{activityBean.polylineModel}" widgetVar="map">
-
-						</p:gmap>
-					</p:panelGrid>
-				</p:layoutUnit>
-			</p:layout>
 			<!-- Dialog -->
 			<p:dialog widgetVar="dlg" showEffect="fade" appendTo="@(body)"
 				dynamic="true" modal="true">
