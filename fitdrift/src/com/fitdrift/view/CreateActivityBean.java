@@ -2,23 +2,13 @@ package com.fitdrift.view;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
-import javax.faces.model.SelectItem;
-
-import org.primefaces.model.map.DefaultMapModel;
-import org.primefaces.model.map.LatLng;
-import org.primefaces.model.map.MapModel;
-import org.primefaces.model.map.Marker;
-import org.primefaces.model.map.Polyline;
-
 import com.fitdrift.domain.activity.Activity;
 import com.fitdrift.domain.activity.ActivityPoint;
 import com.fitdrift.domain.activity.ActivitySubType;
@@ -67,54 +57,15 @@ public class CreateActivityBean implements Serializable {
 	private Double diastolic;
 	private Double pulse;
 	private String activityName;
-	// private String defaultActivityName;
-	// private List<SelectItem> activityTypeSelectItems;
-	// private List<SelectItem> activitySubTypeSelectItems;
-	// private Long activityTypeId;
 	private ActivityType selectedActivityType;
-	// private Long activitySubTypeId;
 	private List<ActivityType> activityTypes;
-
 	private ActivitySubType selectedActivitySubType;
 	private List<ActivitySubType> activitySubTypes;
-
-	private MapModel polylineModel = new DefaultMapModel();
 	private String coordinates;
 	private String gearName;
 	private Double gearWeight;
 	private Long selectedEquipment;
 	private List<Equipment> equipment;
-	
-
-	public void initialize() {
-		Polyline polyline = new Polyline();
-		polyline.setStrokeWeight(2);
-		polyline.setStrokeColor("#FF8C00");
-		polyline.setStrokeOpacity(1.0);
-		List<MyMapMarker> myMapMarkers = AthleticgisFacade
-				.findMyMapMarkersByMymap_id(selectedMap.getMymap_id());
-		for (MyMapMarker m : myMapMarkers) {
-			polyline.getPaths().add(
-					new LatLng(m.getLatitude(), m.getLongitude()));
-
-			// add markers
-			Marker marker = new Marker(new LatLng(m.getLatitude(),
-					m.getLongitude()), m.getName());
-			polylineModel.addOverlay(marker);
-		}
-		// GISCalculator g = new GISCalculator();
-		// System.out.println("Distance is " +
-		// g.computePathDistance(activityPoints));
-
-		polylineModel.addOverlay(polyline);
-
-		//GISCalculator calc = new GISCalculator();
-		//Double distance = calc.computeMarkerPathDistance(myMapMarkers) / 1000;
-		//DecimalFormat df = new DecimalFormat("#.##");
-		//distStr = df.format(distance) + " miles";
-		// addMessage(new FacesMessage(FacesMessage.SEVERITY_INFO, "Distance",
-		// "Your total distance is " + df.format(distance) + " miles."));
-	}
 
 	/**
 	 * @return the activityDate
@@ -234,6 +185,14 @@ public class CreateActivityBean implements Serializable {
 			if(selectedEquipment != null) {
 				a.setEquipmenttype_id(selectedEquipment);
 			}
+			
+			if(calories != null) {
+				a.setCalories(calories);
+			}
+			
+			if(aveHeartRate != null) {
+				a.setAveHeartRate(aveHeartRate);
+			}
 
 			// if(weight != null) {
 			// a.setWeight(weight);
@@ -285,16 +244,6 @@ public class CreateActivityBean implements Serializable {
 	public void setIndoors(boolean indoors) {
 		this.indoors = indoors;
 	}
-
-	
-	/**
-	 * @return the polylineModel
-	 */
-	public MapModel getPolylineModel() {
-		//initialize();
-		
-		return polylineModel;
-	}
 	
 	public String addGear() {
 		if(gearName != null && gearName.length() > 0 && selectedActivityType != null) {
@@ -312,10 +261,6 @@ public class CreateActivityBean implements Serializable {
 	public String addMyMap() {
 
 		if (selectedMap != null) {
-			initialize();
-			//coordinates = "new google.maps.LatLng(45, -90)";
-			//coordinates = "[{ \"lat\":43.810909 , \"lng\":-91.256091 }, { \"lat\":43.822571 , \"lng\":-91.243666 }, { \"lat\":43.812151 , \"lng\":-91.257099 }]";
-			// System.out.println(selectedMap.getName());
 			this.mapMapName = selectedMap.getName();
 
 			List<MyMapMarker> myMapMarkers = AthleticgisFacade
@@ -336,10 +281,9 @@ public class CreateActivityBean implements Serializable {
 				i++;
 			}
 			sb.append("]");
-			
 			coordinates = sb.toString();
 			
-
+			//may think about getting this some other way, calculate with google map api?
 			GISCalculator calc = new GISCalculator();
 			Double d = calc.computeMarkerPathDistance(myMapMarkers) * 0.000621371; // convert
 																					// meters

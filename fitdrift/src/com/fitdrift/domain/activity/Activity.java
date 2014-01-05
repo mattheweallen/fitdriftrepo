@@ -79,6 +79,12 @@ public class Activity implements Serializable {
 	@Transient
 	private String formattedActivityDate;
 	
+	@Column
+	private Double calories;
+	
+	@Column
+	private Double aveHeartRate;
+	
 	/**
 	 * @return the user
 	 */
@@ -293,5 +299,33 @@ public class Activity implements Serializable {
 	 */
 	public void setUseMyMap(Boolean useMyMap) {
 		this.useMyMap = useMyMap;
+	}
+
+	/**
+	 * @return the calories
+	 */
+	public Double getCalories() {
+		return calories;
+	}
+
+	/**
+	 * @param calories the calories to set
+	 */
+	public void setCalories(Double calories) {
+		this.calories = calories;
+	}
+
+	/**
+	 * @return the aveHeartRate
+	 */
+	public Double getAveHeartRate() {
+		return aveHeartRate;
+	}
+
+	/**
+	 * @param aveHeartRate the aveHeartRate to set
+	 */
+	public void setAveHeartRate(Double aveHeartRate) {
+		this.aveHeartRate = aveHeartRate;
 	}
 }
