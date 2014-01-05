@@ -23,6 +23,7 @@ import com.fitdrift.domain.activity.Activity;
 import com.fitdrift.domain.activity.ActivityPoint;
 import com.fitdrift.domain.activity.ActivitySubType;
 import com.fitdrift.domain.activity.ActivityType;
+import com.fitdrift.domain.activity.Equipment;
 import com.fitdrift.domain.activity.Measure;
 import com.fitdrift.domain.activity.MyMap;
 import com.fitdrift.domain.activity.MyMapMarker;
@@ -46,7 +47,6 @@ public class CreateActivityBean implements Serializable {
 	private Date activityDate;
 	private String activityType;
 	private String activitySubType;
-	private String activityGear;
 	private boolean indoors = false;
 	private boolean useMyMap = false;
 	private MyMap selectedMap;
@@ -81,6 +81,10 @@ public class CreateActivityBean implements Serializable {
 	private MapModel polylineModel = new DefaultMapModel();
 	private String coordinates;
 	private String gearName;
+	private Double gearWeight;
+	private Long selectedEquipment;
+	private List<Equipment> equipment;
+	
 
 	public void initialize() {
 		Polyline polyline = new Polyline();
@@ -226,6 +230,10 @@ public class CreateActivityBean implements Serializable {
 					}
 				}
 			}
+			
+			if(selectedEquipment != null) {
+				a.setEquipmenttype_id(selectedEquipment);
+			}
 
 			// if(weight != null) {
 			// a.setWeight(weight);
@@ -289,6 +297,15 @@ public class CreateActivityBean implements Serializable {
 	}
 	
 	public String addGear() {
+		if(gearName != null && gearName.length() > 0 && selectedActivityType != null) {
+			Equipment g = new Equipment();
+			g.setActivitytype_id(selectedActivityType.getActivitytype_id());
+			g.setDescription(gearName);
+			if(gearWeight != null) {
+				g.setWeight(gearWeight);
+			}
+			AthleticgisFacade.persist(g);
+		}
 		return null;
 	}
 	
@@ -567,21 +584,6 @@ public class CreateActivityBean implements Serializable {
 	}
 
 	/**
-	 * @return the activityGear
-	 */
-	public String getActivityGear() {
-		return activityGear;
-	}
-
-	/**
-	 * @param activityGear
-	 *            the activityGear to set
-	 */
-	public void setActivityGear(String activityGear) {
-		this.activityGear = activityGear;
-	}
-
-	/**
 	 * @return the systolic
 	 */
 	public Double getSystolic() {
@@ -769,6 +771,28 @@ public class CreateActivityBean implements Serializable {
 	public void setActivitySubTypes(List<ActivitySubType> activitySubTypes) {
 		this.activitySubTypes = activitySubTypes;
 	}
+	
+	/**
+	 * @return the equipment
+	 */
+	public List<Equipment> getEquipment() {
+		if (selectedActivityType != null
+				&& selectedActivityType.getActivitytype_id() != null) {
+			equipment = AthleticgisFacade
+					.findAllEquipmentByActivitytype_id(selectedActivityType
+							.getActivitytype_id());
+		} else {
+			return null;
+		}
+		return equipment;
+	}
+
+	/**
+	 * @param equipment the equipment to set
+	 */
+	public void setEquipment(List<Equipment> equipment) {
+		this.equipment = equipment;
+	}
 
 	/**
 	 * @return the coordinates
@@ -798,6 +822,31 @@ public class CreateActivityBean implements Serializable {
 		this.gearName = gearName;
 	}
 
-	
+	/**
+	 * @return the gearWeight
+	 */
+	public Double getGearWeight() {
+		return gearWeight;
+	}
 
+	/**
+	 * @param gearWeight the gearWeight to set
+	 */
+	public void setGearWeight(Double gearWeight) {
+		this.gearWeight = gearWeight;
+	}
+
+	/**
+	 * @return the selectedEquipment
+	 */
+	public Long getSelectedEquipment() {
+		return selectedEquipment;
+	}
+
+	/**
+	 * @param selectedEquipment the selectedEquipment to set
+	 */
+	public void setSelectedEquipment(Long selectedEquipment) {
+		this.selectedEquipment = selectedEquipment;
+	}
 }
