@@ -13,20 +13,8 @@
 			<script type="text/javascript"
 				src="https://maps.googleapis.com/maps/api/js?key=AIzaSyApDXRNzq6eGqWKUbufj3MzhJ4P0RF0Ghw&amp;sensor=false">
 			</script>
-			<style type="text/css">
-		      
-		      #dPanel {
-		        position: absolute;
-		        top: 5px;
-		        left: 50%;
-		        margin-left: -180px;
-		        z-index: 5;
-		        background-color: #fff;
-		        padding: 5px;
-		        border: 1px solid #999;
-		      }
-    		</style>
-		</ui:define>	
+
+		</ui:define>
 		<ui:define name="menu">
 			<h:form>
 				<p:tabMenu activeIndex="2">
@@ -80,7 +68,7 @@
 										converter="com.fitdrift.view.ActivitySubTypeConverter"
 										value="#{createActivityBean.selectedActivitySubType}"
 										id="aSType">
-										<p:ajax update=":#{p:component('grid')}"/>
+										<p:ajax update=":#{p:component('grid')}" />
 										<f:selectItem itemLabel="-Select Sub Type-" itemValue="" />
 										<f:selectItems value="#{createActivityBean.activitySubTypes}"
 											var="aSubType" itemLabel="#{aSubType.description}"
@@ -117,15 +105,17 @@
 											<h:outputText value="Indoors " />
 										</h:panelGrid>
 										<p:panelGrid columns="2" id="gear">
-											<p:selectOneMenu value="#{createActivityBean.selectedEquipment}"
+											<p:selectOneMenu
+												value="#{createActivityBean.selectedEquipment}"
 												id="selectGear">
 												<f:selectItem itemLabel="-Select Gear-" itemValue="" />
 												<f:selectItems value="#{createActivityBean.equipment}"
 													var="equip" itemLabel="#{equip.description}"
 													itemValue="#{equip.equipmenttype_id}" />
-												
+
 											</p:selectOneMenu>
-											<p:commandButton value="Add Gear" immediate="true" onclick="handleOnClick()"></p:commandButton>
+											<p:commandButton value="Add Gear" immediate="true"
+												onclick="handleOnClick()"></p:commandButton>
 										</p:panelGrid>
 										<h:panelGrid columns="2" style="margin-bottom:10px;"
 											cellpadding="5">
@@ -244,29 +234,26 @@
 					</h:form>
 				</p:layoutUnit>
 				<p:layoutUnit position="east" minSize="600">
-					<!--   rendered="#{!activityBean.emptyMap}">  -->
-					<div id="map_canvas" style="width: 100%; height: 400px"></div>
+					<p:panelGrid columns="1" style="width:500px">
+						<f:facet name="header">
+							<h:panelGrid columns="3" styleClass="panelGridCenter">
+								<h:outputLabel for="distance" value="Distance:"></h:outputLabel>
+								<h:inputText value="#{createActivityBean.distance}" id="distStr"
+									style="width:80px" disabled="true">
+									<f:convertNumber maxFractionDigits="2"></f:convertNumber>
+								</h:inputText>
+								<h:outputText value="miles"></h:outputText>
+							</h:panelGrid>
+						</f:facet>
+
+
+						<div id="map_canvas" style="width: 100%; height: 400px"></div>
+					</p:panelGrid>
 				</p:layoutUnit>
 			</p:layout>
-			
-			<div id="dPanel" >
-				<table>
-					<tr>
-						<td>
-							<h:outputLabel for="distance" value="Distance:"></h:outputLabel>
-						</td>
-      					<td>
-      						<h:inputText value="#{createActivityBean.distance}" id="distStr" style="width:80px" disabled="true">
-      							<f:convertNumber maxFractionDigits="2"></f:convertNumber>
-      						</h:inputText>
-    					</td>
-      					<td>
-      						<h:outputText value="miles"></h:outputText>
-      					</td>
-      				</tr>
-      			</table>
-      		</div>
-			
+
+
+
 			<!-- Dialog -->
 			<p:dialog widgetVar="dlg" showEffect="fade" appendTo="@(body)"
 				dynamic="true" modal="true">
@@ -296,34 +283,39 @@
 			</p:dialog>
 			<h:inputHidden id="coordinates"
 				value="#{createActivityBean.coordinates}"></h:inputHidden>
-				
-				
+
+
 			<p:dialog widgetVar="geardlg" showEffect="fade" appendTo="@(body)"
 				dynamic="true" modal="true">
 				<h:form prependId="false">
-				<p:panelGrid columns="1">
-					<f:facet name="header">
-						<h:outputText value="Add Gear"></h:outputText>
-					</f:facet>
-					<p:panelGrid columns="2">
-					<h:outputText value="Gear Description"></h:outputText>
-					<p:inputText style="width:250px" placeholder="Gear Description Here" value="#{createActivityBean.gearName}"></p:inputText>
-					<h:outputText value="Gear Weight"></h:outputText>
-					<p:inputText value="#{createActivityBean.gearWeight}" style="width:250px" placeholder="Optional Gear Weight in lbs Here" validatorMessage="Gear weight must be number between 0 and 1000.">
-						<f:validateDoubleRange minimum="0" maximum="1000" />
-					</p:inputText>
-					</p:panelGrid>
-					<f:facet name="footer">
-						<h:panelGrid columns="2">
-							<p:commandButton value="Add Gear"
+					<p:panelGrid columns="1">
+						<f:facet name="header">
+							<h:outputText value="Add Gear"></h:outputText>
+						</f:facet>
+						<p:panelGrid columns="2">
+							<h:outputText value="Gear Description"></h:outputText>
+							<p:inputText style="width:250px"
+								placeholder="Gear Description Here"
+								value="#{createActivityBean.gearName}"></p:inputText>
+							<h:outputText value="Gear Weight"></h:outputText>
+							<p:inputText value="#{createActivityBean.gearWeight}"
+								style="width:250px"
+								placeholder="Optional Gear Weight in lbs Here"
+								validatorMessage="Gear weight must be number between 0 and 1000.">
+								<f:validateDoubleRange minimum="0" maximum="1000" />
+							</p:inputText>
+						</p:panelGrid>
+						<f:facet name="footer">
+							<h:panelGrid columns="2">
+								<p:commandButton value="Add Gear"
 									update=":#{p:component('gear')}"
-										action="#{createActivityBean.addGear}">
-							</p:commandButton>
-							<p:commandButton value="Cancel" onclick="return cancelGearAdd()">
-							</p:commandButton>
-						</h:panelGrid>
-					</f:facet>
-				</p:panelGrid>
+									action="#{createActivityBean.addGear}">
+								</p:commandButton>
+								<p:commandButton value="Cancel" onclick="return cancelGearAdd()">
+								</p:commandButton>
+							</h:panelGrid>
+						</f:facet>
+					</p:panelGrid>
 				</h:form>
 			</p:dialog>
 
@@ -404,8 +396,8 @@
 					/*gmap.controls[google.maps.ControlPosition.TOP_CENTER]
 							.push(document.getElementById('panel'));
 					document.getElementById('distance').value = 0 + ' Miles';*/
-					map.controls[google.maps.ControlPosition.TOP_CENTER].push(
-						      document.getElementById('dPanel'));
+					//map.controls[google.maps.ControlPosition.TOP_CENTER].push(
+					//	      document.getElementById('dPanel'));
 				}
 				google.maps.event.addDomListener(window, 'load', initialize);
 			</script>

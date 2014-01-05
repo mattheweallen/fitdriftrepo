@@ -15,37 +15,37 @@
 				src="https://maps.googleapis.com/maps/api/js?key=AIzaSyApDXRNzq6eGqWKUbufj3MzhJ4P0RF0Ghw&amp;sensor=false">
 				
 			</script>
-			<style type="text/css">
-		      
-		      #panel {
-		        position: absolute;
-		        top: 5px;
-		        left: 50%;
-		        margin-left: -180px;
-		        z-index: 5;
-		        background-color: #fff;
-		        padding: 5px;
-		        border: 1px solid #999;
-		      }
-    		</style>
 		</ui:define>
-		
-				
+
+
 		<ui:define name="menu">
 			<p:separator></p:separator>
 		</ui:define>
-		
+
 		<ui:define name="content">
 
 
 			<h:form>
 
-				<h:panelGrid styleClass="panelGridCenter">
-					<p:panelGrid columns="4" styleClass="panelGridCenter">
-						<p:inputText value="#{createPathBean.myMapName}" placeholder="#{createPathBean.myMapDefaultName}"
+				<h:panelGrid styleClass="panelGridCenter" columns="1">
+					<p:panelGrid columns="8" styleClass="panelGridCenter">
+						<h:outputLabel for="description" value="Description:"></h:outputLabel>
+						<p:inputText value="#{createPathBean.myMapName}"
+							placeholder="#{createPathBean.myMapDefaultName}"
 							style="width : 400px" size="40"></p:inputText>
-
-						<p:commandButton value="Save" action="#{createPathBean.savePath}" icon="ui-icon-check">
+						<h:outputLabel for="distance" value="Distance:"></h:outputLabel>
+						<h:inputText value="#{createPathBean.distStr}" id="distance"
+							style="width:80px" disabled="true" />
+						<h:outputLabel for="latStr" value="Current Latitude:"></h:outputLabel>
+						<h:inputText value="#{createPathBean.latStr}" id="latStr"
+							style="width:80px" disabled="true" />
+						<h:outputLabel for="lngStr" value="Current Longitude:"></h:outputLabel>
+						<h:inputText value="#{createPathBean.lngStr}" id="lngStr"
+							style="width:80px" disabled="true" />
+					</p:panelGrid>
+					<h:panelGrid columns="3" styleClass="panelGridCenter">
+						<p:commandButton value="Save" action="#{createPathBean.savePath}"
+							icon="ui-icon-check">
 						</p:commandButton>
 						<p:commandButton value="Restart" icon="ui-icon-arrowreturn-1-w"
 							action="#{createPathBean.restartPath}">
@@ -53,45 +53,22 @@
 						<p:commandButton value="Cancel"
 							action="mymaps?faces-redirect=true" icon="ui-icon-close">
 						</p:commandButton>
-					</p:panelGrid>
+					</h:panelGrid>
 				</h:panelGrid>
 
 				<p:growl id="messages" showDetail="true" sticky="true"
 					autoUpdate="true" />
 			</h:form>
-			
-			<p:gmap id="map_canvas" center="#{createPathBean.center}" zoom="13" 
-				type="HYBRID" style="width:100%;height:400px" 
-				onPointClick="handlePointClick(event);" widgetVar="map"  />
-			
-			
-			
-			<div id="panel" >
-				<table>
-					<tr>
-						<td>
-							<label for="distance">Distance:</label>
-						</td>
-      					<td>
-      						<h:inputText value="#{createPathBean.distStr}"  id="distance" style="width:80px" disabled="true"/>
-      					</td>
-      					<td>
-							<label for="latStr">Current lat:</label>
-						</td>
-      					<td>
-      						<h:inputText value="#{createPathBean.latStr}"  id="latStr" style="width:80px" disabled="true"/>
-      					</td>
-      					<td>
-							<label for="lngStr">Current lng:</label>
-						</td>
-      					<td>
-      						<h:inputText value="#{createPathBean.lngStr}"  id="lngStr" style="width:80px" disabled="true"/>
-      					</td>
-      				</tr>
-      			</table>
-      		</div>
-			
-			
+
+			<p:gmap id="map_canvas" center="#{createPathBean.center}" zoom="13"
+				type="HYBRID" style="width:100%;height:400px"
+				onPointClick="handlePointClick(event);" widgetVar="map" />
+
+
+
+
+
+
 			<p:dialog widgetVar="dlg" showEffect="fade">
 				<h:form prependId="false">
 					<h:panelGrid columns="2">
@@ -115,12 +92,9 @@
 
 			<script type="text/javascript">
 				var currentMarker = null;
-				
-				
 
 				function handlePointClick(event) {
-					
-					
+
 					if (currentMarker === null) {
 						document.getElementById('lat').value = event.latLng
 								.lat();
@@ -154,35 +128,29 @@
 
 					return false;
 				}
-				
-				
-				
-				
+
 				function initialize() {
-						////
-						var gmap = PF('map').getMap();
-						
-						var styles = [
-						  {
-						    featureType: "poi",
-						    stylers: [
-						      { visibility: "off" }
-						    ]
-						  }
-						]
+					////
+					var gmap = PF('map').getMap();
 
-		                gmap.setOptions({styles: styles});
-						/////
-						
-						gmap.controls[google.maps.ControlPosition.TOP_CENTER].push(
-							      document.getElementById('panel'));
-						document.getElementById('distance').value = 0 + ' Miles';
+					var styles = [ {
+						featureType : "poi",
+						stylers : [ {
+							visibility : "off"
+						} ]
+					} ]
+
+					gmap.setOptions({
+						styles : styles
+					});
+					/////
+
+					//gmap.controls[google.maps.ControlPosition.TOP_CENTER].push(
+					//	      document.getElementById('panel'));
+					document.getElementById('distance').value = 0 + ' Miles';
 				}
-				
-				google.maps.event.addDomListener(window, 'load', initialize);
-				
 
-				
+				google.maps.event.addDomListener(window, 'load', initialize);
 			</script>
 		</ui:define>
 	</ui:composition>
