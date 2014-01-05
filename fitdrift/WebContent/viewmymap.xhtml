@@ -81,7 +81,7 @@
 							<h:outputLabel for="distance" value="Distance:"></h:outputLabel>
 						</td>
       					<td>
-      						<h:inputText value="#{viewMyMapBean.distStr}" id="distance" style="width:80px"/>
+      						<h:inputText value="#{viewMyMapBean.distStr}" id="distance" style="width:80px" disabled="true"/>
       					</td>
       				</tr>
       			</table>
@@ -105,7 +105,7 @@
 		                gmap.setOptions({styles: styles});
 						/////
 						
-						gmap.setOptions({styles: styles});
+						//gmap.setOptions({styles: styles});
 						/////
 						
 						gmap.controls[google.maps.ControlPosition.TOP_CENTER].push(

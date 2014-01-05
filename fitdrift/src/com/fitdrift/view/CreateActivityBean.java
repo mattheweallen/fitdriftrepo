@@ -66,6 +66,7 @@ public class CreateActivityBean implements Serializable {
 	private Double gearWeight;
 	private Long selectedEquipment;
 	private List<Equipment> equipment;
+	//private String distStr;
 
 	/**
 	 * @return the activityDate
@@ -793,4 +794,18 @@ public class CreateActivityBean implements Serializable {
 	public void setSelectedEquipment(Long selectedEquipment) {
 		this.selectedEquipment = selectedEquipment;
 	}
+
+//	/**
+//	 * @return the distStr
+//	 */
+//	public String getDistStr() {
+//		return distStr;
+//	}
+//
+//	/**
+//	 * @param distStr the distStr to set
+//	 */
+//	public void setDistStr(String distStr) {
+//		this.distStr = distStr;
+//	}
 }

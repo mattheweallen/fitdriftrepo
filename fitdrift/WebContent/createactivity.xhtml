@@ -13,6 +13,19 @@
 			<script type="text/javascript"
 				src="https://maps.googleapis.com/maps/api/js?key=AIzaSyApDXRNzq6eGqWKUbufj3MzhJ4P0RF0Ghw&amp;sensor=false">
 			</script>
+			<style type="text/css">
+		      
+		      #dPanel {
+		        position: absolute;
+		        top: 5px;
+		        left: 50%;
+		        margin-left: -180px;
+		        z-index: 5;
+		        background-color: #fff;
+		        padding: 5px;
+		        border: 1px solid #999;
+		      }
+    		</style>
 		</ui:define>	
 		<ui:define name="menu">
 			<h:form>
@@ -235,6 +248,25 @@
 					<div id="map_canvas" style="width: 100%; height: 400px"></div>
 				</p:layoutUnit>
 			</p:layout>
+			
+			<div id="dPanel" >
+				<table>
+					<tr>
+						<td>
+							<h:outputLabel for="distance" value="Distance:"></h:outputLabel>
+						</td>
+      					<td>
+      						<h:inputText value="#{createActivityBean.distance}" id="distStr" style="width:80px" disabled="true">
+      							<f:convertNumber maxFractionDigits="2"></f:convertNumber>
+      						</h:inputText>
+    					</td>
+      					<td>
+      						<h:outputText value="miles"></h:outputText>
+      					</td>
+      				</tr>
+      			</table>
+      		</div>
+			
 			<!-- Dialog -->
 			<p:dialog widgetVar="dlg" showEffect="fade" appendTo="@(body)"
 				dynamic="true" modal="true">
@@ -248,7 +280,7 @@
 						<p:column>
 							<f:facet name="header">Name</f:facet>
 							<p:commandLink value="#{myMap.name}"
-								update=":#{p:component('myMapInput')} :#{p:component('distance')} :#{p:component('coordinates')}"
+								update=":#{p:component('myMapInput')} :#{p:component('distance')} :#{p:component('coordinates')} :#{p:component('distStr')}"
 								action="#{createActivityBean.addMyMap}"
 								oncomplete="handleMapSelected();">
 								<f:setPropertyActionListener value="#{myMap}"
@@ -372,6 +404,8 @@
 					/*gmap.controls[google.maps.ControlPosition.TOP_CENTER]
 							.push(document.getElementById('panel'));
 					document.getElementById('distance').value = 0 + ' Miles';*/
+					map.controls[google.maps.ControlPosition.TOP_CENTER].push(
+						      document.getElementById('dPanel'));
 				}
 				google.maps.event.addDomListener(window, 'load', initialize);
 			</script>
