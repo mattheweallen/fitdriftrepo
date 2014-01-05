@@ -67,7 +67,7 @@
 										converter="com.fitdrift.view.ActivitySubTypeConverter"
 										value="#{createActivityBean.selectedActivitySubType}"
 										id="aSType">
-										
+										<p:ajax update=":#{p:component('grid')}"/>
 										<f:selectItem itemLabel="-Select Sub Type-" itemValue="" />
 										<f:selectItems value="#{createActivityBean.activitySubTypes}"
 											var="aSubType" itemLabel="#{aSubType.description}"

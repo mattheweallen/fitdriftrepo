@@ -73,7 +73,19 @@
 							<label for="distance">Distance:</label>
 						</td>
       					<td>
-      						<input type="text"  id="distance" style="width:80px"/>
+      						<h:inputText value="#{createPathBean.distStr}"  id="distance" style="width:80px"/>
+      					</td>
+      					<td>
+							<label for="latStr">Current lat:</label>
+						</td>
+      					<td>
+      						<h:inputText value="#{createPathBean.latStr}"  id="latStr" style="width:80px"/>
+      					</td>
+      					<td>
+							<label for="lngStr">Current lng:</label>
+						</td>
+      					<td>
+      						<h:inputText value="#{createPathBean.lngStr}"  id="lngStr" style="width:80px"/>
       					</td>
       				</tr>
       			</table>
@@ -88,6 +100,7 @@
 						<f:facet name="footer">
 							<h:panelGrid styleClass="panelGridCenter" columns="2">
 								<p:commandButton value="Add"
+									update=":#{p:component('latStr')} :#{p:component('distance')} :#{p:component('lngStr')}"
 									actionListener="#{createPathBean.addMarker}"
 									oncomplete="markerAddComplete()" />
 								<p:commandButton value="Cancel" onclick="return cancel()" />

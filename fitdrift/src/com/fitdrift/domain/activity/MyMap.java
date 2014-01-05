@@ -51,6 +51,9 @@ public class MyMap implements Serializable {
 	
 	@Transient
 	private String formattedMapDate;
+	
+	@Column
+	private Double distance;
 
 	/**
 	 * @return the mymap_id
@@ -129,5 +132,19 @@ public class MyMap implements Serializable {
 		SimpleDateFormat sdf = new SimpleDateFormat("MM.dd.yyyy");
 		formattedMapDate = sdf.format(date);
 		return formattedMapDate;
+	}
+
+	/**
+	 * @return the distance
+	 */
+	public Double getDistance() {
+		return distance;
+	}
+
+	/**
+	 * @param distance the distance to set
+	 */
+	public void setDistance(Double distance) {
+		this.distance = distance;
 	}
 }

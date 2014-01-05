@@ -18,6 +18,7 @@ import org.primefaces.model.map.MapModel;
 import org.primefaces.model.map.Marker;
 import org.primefaces.model.map.Polyline;
 
+import com.fitdrift.domain.activity.MyMap;
 import com.fitdrift.domain.activity.MyMapMarker;
 import com.fitdrift.model.AthleticgisFacade;
 import com.fitdrift.util.gis.GISCalculator;
@@ -37,6 +38,8 @@ public class ViewMyMapBean implements Serializable {
         private MapModel polylineModel = new DefaultMapModel();
         private String myMapName;
         private String distStr;
+        private MyMap myMap;
+        private List<MyMapMarker> myMapMarkers;
 
         @PostConstruct
         public void initialize() {
@@ -44,8 +47,12 @@ public class ViewMyMapBean implements Serializable {
                 polyline.setStrokeWeight(2);
                 polyline.setStrokeColor("#FF8C00");
                 polyline.setStrokeOpacity(1.0);
-                List<MyMapMarker> myMapMarkers = AthleticgisFacade
+                myMapMarkers = AthleticgisFacade
                                 .findMyMapMarkersByMymap_id(Long.parseLong(mymap_id));
+                
+                myMap = AthleticgisFacade.findMyMapById(Long.parseLong(mymap_id));
+                
+                
                 for (MyMapMarker m : myMapMarkers) {
                         polyline.getPaths().add(
                                         new LatLng(m.getLatitude(), m.getLongitude()));
@@ -61,10 +68,10 @@ public class ViewMyMapBean implements Serializable {
 
                 polylineModel.addOverlay(polyline);
 
-                GISCalculator calc = new GISCalculator();
-                Double distance = calc.computeMarkerPathDistance(myMapMarkers) / 1000;
+                //GISCalculator calc = new GISCalculator();
+                //Double distance = calc.computeMarkerPathDistance(myMapMarkers) / 1000;
                 DecimalFormat df = new DecimalFormat("#.##");
-                distStr = df.format(distance) + " miles";
+                distStr = df.format(myMap.getDistance()) + " miles";
                // addMessage(new FacesMessage(FacesMessage.SEVERITY_INFO, "Distance",
                //                 "Your total distance is " + df.format(distance) + " miles."));
         }
@@ -129,5 +136,33 @@ public class ViewMyMapBean implements Serializable {
 		 */
 		public void setDistStr(String distStr) {
 			this.distStr = distStr;
+		}
+
+		/**
+		 * @return the myMap
+		 */
+		public MyMap getMyMap() {
+			return myMap;
+		}
+
+		/**
+		 * @param myMap the myMap to set
+		 */
+		public void setMyMap(MyMap myMap) {
+			this.myMap = myMap;
+		}
+
+		/**
+		 * @return the myMapMarkers
+		 */
+		public List<MyMapMarker> getMyMapMarkers() {
+			return myMapMarkers;
+		}
+
+		/**
+		 * @param myMapMarkers the myMapMarkers to set
+		 */
+		public void setMyMapMarkers(List<MyMapMarker> myMapMarkers) {
+			this.myMapMarkers = myMapMarkers;
 		}
 }

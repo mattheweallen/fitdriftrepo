@@ -38,6 +38,10 @@ public class CreatePathBean implements Serializable {
     private String myMapName;
     @ManagedProperty(value = "#{userInfoBean}")
 	private UserInfoBean userInfoBean;
+    private Double distance;
+    private String distStr;
+    private String latStr;
+    private String lngStr;
 
 	/**
 	 * @return the myMapName
@@ -119,9 +123,13 @@ public class CreatePathBean implements Serializable {
         m.setTime(new Timestamp(new Date().getTime()));
         myMapMarkers.add(m);
         GISCalculator calc = new GISCalculator();
-        Double distance = calc.computeMarkerPathDistance(myMapMarkers)*0.000621371; //convert meters to miles
+        distance = calc.computeMarkerPathDistance(myMapMarkers)*0.000621371; //convert meters to miles
         DecimalFormat df = new DecimalFormat("#.##");
-        addMessage(new FacesMessage(FacesMessage.SEVERITY_INFO, "Point Added", "Lat:" + df.format(lat) + ", Lng:" + df.format(lng) + ". Your total distance is " + df.format(distance) + " miles."));  
+        
+        distStr = df.format(distance) + " miles";
+        latStr = df.format(lat);
+        lngStr = df.format(lng);
+        //addMessage(new FacesMessage(FacesMessage.SEVERITY_INFO, "Point Added", "Lat:" + df.format(lat) + ", Lng:" + df.format(lng) + ". Your total distance is " + df.format(distance) + " miles."));  
     }
     
     /**
@@ -148,6 +156,7 @@ public class CreatePathBean implements Serializable {
 	    	} else {
 	    		myMap.setName(getMyMapDefaultName());
 	    	}
+	    	myMap.setDistance(distance);
 	    	AthleticgisFacade.persistMapAndMyMapMarkers(myMap, myMapMarkers);
     	}
     	return "mymaps?faces-redirect=true";
@@ -165,4 +174,60 @@ public class CreatePathBean implements Serializable {
     	myMapMarkers = new ArrayList<MyMapMarker>();
     	return "createpath?faces-redirect=true";
     }
+
+	/**
+	 * @return the distance
+	 */
+	public Double getDistance() {
+		return distance;
+	}
+
+	/**
+	 * @param distance the distance to set
+	 */
+	public void setDistance(Double distance) {
+		this.distance = distance;
+	}
+
+	/**
+	 * @return the distStr
+	 */
+	public String getDistStr() {
+		return distStr;
+	}
+
+	/**
+	 * @param distStr the distStr to set
+	 */
+	public void setDistStr(String distStr) {
+		this.distStr = distStr;
+	}
+
+	/**
+	 * @return the latStr
+	 */
+	public String getLatStr() {
+		return latStr;
+	}
+
+	/**
+	 * @param latStr the latStr to set
+	 */
+	public void setLatStr(String latStr) {
+		this.latStr = latStr;
+	}
+
+	/**
+	 * @return the lngStr
+	 */
+	public String getLngStr() {
+		return lngStr;
+	}
+
+	/**
+	 * @param lngStr the lngStr to set
+	 */
+	public void setLngStr(String lngStr) {
+		this.lngStr = lngStr;
+	}
 }
