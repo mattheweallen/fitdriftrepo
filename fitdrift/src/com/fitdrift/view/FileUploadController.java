@@ -61,7 +61,7 @@ public class FileUploadController {
 	}
 
 	public void upload(UploadedFile file) throws ParserConfigurationException, SAXException, IOException {
-		System.out.println("Uploading file " + file.getFileName());
+		//System.out.println("Uploading file " + file.getFileName());
 		String extension = FileUtil.fileExtension(file.getFileName()
 				.toLowerCase());
 		if ("gpx".equals(extension)) {
