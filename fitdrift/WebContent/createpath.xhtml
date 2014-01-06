@@ -30,7 +30,7 @@
 				<h:panelGrid styleClass="panelGridCenter" columns="1">
 					<p:panelGrid columns="8" styleClass="panelGridCenter">
 						<h:outputLabel for="description" value="Description:"></h:outputLabel>
-						<p:inputText value="#{createPathBean.myMapName}"
+						<p:inputText id="description" value="#{createPathBean.myMapName}"
 							placeholder="#{createPathBean.myMapDefaultName}"
 							style="width : 400px" size="40"></p:inputText>
 						<h:outputLabel for="distance" value="Distance:"></h:outputLabel>
@@ -92,6 +92,9 @@
 
 			<script type="text/javascript">
 				var currentMarker = null;
+				var poly;
+				//var path;
+				var latlng;
 
 				function handlePointClick(event) {
 
@@ -105,6 +108,10 @@
 							position : new google.maps.LatLng(event.latLng
 									.lat(), event.latLng.lng())
 						});
+						
+						
+
+						latlng = event.latLng;
 
 						PF('map').addOverlay(currentMarker);
 
@@ -116,6 +123,11 @@
 					var title = document.getElementById('title');
 					currentMarker.setTitle(title.value);
 					title.value = "";
+					
+					var path = poly.getPath();
+					// Because path is an MVCArray, we can simply append a new coordinate
+					// and it will automatically appear.
+					path.push(latlng);
 
 					currentMarker = null;
 					PF('dlg').hide();
@@ -125,6 +137,7 @@
 					PF('dlg').hide();
 					currentMarker.setMap(null);
 					currentMarker = null;
+					latlng = null;
 
 					return false;
 				}
@@ -144,10 +157,22 @@
 						styles : styles
 					});
 					/////
+					
+					
+					var polyOptions = {
+						//geodesic: true,
+		                strokeColor: '#FF8C00',
+		                strokeOpacity: 1.0,
+		                strokeWeight: 2
+  					};
+  					poly = new google.maps.Polyline(polyOptions);
+  					poly.setMap(gmap);
+					
+					
 
 					//gmap.controls[google.maps.ControlPosition.TOP_CENTER].push(
 					//	      document.getElementById('panel'));
-					document.getElementById('distance').value = 0 + ' Miles';
+					//document.getElementById('distance').value = 0 + ' Miles';
 				}
 
 				google.maps.event.addDomListener(window, 'load', initialize);
