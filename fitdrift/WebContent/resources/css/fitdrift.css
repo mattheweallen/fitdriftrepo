@@ -102,6 +102,8 @@
         position: relative;
         top: 70px;
         margin: 0 auto;
+        height: 350px;
+        width:  20%;
 }
 
 .panelGridLeft {

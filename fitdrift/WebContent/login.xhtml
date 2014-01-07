@@ -11,7 +11,13 @@
 		<ui:define name="scripts">
 			<title>Fitdrift Login</title>
 			
-			
+			<style>
+			.ui-panelgrid td {
+					background-color: #CCFFFF !important;
+					font-weight: bold;
+				}
+				
+			</style>
 			
 		</ui:define>
 		<ui:define name="header">
@@ -44,7 +50,7 @@
 						styleClass="form-control" feedback="false" placeholder="Password"
 						requiredMessage="Password Required" />
 
-					<h:panelGrid columns="2" style="margin-bottom:10px;"
+					<h:panelGrid columns="2" styleClass="panelGridCenter"
 						cellpadding="5">
 						<h:outputText value="Remember Me: " />
 						<p:selectBooleanCheckbox id="_spring_security_remember_me" />
