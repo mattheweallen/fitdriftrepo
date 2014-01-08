@@ -36,8 +36,11 @@
 		<p:layoutUnit  position="north" resizable="false" closable="false"
 			collapsible="true" gutter="-15">
 			<ui:insert name="header">
-				<ui:include src="/template/header.xhtml" />
+				<!-- header is being replaced on each page -->
+				<!--  <ui:include src="/template/header.xhtml" />-->
 			</ui:insert>
+			
+			<!-- eventually remove menu insert -->
 			<ui:insert name="menu">
 			</ui:insert>
 			

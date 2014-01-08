@@ -15,7 +15,37 @@
 
 		</ui:define>
 		
-		<ui:define name="menu">
+		
+		<ui:define name="header">
+			<h:form>
+				<p:toolbar>
+					<p:toolbarGroup align="left">
+						<h:graphicImage library="images"
+							name="fitdrift20131208_chrome.png" style="padding:0 0 0 10px" />
+						<p:separator />
+						<p:commandButton value="Dashboard"
+							action="dashboard?faces-redirect=true" immediate="true" />
+						<p:commandButton value="Upload"
+							action="upload?faces-redirect=true" immediate="true"/>
+						<p:commandButton value="Manual Activity"
+							action="createactivity?faces-redirect=true" immediate="true" />
+						<p:commandButton value="My Maps"
+							action="mymaps?faces-redirect=true" immediate="true" />
+						<p:commandButton value="Preferences"
+							action="preferences?faces-redirect=true" immediate="true" />
+						
+					</p:toolbarGroup>
+					<p:toolbarGroup align="right">
+						<p:menuButton value="#{userInfoBean.username}">
+							<p:menuitem value="Logout" url="/fitdrift/logout"></p:menuitem>
+							<p:menuitem value="Manage Items" url="/admin/manageitems.xhtml" rendered="#{request.isUserInRole('ROLE_ADMIN')}"></p:menuitem>
+						</p:menuButton>
+					</p:toolbarGroup>
+				</p:toolbar>
+			</h:form>
+		</ui:define>
+		
+		<!--  <ui:define name="menu">
 			<h:form>
 				<p:tabMenu activeIndex="5">
 					<p:menuitem value="Dashboard" url="/faces/dashboard.xhtml" />
@@ -27,7 +57,7 @@
 					<p:menuitem value="Manage Items" url="/faces/admin/manageitems.xhtml" rendered="#{request.isUserInRole('ROLE_ADMIN')}" />
 				</p:tabMenu>
 			</h:form>
-		</ui:define>
+		</ui:define> -->
 		
 		<ui:define name="content">
 			<h:form>

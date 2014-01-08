@@ -13,7 +13,36 @@
 		<ui:define name="scripts">
 			<title>Fitdrift Dashboard</title>
 		</ui:define>
-		<ui:define name="menu">
+		<ui:define name="header">
+			<h:form>
+				<p:toolbar>
+					<p:toolbarGroup align="left">
+						<h:graphicImage library="images"
+							name="fitdrift20131208_chrome.png" style="padding:0 0 0 10px" />
+						<p:separator />
+						<p:commandButton value="Dashboard"
+							action="dashboard?faces-redirect=true" immediate="true"
+							style="color:#0000FF;" />
+						<p:commandButton value="Upload"
+							action="upload?faces-redirect=true" immediate="true" />
+						<p:commandButton value="Manual Activity"
+							action="createactivity?faces-redirect=true" immediate="true" />
+						<p:commandButton value="My Maps"
+							action="mymaps?faces-redirect=true" immediate="true" />
+						<p:commandButton value="Preferences"
+							action="preferences?faces-redirect=true" immediate="true" />
+					</p:toolbarGroup>
+					<p:toolbarGroup align="right">
+						<p:menuButton value="#{userInfoBean.username}">
+							<p:menuitem value="Logout" url="/fitdrift/logout"></p:menuitem>
+							<p:menuitem value="Manage Items" url="/admin/manageitems.xhtml" rendered="#{request.isUserInRole('ROLE_ADMIN')}"></p:menuitem>
+						</p:menuButton>
+					</p:toolbarGroup>
+				</p:toolbar>
+			</h:form>
+		</ui:define>
+
+		<!--  <ui:define name="menu">
 			<h:form>
 				<p:tabMenu activeIndex="0">
 					<p:menuitem value="Dashboard" url="/faces/dashboard.xhtml" />
@@ -22,23 +51,23 @@
 						url="/faces/createactivity.xhtml" />
 					<p:menuitem value="My Maps" url="/faces/mymaps.xhtml" />
 					<p:menuitem value="Preferences" url="/faces/preferences.xhtml" />
-					<p:menuitem value="Manage Items" url="/faces/admin/manageitems.xhtml" rendered="#{request.isUserInRole('ROLE_ADMIN')}" />
+					<p:menuitem value="Manage Items" url="/faces/admin/manageitems.xhtml"  />
 				</p:tabMenu>
 			</h:form>
-		</ui:define>
+		</ui:define>-->
 		<ui:define name="content">
 			<h:form>
-				
+
 				<p:dashboard id="board" model="#{dashboardBean.model}">
 					<p:panel id="weather" header="Weather">
 						<p:feedReader
 							value="http://w1.weather.gov/xml/current_obs/KLSE.rss" var="feed">
-							
+
 							<h:outputText value="#{feed.title}" style="font-weight: bold" />
 							<br />
 							<br />
 							<h:outputText value="#{feed.description.value}" escape="false" />
-							
+
 						</p:feedReader>
 					</p:panel>
 					<p:panel id="activities" header="Past Activities">
@@ -48,15 +77,16 @@
 
 							<p:column style="text-align: center">
 								<f:facet name="header">View</f:facet>
-								
-									
-									<p:button outcome="activity" icon="ui-icon-zoomin">
-										<f:param name="activityId" value="#{activity.activity_id}" />
-									</p:button>
-								
+
+
+								<p:button outcome="activity" icon="ui-icon-zoomin">
+									<f:param name="activityId" value="#{activity.activity_id}" />
+								</p:button>
+
 							</p:column>
 
-							<p:column style="text-align: center" rendered="#{request.isUserInRole('ROLE_ADMIN')}">
+							<p:column style="text-align: center"
+								rendered="#{request.isUserInRole('ROLE_ADMIN')}">
 								<f:facet name="header">User Name</f:facet>
 								<h:outputText value="#{activity.user.username}" />
 
@@ -64,10 +94,10 @@
 
 							<p:column style="text-align: center">
 								<f:facet name="header">Name</f:facet>
-								
-									<h:outputText value="#{activity.name}"></h:outputText>
-									
-								
+
+								<h:outputText value="#{activity.name}"></h:outputText>
+
+
 							</p:column>
 
 							<p:column style="text-align: center">
