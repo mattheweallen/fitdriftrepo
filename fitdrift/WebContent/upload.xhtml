@@ -31,13 +31,12 @@
 							action="createactivity?faces-redirect=true" immediate="true" />
 						<p:commandButton value="My Maps"
 							action="mymaps?faces-redirect=true" immediate="true" />
-						<p:commandButton value="Preferences"
-							action="preferences?faces-redirect=true" immediate="true" />
 						
 					</p:toolbarGroup>
 					<p:toolbarGroup align="right">
 						<p:menuButton value="#{userInfoBean.username}">
 							<p:menuitem value="Logout" url="/fitdrift/logout"></p:menuitem>
+							<p:menuitem value="Preferences" url="/preferences.xhtml"></p:menuitem>
 							<p:menuitem value="Manage Items" url="/admin/manageitems.xhtml" rendered="#{request.isUserInRole('ROLE_ADMIN')}"></p:menuitem>
 						</p:menuButton>
 					</p:toolbarGroup>
