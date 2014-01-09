@@ -127,8 +127,10 @@ public class CreatePathBean implements Serializable {
         DecimalFormat df = new DecimalFormat("#.##");
         
         distStr = df.format(distance) + " miles";
-        latStr = df.format(lat);
-        lngStr = df.format(lng);
+        
+        DecimalFormat df4 = new DecimalFormat("#.####");
+        latStr = df4.format(lat);
+        lngStr = df4.format(lng);
         //addMessage(new FacesMessage(FacesMessage.SEVERITY_INFO, "Point Added", "Lat:" + df.format(lat) + ", Lng:" + df.format(lng) + ". Your total distance is " + df.format(distance) + " miles."));  
     }
     

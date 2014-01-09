@@ -267,13 +267,15 @@
 				<p:layoutUnit position="center">
 					<p:panelGrid columns="1" style="width:600px">
 						<f:facet name="header">
-							<h:panelGrid columns="3" styleClass="panelGridCenter">
+							<h:panelGrid columns="4" styleClass="panelGridCenter">
 								<h:outputLabel for="distance" value="Distance:"></h:outputLabel>
 								<h:inputText value="#{createActivityBean.distance}" id="distStr"
 									style="width:80px" disabled="true">
 									<f:convertNumber maxFractionDigits="2"></f:convertNumber>
 								</h:inputText>
 								<h:outputText value="miles"></h:outputText>
+								<p:commandButton action="createpath?faces-redirect=true" icon="ui-icon-circle-plus"
+										value="Create Map"></p:commandButton>
 							</h:panelGrid>
 						</f:facet>
 
