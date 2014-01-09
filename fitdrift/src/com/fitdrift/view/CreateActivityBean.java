@@ -175,6 +175,7 @@ public class CreateActivityBean implements Serializable {
 							ActivityPoint ap = new ActivityPoint();
 							ap.setLatitude(mp.getLatitude());
 							ap.setLongitude(mp.getLongitude());
+							ap.setTime(new Timestamp(new Date().getTime()));
 							aps.add(ap);
 						}
 						// a.setActivitypoints(aps);
