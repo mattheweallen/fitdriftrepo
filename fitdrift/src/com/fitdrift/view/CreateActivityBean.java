@@ -171,12 +171,16 @@ public class CreateActivityBean implements Serializable {
 					if (myMapMarkers != null && myMapMarkers.size() > 0) {
 
 						aps = new ArrayList<ActivityPoint>();
+						
+						Long timeNdx = 0L;
+						
 						for (MyMapMarker mp : myMapMarkers) {
 							ActivityPoint ap = new ActivityPoint();
 							ap.setLatitude(mp.getLatitude());
 							ap.setLongitude(mp.getLongitude());
-							ap.setTime(new Timestamp(new Date().getTime()));
+							ap.setTime(new Timestamp(timeNdx));
 							aps.add(ap);
+							timeNdx++;
 						}
 						// a.setActivitypoints(aps);
 
