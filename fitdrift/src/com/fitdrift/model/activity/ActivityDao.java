@@ -42,7 +42,7 @@ public class ActivityDao implements Serializable {
 		EntityManager em = EntityManagerUtil.getEntityManager();
 		
 		TypedQuery<ActivityPoint> query =
-		  em.createQuery("SELECT ap FROM ActivityPoint ap where ap.activity.activity_id="+activityId+ " order by ap.time", ActivityPoint.class);
+		  em.createQuery("SELECT ap FROM ActivityPoint ap where ap.activity.activity_id="+activityId+ " order by ap.time asc", ActivityPoint.class);
 		List<ActivityPoint> activityPoints = query.getResultList();
 		
 		em.close();
@@ -314,7 +314,7 @@ public class ActivityDao implements Serializable {
 		EntityManager em = EntityManagerUtil.getEntityManager();
 		
 		TypedQuery<MyMapMarker> query =
-		  em.createQuery("SELECT m FROM MyMapMarker m where m.myMap.mymap_id="+mymap_id+ " order by m.time", MyMapMarker.class);
+		  em.createQuery("SELECT m FROM MyMapMarker m where m.myMap.mymap_id="+mymap_id+ " order by m.id", MyMapMarker.class);
 		List<MyMapMarker> myMapMarkers = query.getResultList();
 		
 		em.close();
