@@ -15,6 +15,7 @@
 				src="https://maps.googleapis.com/maps/api/js?v=3&amp;key=AIzaSyApDXRNzq6eGqWKUbufj3MzhJ4P0RF0Ghw&amp;sensor=false">
 				
 			</script>
+		
 		</ui:define>
 
 
@@ -24,22 +25,36 @@
 
 			<h:form>
 
-				<h:panelGrid styleClass="panelGridCenter" columns="1">
+				<h:panelGrid styleClass="panelGridCenter" columns="1" width="100%">
 
-					
 
-					<h:panelGrid columns="3" styleClass="panelGridCenter">
-						<p:commandButton value="Save" action="#{createPathBean.savePath}"
-							icon="ui-icon-check">
-						</p:commandButton>
-						<p:commandButton value="Restart" icon="ui-icon-arrowreturn-1-w"
-							action="#{createPathBean.restartPath}">
-						</p:commandButton>
-						<p:commandButton value="Cancel"
-							action="mymaps?faces-redirect=true" icon="ui-icon-close">
-						</p:commandButton>
+					<h:panelGrid columns="2" 
+						width="100%" >
+						<h:panelGrid  columns="2" border="0">
+							<h:outputLink id="grow" value="#" style="color:#0000FF;">
+								<h:outputText value="What now?" />
+							</h:outputLink>
+							<p:tooltip for="grow"
+								value="To start creating a path, zoom into where you want to start, and click map. Begin your path by clicking the next location."
+								showEffect="clip" hideEffect="explode" />
+						</h:panelGrid>
+
+
+
+						<h:panelGrid columns="3" styleClass="panelGridCenter">
+							<p:commandButton value="Save" action="#{createPathBean.savePath}"
+								icon="ui-icon-check">
+							</p:commandButton>
+							<p:commandButton value="Restart" icon="ui-icon-arrowreturn-1-w"
+								action="#{createPathBean.restartPath}">
+							</p:commandButton>
+							<p:commandButton value="Cancel"
+								action="mymaps?faces-redirect=true" icon="ui-icon-close">
+							</p:commandButton>
+						</h:panelGrid>
 					</h:panelGrid>
-					<p:panelGrid columns="8" styleClass="panelGridCenter">
+
+					<p:panelGrid columns="8" styleClass="panelGridCenter" style="width:100%">
 						<h:outputLabel for="description" value="Description:"></h:outputLabel>
 						<p:inputText id="description" value="#{createPathBean.myMapName}"
 							placeholder="#{createPathBean.myMapDefaultName}"

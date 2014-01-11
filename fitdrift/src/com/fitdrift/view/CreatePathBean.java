@@ -44,11 +44,11 @@ public class CreatePathBean implements Serializable {
     private String latStr;
     private String lngStr;
     
-    @PostConstruct
-    public void initialize() {
-    	addMessage(new FacesMessage(FacesMessage.SEVERITY_INFO,
-				"What now?", "To start creating a path, zoom into where you want to start, and click map. Begin your path by clicking the next location."));
-    }
+//    @PostConstruct
+//    public void initialize() {
+//    	addMessage(new FacesMessage(FacesMessage.SEVERITY_INFO,
+//				"What now?", "To start creating a path, zoom into where you want to start, and click map. Begin your path by clicking the next location."));
+//    }
 
 	/**
 	 * @return the myMapName
