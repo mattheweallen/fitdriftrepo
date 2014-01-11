@@ -11,7 +11,7 @@
 	<ui:composition template="/template/layout.xhtml">
 		<ui:define name="scripts">
 			<title>Fitdrift Activity</title>
-			<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyApDXRNzq6eGqWKUbufj3MzhJ4P0RF0Ghw&amp;sensor=false">
+			<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3&amp;key=AIzaSyApDXRNzq6eGqWKUbufj3MzhJ4P0RF0Ghw&amp;sensor=false">
 			</script>
 		</ui:define>
 		<ui:define name="menu">
@@ -47,7 +47,7 @@
 				</p:layoutUnit>
 				<p:layoutUnit position="center">  
 					<p:gmap id="map_canvas" fitBounds="true" type="HYBRID" 
-						style="width:100%;height:400px" model="#{activityBean.polylineModel}" widgetVar="map">
+						style="width:100%;height:100%" model="#{activityBean.polylineModel}" widgetVar="map">
 					
 					</p:gmap>
 				</p:layoutUnit>
