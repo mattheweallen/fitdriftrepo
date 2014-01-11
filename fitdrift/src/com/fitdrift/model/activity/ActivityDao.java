@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
@@ -13,12 +12,8 @@ import com.fitdrift.domain.activity.ActivityPoint;
 import com.fitdrift.domain.activity.ActivitySubType;
 import com.fitdrift.domain.activity.ActivityType;
 import com.fitdrift.domain.activity.Equipment;
-import com.fitdrift.domain.activity.Measure;
 import com.fitdrift.domain.activity.MyMap;
 import com.fitdrift.domain.activity.MyMapMarker;
-import com.fitdrift.domain.user.User;
-import com.fitdrift.domain.user.UserRole;
-import com.fitdrift.model.Dao;
 import com.fitdrift.util.model.EntityManagerUtil;
 
 /**
@@ -42,7 +37,7 @@ public class ActivityDao implements Serializable {
 		EntityManager em = EntityManagerUtil.getEntityManager();
 		
 		TypedQuery<ActivityPoint> query =
-		  em.createQuery("SELECT ap FROM ActivityPoint ap where ap.activity.activity_id="+activityId+ " order by ap.time asc", ActivityPoint.class);
+		  em.createQuery("SELECT ap FROM ActivityPoint ap where ap.activity.activity_id="+activityId+ " order by ap.id asc", ActivityPoint.class);
 		List<ActivityPoint> activityPoints = query.getResultList();
 		
 		em.close();
@@ -60,7 +55,7 @@ public class ActivityDao implements Serializable {
 		EntityManager em = EntityManagerUtil.getEntityManager();
 		
 		TypedQuery<Activity> query =
-		  em.createQuery("SELECT a FROM Activity a where a.user.user_id="+ user_id  + " order by a.date", Activity.class);
+		  em.createQuery("SELECT a FROM Activity a where a.user.user_id="+ user_id  + " order by a.activity_id desc", Activity.class);
 		List<Activity> activities = query.getResultList();
 	
 		em.close();
@@ -252,7 +247,7 @@ public class ActivityDao implements Serializable {
 		EntityManager em = EntityManagerUtil.getEntityManager();
 		
 		TypedQuery<MyMap> query =
-		  em.createQuery("SELECT mm FROM MyMap mm where mm.user.user_id="+ user_id  + " order by mm.date desc", MyMap.class);
+		  em.createQuery("SELECT mm FROM MyMap mm where mm.user.user_id="+ user_id  + " order by mm.mymap_id desc", MyMap.class);
 		query.setFirstResult(start);
 		query.setMaxResults(max);	
 		List<MyMap> myMaps = query.getResultList();
@@ -314,7 +309,7 @@ public class ActivityDao implements Serializable {
 		EntityManager em = EntityManagerUtil.getEntityManager();
 		
 		TypedQuery<MyMapMarker> query =
-		  em.createQuery("SELECT m FROM MyMapMarker m where m.myMap.mymap_id="+mymap_id+ " order by m.id", MyMapMarker.class);
+		  em.createQuery("SELECT m FROM MyMapMarker m where m.myMap.mymap_id="+mymap_id+ " order by m.id asc", MyMapMarker.class);
 		List<MyMapMarker> myMapMarkers = query.getResultList();
 		
 		em.close();
@@ -348,7 +343,7 @@ public class ActivityDao implements Serializable {
 		EntityManager em = EntityManagerUtil.getEntityManager();
 		
 		TypedQuery<Activity> query =
-		  em.createQuery("SELECT a FROM Activity a order by a.date desc", Activity.class);
+		  em.createQuery("SELECT a FROM Activity a order by a.activity_id desc", Activity.class);
 		query.setFirstResult(start);
 		query.setMaxResults(max);
 		
@@ -385,7 +380,7 @@ public class ActivityDao implements Serializable {
 		EntityManager em = EntityManagerUtil.getEntityManager();
 		
 		TypedQuery<MyMap> query =
-		  em.createQuery("SELECT mm FROM MyMap mm order by mm.date desc", MyMap.class);
+		  em.createQuery("SELECT mm FROM MyMap mm order by mm.mymap_id desc", MyMap.class);
 		query.setFirstResult(start);
 		query.setMaxResults(max);
 		
