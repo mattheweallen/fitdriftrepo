@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;  
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -42,6 +43,12 @@ public class CreatePathBean implements Serializable {
     private String distStr;
     private String latStr;
     private String lngStr;
+    
+    @PostConstruct
+    public void initialize() {
+    	addMessage(new FacesMessage(FacesMessage.SEVERITY_INFO,
+				"What now?", "To start creating a path, zoom into where you want to start, and click map. Begin your path by clicking the next location."));
+    }
 
 	/**
 	 * @return the myMapName
