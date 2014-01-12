@@ -11,11 +11,16 @@ import org.primefaces.model.DefaultDashboardModel;
 import org.primefaces.model.LazyDataModel;
 
 import com.fitdrift.domain.activity.Activity;
+import com.fitdrift.domain.activity.ActivitySubType;
 import com.fitdrift.domain.activity.Measure;
+import com.fitdrift.model.AthleticgisFacade;
 import com.fitdrift.view.model.ActivityDataModel;
 import com.fitdrift.view.model.MeasureDataModel;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
+import java.util.Date;
+import java.util.List;
 
 /**
  * This bean is behind the dashboard page. Its primary purpose is to create a 
@@ -35,28 +40,51 @@ public class DashboardBean implements Serializable {
 	@ManagedProperty(value = "#{userInfoBean}")
     private UserInfoBean userInfoBean;
 	private DashboardModel model; 
+	private List<ActivitySubType> activitySubTypes;
+	private ActivitySubType selectedActivitySubType;
+	private Double measureValue;
 	
 	public DashboardBean() {  
         model = new DefaultDashboardModel();  
         DashboardColumn column1 = new DefaultDashboardColumn();  
-       // DashboardColumn column2 = new DefaultDashboardColumn();  
+        DashboardColumn column2 = new DefaultDashboardColumn();  
        // DashboardColumn column3 = new DefaultDashboardColumn();  
         
         //column1.addWidget("weather");
-        column1.addWidget("theme");
+        //column1.addWidget("theme");
         column1.addWidget("activities");  
         column1.addWidget("measures");  
 //        column1.addWidget("finance");  
 //          
-//        column2.addWidget("lifestyle");  
+        column2.addWidget("theme");
+        column2.addWidget("measureWidget");
+       // column2.addWidget("lifestyle");  
           
 //          
 //        column3.addWidget("politics");  
 //  
         model.addColumn(column1);  
-//        model.addColumn(column2);  
+        model.addColumn(column2);  
 //        model.addColumn(column3);  
     } 
+	
+	public String saveMeasure() {
+		Measure m = new Measure();
+		m.setDate(new Timestamp(new Date().getTime()));
+		m.setActivitySubType(selectedActivitySubType);
+		m.setUser(AthleticgisFacade.findUserByUsername(userInfoBean
+				.getUsername()));
+		
+		m.setValue(measureValue);
+		
+		AthleticgisFacade.persist(m);
+		
+		selectedActivitySubType = null;
+		measureValue = null;
+		
+		
+		return null;
+	}
 	
 	public UserInfoBean getUserInfoBean() {
 		return userInfoBean;
@@ -139,4 +167,43 @@ public class DashboardBean implements Serializable {
 //	public void setActivityName(List<Activity> activities) {
 //		this.activities = activities;
 //	}
+	
+	/**
+	 * @return the activitySubTypes
+	 */
+	public List<ActivitySubType> getActivitySubTypes() {
+		if(activitySubTypes == null) {
+			activitySubTypes = AthleticgisFacade
+					.findAllActivitySubTypeByActivitytype_id(2L); //2L is Measurement ActvityType
+		}
+		return activitySubTypes;
+	}
+
+	/**
+	 * @return the selectedActivitySubType
+	 */
+	public ActivitySubType getSelectedActivitySubType() {
+		return selectedActivitySubType;
+	}
+
+	/**
+	 * @param selectedActivitySubType the selectedActivitySubType to set
+	 */
+	public void setSelectedActivitySubType(ActivitySubType selectedActivitySubType) {
+		this.selectedActivitySubType = selectedActivitySubType;
+	}
+
+	/**
+	 * @return the measureValue
+	 */
+	public Double getMeasureValue() {
+		return measureValue;
+	}
+
+	/**
+	 * @param measureValue the measureValue to set
+	 */
+	public void setMeasureValue(Double measureValue) {
+		this.measureValue = measureValue;
+	}
 }

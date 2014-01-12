@@ -45,7 +45,7 @@
 			<h:form>
 
 				<p:dashboard id="board" model="#{dashboardBean.model}">
-					
+
 					<p:panel id="theme" header="My Theme">
 						<h:panelGrid columns="2" cellpadding="10">
 							<h:outputText value="Theme:" />
@@ -57,6 +57,28 @@
 							</p:themeSwitcher>
 						</h:panelGrid>
 					</p:panel>
+
+					<p:panel id="measureWidget" header="Measurement">
+						<h:panelGrid columns="1" styleClass="panelGridCenter">
+							
+							<p:selectOneMenu required="true" requiredMessage="Please select measure."
+								converter="com.fitdrift.view.ActivitySubTypeConverter"
+								value="#{dashboardBean.selectedActivitySubType}"
+								id="aSType">
+								<f:selectItem itemLabel="-Select Measurement-" itemValue="" />
+								<f:selectItems value="#{dashboardBean.activitySubTypes}"
+									var="aSubType" itemLabel="#{aSubType.description}"
+									itemValue="#{aSubType}" />
+							</p:selectOneMenu>
+							<p:inputText id="valueInput" value="#{dashboardBean.measureValue}" required="true" requiredMessage="Measure value is required."
+										validatorMessage="Measure value must be number between 0 and 1000." placeholder="Measure Value">
+								<f:validateDoubleRange minimum="0" maximum="1000" />
+							</p:inputText>
+							<p:commandButton action="#{dashboardBean.saveMeasure}" value="Save" update=":#{p:component('measureTable')} :#{p:component('measureWidget')}"></p:commandButton>
+
+						</h:panelGrid>
+					</p:panel>
+					
 					<p:panel id="activities" header="Activities">
 						<p:dataTable id="activityTable" value="#{dashboardBean.lazyModel}"
 							var="activity" rows="10" paginator="true" lazy="true">
@@ -95,7 +117,7 @@
 
 							<p:column style="text-align: center">
 								<f:facet name="header">Delete</f:facet>
-								<p:commandButton icon="ui-icon-trash"
+								<p:commandButton icon="ui-icon-trash" immediate="true"
 									action="#{activityBean.removeActivity}">
 									<f:param name="activityId" value="#{activity.activity_id}" />
 								</p:commandButton>
