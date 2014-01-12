@@ -34,40 +34,28 @@
 						<p:menuButton value="#{userInfoBean.username}">
 							<p:menuitem value="Logout" url="/fitdrift/logout"></p:menuitem>
 							<p:menuitem value="Preferences" url="/preferences.xhtml"></p:menuitem>
-							<p:menuitem value="Manage Items" url="/admin/manageitems.xhtml" rendered="#{request.isUserInRole('ROLE_ADMIN')}"></p:menuitem>
+							<p:menuitem value="Manage Items" url="/admin/manageitems.xhtml"
+								rendered="#{request.isUserInRole('ROLE_ADMIN')}"></p:menuitem>
 						</p:menuButton>
 					</p:toolbarGroup>
 				</p:toolbar>
 			</h:form>
 		</ui:define>
-
-		<!--  <ui:define name="menu">
-			<h:form>
-				<p:tabMenu activeIndex="0">
-					<p:menuitem value="Dashboard" url="/faces/dashboard.xhtml" />
-					<p:menuitem value="Upload Activity" url="/faces/upload.xhtml" />
-					<p:menuitem value="Manual Activity"
-						url="/faces/createactivity.xhtml" />
-					<p:menuitem value="My Maps" url="/faces/mymaps.xhtml" />
-					<p:menuitem value="Preferences" url="/faces/preferences.xhtml" />
-					<p:menuitem value="Manage Items" url="/faces/admin/manageitems.xhtml"  />
-				</p:tabMenu>
-			</h:form>
-		</ui:define>-->
 		<ui:define name="content">
 			<h:form>
 
 				<p:dashboard id="board" model="#{dashboardBean.model}">
-					<p:panel id="weather" header="Weather">
-						<p:feedReader
-							value="http://w1.weather.gov/xml/current_obs/KLSE.rss" var="feed">
-
-							<h:outputText value="#{feed.title}" style="font-weight: bold" />
-							<br />
-							<br />
-							<h:outputText value="#{feed.description.value}" escape="false" />
-
-						</p:feedReader>
+					
+					<p:panel id="theme" header="My Theme">
+						<h:panelGrid columns="2" cellpadding="10">
+							<h:outputText value="Theme:" />
+							<p:themeSwitcher value="#{themeSwitcherBean.theme}"
+								style="width:165px" effect="fade" id="statefulSwitcher">
+								<f:selectItem itemLabel="Choose Theme" itemValue="" />
+								<f:selectItems value="#{themeSwitcherBean.themes}" />
+								<p:ajax listener="#{themeSwitcherBean.saveTheme}" />
+							</p:themeSwitcher>
+						</h:panelGrid>
 					</p:panel>
 					<p:panel id="activities" header="Activities">
 						<p:dataTable id="activityTable" value="#{dashboardBean.lazyModel}"
@@ -117,13 +105,14 @@
 
 						</p:dataTable>
 					</p:panel>
-					
+
 					<p:panel id="measures" header="Measurements">
-						<p:dataTable id="measureTable" value="#{dashboardBean.lazyMeasureModel}"
-							var="measure" rows="10" paginator="true" lazy="true">
+						<p:dataTable id="measureTable"
+							value="#{dashboardBean.lazyMeasureModel}" var="measure" rows="10"
+							paginator="true" lazy="true">
 
 
-							
+
 
 							<p:column style="text-align: center"
 								rendered="#{request.isUserInRole('ROLE_ADMIN')}">
@@ -145,14 +134,14 @@
 								<h:outputText value="#{measure.value}" />
 
 							</p:column>
-							
+
 							<p:column style="text-align: center">
 								<f:facet name="header">Date</f:facet>
 								<h:outputText value="#{measure.formattedMeasureDate}" />
 
 							</p:column>
 
-							
+
 
 
 						</p:dataTable>
