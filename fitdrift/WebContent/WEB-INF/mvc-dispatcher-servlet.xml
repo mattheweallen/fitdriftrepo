@@ -15,8 +15,8 @@
 	class="org.springframework.jdbc.datasource.DriverManagerDataSource">
  
 	<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-	<property name="url" value="jdbc:mysql://localhost:3306/fitdrift" /> 
-	<!--<property name="url" value="jdbc:mysql://athena.fitdrift.com:3306/fitdrift" />-->
+	<property name="url" value="jdbc:mysql://localhost:3306/fitdrift" />
+	<!--<property name="url" value="jdbc:mysql://athena.fitdrift.com:3306/fitdrift" />--> 
 	
 	<property name="username" value="fitdrift" />
 	<property name="password" value="ripple93" />
