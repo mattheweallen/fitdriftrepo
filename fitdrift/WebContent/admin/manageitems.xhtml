@@ -64,6 +64,8 @@
 
 				<h:outputLabel for="activityType" value="Activity Type"></h:outputLabel>
 				<p:inputText id="activityType" value="#{manageItemsBean.activityTypeDescription}"></p:inputText>
+				<h:outputLabel for="rank" value="Rank"></h:outputLabel>
+				<p:inputText id="rank" value="#{manageItemsBean.rank}"></p:inputText>
 				<p:commandButton value="Save Activity Type" update="activityTypes selectActivityTypes" actionListener="#{manageItemsBean.addActivityType}"></p:commandButton>
 				<h:dataTable id="activityTypes" value="#{manageItemsBean.activityTypes}" var="at">
 					<h:column>

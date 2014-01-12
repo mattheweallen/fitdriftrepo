@@ -342,7 +342,7 @@
 							<h:panelGrid columns="2">
 								<p:commandButton value="Add Gear"
 									update=":#{p:component('gear')}"
-									action="#{createActivityBean.addGear}">
+									action="#{createActivityBean.addGear}" oncomplete="PF('geardlg').hide();">
 								</p:commandButton>
 								<p:commandButton value="Cancel" onclick="return cancelGearAdd()">
 								</p:commandButton>
