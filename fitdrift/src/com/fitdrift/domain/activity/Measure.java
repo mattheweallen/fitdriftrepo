@@ -2,6 +2,7 @@ package com.fitdrift.domain.activity;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 
 import javax.persistence.*;
 
@@ -26,8 +27,9 @@ public class Measure implements Serializable {
 	@Column
 	private Timestamp date;
 	
-	@Column
-	private Long measuretype_id;
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "activitysubtype_id")
+	private ActivitySubType activitySubType;
 	
 	@Column
 	private Double value;
@@ -35,6 +37,9 @@ public class Measure implements Serializable {
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "user_id")
 	private User user;
+	
+	@Transient
+	private String formattedMeasureDate;
 
 	/**
 	 * @return the measure_id
@@ -65,20 +70,6 @@ public class Measure implements Serializable {
 	}
 
 	/**
-	 * @return the measuretype_id
-	 */
-	public Long getMeasuretype_id() {
-		return measuretype_id;
-	}
-
-	/**
-	 * @param measuretype_id the measuretype_id to set
-	 */
-	public void setMeasuretype_id(Long measuretype_id) {
-		this.measuretype_id = measuretype_id;
-	}
-
-	/**
 	 * @return the value
 	 */
 	public Double getValue() {
@@ -104,5 +95,28 @@ public class Measure implements Serializable {
 	 */
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	/**
+	 * @return the activitySubType
+	 */
+	public ActivitySubType getActivitySubType() {
+		return activitySubType;
+	}
+
+	/**
+	 * @param activitySubType the activitySubType to set
+	 */
+	public void setActivitySubType(ActivitySubType activitySubType) {
+		this.activitySubType = activitySubType;
+	}
+
+	/**
+	 * @return the formattedMeasureDate
+	 */
+	public String getFormattedMeasureDate() {
+		SimpleDateFormat sdf = new SimpleDateFormat("MM.dd.yyyy");
+		formattedMeasureDate = sdf.format(date);
+		return formattedMeasureDate;
 	}
 }

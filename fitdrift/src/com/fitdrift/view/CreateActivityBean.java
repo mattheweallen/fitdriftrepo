@@ -90,7 +90,7 @@ public class CreateActivityBean implements Serializable {
 		if ("Measurement".equals(selectedActivityType.getDescription())) { // measurement
 			Measure m = new Measure();
 			m.setDate(new Timestamp(activityDate.getTime()));
-			m.setMeasuretype_id(selectedActivitySubType.getActivitysubtype_id());
+			m.setActivitySubType(selectedActivitySubType);
 			m.setUser(AthleticgisFacade.findUserByUsername(userInfoBean
 					.getUsername()));
 			if ("Weight".equals(selectedActivitySubType.getDescription())) {

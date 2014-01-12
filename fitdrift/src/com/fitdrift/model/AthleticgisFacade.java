@@ -3,6 +3,10 @@ package com.fitdrift.model;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
+import javax.persistence.TypedQuery;
+
 import com.fitdrift.domain.activity.Activity;
 import com.fitdrift.domain.activity.ActivityPoint;
 import com.fitdrift.domain.activity.ActivitySubType;
@@ -14,6 +18,7 @@ import com.fitdrift.domain.activity.MyMapMarker;
 import com.fitdrift.domain.user.User;
 import com.fitdrift.model.activity.ActivityDao;
 import com.fitdrift.model.user.UserDao;
+import com.fitdrift.util.model.EntityManagerUtil;
 
 /**
  * @author Matthew Allen
@@ -239,5 +244,44 @@ public class AthleticgisFacade implements Serializable {
 	 */
 	public static void persist(Object entity) {
 		ActivityDao.persist(entity);
+	}
+	
+	/**
+	 * 
+	 * @param user_id
+	 * @param start
+	 * @param max
+	 * @return
+	 */
+	public static List<Measure> findMeasuresByUserIdPaginated(Long user_id,
+			int start, int max) {
+		return ActivityDao.findMeasuresByUserIdPaginated(user_id, start, max);
+	}
+	
+	/**
+	 * @param user_id
+	 * @return
+	 */
+	public static Long findMeasureCountByUserId(Long user_id) {
+		return ActivityDao.findMeasureCountByUserId(user_id);
+		
+	}
+	
+	/**
+	 * @param user_id
+	 * @return
+	 */
+	public static Long findAllMeasureCount() {
+		return ActivityDao.findAllMeasureCount();
+	}
+
+	/**
+	 * 
+	 * @param start
+	 * @param max
+	 * @return
+	 */
+	public static List<Measure> findAllMeasuresPaginated(int start, int max) {
+		return ActivityDao.findAllMeasuresPaginated(start, max);
 	}
 }

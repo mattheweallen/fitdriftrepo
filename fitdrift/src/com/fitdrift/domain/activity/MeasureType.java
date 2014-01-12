@@ -1,6 +1,7 @@
 package com.fitdrift.domain.activity;
 
 import java.io.Serializable;
+import java.util.Set;
 
 import javax.persistence.*;
 
@@ -50,5 +51,4 @@ public class MeasureType implements Serializable {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-   
 }

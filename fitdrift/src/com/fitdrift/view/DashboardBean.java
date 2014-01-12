@@ -11,7 +11,9 @@ import org.primefaces.model.DefaultDashboardModel;
 import org.primefaces.model.LazyDataModel;
 
 import com.fitdrift.domain.activity.Activity;
+import com.fitdrift.domain.activity.Measure;
 import com.fitdrift.view.model.ActivityDataModel;
+import com.fitdrift.view.model.MeasureDataModel;
 
 import java.io.Serializable;
 
@@ -28,6 +30,7 @@ public class DashboardBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 	//List<Activity> activities;
 	LazyDataModel<Activity> lazyModel;
+	LazyDataModel<Measure> lazyMeasureModel;
 	Activity selectedActivity;
 	@ManagedProperty(value = "#{userInfoBean}")
     private UserInfoBean userInfoBean;
@@ -41,6 +44,7 @@ public class DashboardBean implements Serializable {
         
         column1.addWidget("weather");
         column1.addWidget("activities");  
+        column1.addWidget("measures");  
 //        column1.addWidget("finance");  
 //          
 //        column2.addWidget("lifestyle");  
@@ -83,6 +87,17 @@ public class DashboardBean implements Serializable {
 			lazyModel = new ActivityDataModel(userInfoBean.getUser_id(), userInfoBean.getIsAdmin());
 		}
 		return lazyModel;
+		//return new ActivityDataModel(userInfoBean.getUser_id());
+	}
+	
+	/**
+	 * @return the lazyModel
+	 */
+	public LazyDataModel<Measure> getLazyMeasureModel() {
+		if (lazyMeasureModel == null) {
+			lazyMeasureModel = new MeasureDataModel(userInfoBean.getUser_id(), userInfoBean.getIsAdmin());
+		}
+		return lazyMeasureModel;
 		//return new ActivityDataModel(userInfoBean.getUser_id());
 	}
 

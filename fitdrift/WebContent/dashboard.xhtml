@@ -69,7 +69,7 @@
 
 						</p:feedReader>
 					</p:panel>
-					<p:panel id="activities" header="Past Activities">
+					<p:panel id="activities" header="Activities">
 						<p:dataTable id="activityTable" value="#{dashboardBean.lazyModel}"
 							var="activity" rows="10" paginator="true" lazy="true">
 
@@ -92,7 +92,7 @@
 							</p:column>
 
 							<p:column style="text-align: center">
-								<f:facet name="header">Name</f:facet>
+								<f:facet name="header">Type</f:facet>
 
 								<h:outputText value="#{activity.name}"></h:outputText>
 
@@ -113,6 +113,46 @@
 								</p:commandButton>
 
 							</p:column>
+
+
+						</p:dataTable>
+					</p:panel>
+					
+					<p:panel id="measures" header="Measurements">
+						<p:dataTable id="measureTable" value="#{dashboardBean.lazyMeasureModel}"
+							var="measure" rows="10" paginator="true" lazy="true">
+
+
+							
+
+							<p:column style="text-align: center"
+								rendered="#{request.isUserInRole('ROLE_ADMIN')}">
+								<f:facet name="header">User Name</f:facet>
+								<h:outputText value="#{measure.user.username}" />
+
+							</p:column>
+
+							<p:column style="text-align: center">
+								<f:facet name="header">Name</f:facet>
+
+								<h:outputText value="#{measure.activitySubType.description}"></h:outputText>
+
+
+							</p:column>
+
+							<p:column style="text-align: center">
+								<f:facet name="header">Value</f:facet>
+								<h:outputText value="#{measure.value}" />
+
+							</p:column>
+							
+							<p:column style="text-align: center">
+								<f:facet name="header">Date</f:facet>
+								<h:outputText value="#{measure.formattedMeasureDate}" />
+
+							</p:column>
+
+							
 
 
 						</p:dataTable>

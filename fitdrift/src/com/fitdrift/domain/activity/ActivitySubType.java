@@ -1,6 +1,7 @@
 package com.fitdrift.domain.activity;
 
 import java.io.Serializable;
+import java.util.Set;
 
 import javax.persistence.*;
 
@@ -25,6 +26,9 @@ public class ActivitySubType implements Serializable {
 	
 	@Column
 	private String description;
+	
+	@OneToMany(mappedBy = "activitySubType", fetch=FetchType.LAZY, orphanRemoval=true)
+	private Set<Measure> measures;
 
 	/**
 	 * @return the activitysubtype_id
@@ -85,5 +89,19 @@ public class ActivitySubType implements Serializable {
 	@Override
 	public String toString() {
 		return activitysubtype_id + ":" + activitytype_id + ":" + description;
+	}
+
+	/**
+	 * @return the measures
+	 */
+	public Set<Measure> getMeasures() {
+		return measures;
+	}
+
+	/**
+	 * @param measures the measures to set
+	 */
+	public void setMeasures(Set<Measure> measures) {
+		this.measures = measures;
 	}
 }
