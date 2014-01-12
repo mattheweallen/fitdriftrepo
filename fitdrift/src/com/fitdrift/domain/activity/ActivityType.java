@@ -24,6 +24,9 @@ public class ActivityType implements Serializable {
 	
 	@Column
 	private String description;
+	
+	@Column
+	private Long rank;
 
 	/**
 	 * @return the activitytype_id
@@ -70,5 +73,19 @@ public class ActivityType implements Serializable {
 	@Override
 	public String toString() {
 		return activitytype_id + ":" + description;
+	}
+
+	/**
+	 * @return the rank
+	 */
+	public Long getRank() {
+		return rank;
+	}
+
+	/**
+	 * @param rank the rank to set
+	 */
+	public void setRank(Long rank) {
+		this.rank = rank;
 	}
 }

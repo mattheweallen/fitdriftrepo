@@ -32,6 +32,7 @@ public class ManageItemsBean implements Serializable {
 	private List<ActivityType> activityTypes;
 	//private Long activityTypeId;
 	private ActivityType selectedActivityType;
+	private Long rank;
 	
 //	public void onChangeValue(ValueChangeEvent e) {
 //		System.out.println(e.getNewValue());
@@ -68,6 +69,7 @@ public class ManageItemsBean implements Serializable {
 		//selectedActivityType = null;
 		ActivityType at = new ActivityType();
 		at.setDescription(activityTypeDescription);
+		at.setRank(rank);
 		AthleticgisFacade.persist(at);
 		//return null;
 		activityTypes = AthleticgisFacade.findAllActivityType(); 
@@ -157,6 +159,20 @@ public class ManageItemsBean implements Serializable {
 	 */
 	public void setSelectedActivityType(ActivityType selectedActivityType) {
 		this.selectedActivityType = selectedActivityType;
+	}
+
+	/**
+	 * @return the rank
+	 */
+	public Long getRank() {
+		return rank;
+	}
+
+	/**
+	 * @param rank the rank to set
+	 */
+	public void setRank(Long rank) {
+		this.rank = rank;
 	}
 
 }

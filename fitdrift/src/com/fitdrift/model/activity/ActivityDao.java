@@ -398,7 +398,7 @@ public class ActivityDao implements Serializable {
 		EntityManager em = EntityManagerUtil.getEntityManager();
 		
 		TypedQuery<ActivityType> query =
-		  em.createQuery("SELECT at FROM ActivityType at", ActivityType.class);
+		  em.createQuery("SELECT at FROM ActivityType at order by at.rank asc", ActivityType.class);
 		
 		
 		List<ActivityType> activityTypes = query.getResultList();
