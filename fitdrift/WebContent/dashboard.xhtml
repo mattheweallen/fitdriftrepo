@@ -42,6 +42,8 @@
 			</h:form>
 		</ui:define>
 		<ui:define name="content">
+			<p:growl id="growls" autoUpdate="true" globalOnly="false"
+				sticky="true"></p:growl>
 			<h:form>
 
 				<p:dashboard id="board" model="#{dashboardBean.model}">
