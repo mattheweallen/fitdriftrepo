@@ -16,6 +16,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fitdrift.domain.activity.Activity;
+import com.fitdrift.domain.activity.Equipment;
 import com.fitdrift.domain.activity.Measure;
 
 /**
@@ -47,6 +48,9 @@ public class User implements Serializable {
 	
 	@OneToMany(mappedBy = "user", fetch=FetchType.LAZY, orphanRemoval=true)
 	private Set<Measure> measures;
+	
+	@OneToMany(mappedBy = "user", fetch=FetchType.LAZY, orphanRemoval=true)
+	private Set<Equipment> equipment;
 
 	@Column
 	private String username;
@@ -174,6 +178,20 @@ public class User implements Serializable {
 	 */
 	public void setMeasures(Set<Measure> measures) {
 		this.measures = measures;
+	}
+
+	/**
+	 * @return the equipment
+	 */
+	public Set<Equipment> getEquipment() {
+		return equipment;
+	}
+
+	/**
+	 * @param equipment the equipment to set
+	 */
+	public void setEquipment(Set<Equipment> equipment) {
+		this.equipment = equipment;
 	}
 	
 //	/**

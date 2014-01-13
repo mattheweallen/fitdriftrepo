@@ -256,6 +256,7 @@ public class CreateActivityBean implements Serializable {
 			Equipment g = new Equipment();
 			g.setActivitytype_id(selectedActivityType.getActivitytype_id());
 			g.setDescription(gearName);
+			g.setUser(userInfoBean.getUser());
 			if(gearWeight != null) {
 				g.setWeight(gearWeight);
 			}
@@ -729,8 +730,8 @@ public class CreateActivityBean implements Serializable {
 		if (selectedActivityType != null
 				&& selectedActivityType.getActivitytype_id() != null) {
 			equipment = AthleticgisFacade
-					.findAllEquipmentByActivitytype_id(selectedActivityType
-							.getActivitytype_id());
+					.findAllEquipmentByActivitytype_idAndUserId(selectedActivityType
+							.getActivitytype_id(), userInfoBean.getUser_id());
 		} else {
 			return null;
 		}

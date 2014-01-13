@@ -435,13 +435,13 @@ public class ActivityDao implements Serializable {
 		return activitySubTypes;
 	}
 
-	public static List<Equipment> findAllEquipmentByActivitytype_id(
-			Long activitytype_id) {
+	public static List<Equipment> findAllEquipmentByActivitytype_idAndUserId(
+			Long activitytype_id, Long userId) {
 		EntityManager em = EntityManagerUtil.getEntityManager();
 
 		TypedQuery<Equipment> query = em.createQuery(
 				"SELECT e FROM Equipment e where e.activitytype_id="
-						+ activitytype_id, Equipment.class);
+						+ activitytype_id + " and e.user.user_id=" + userId, Equipment.class);
 
 		List<Equipment> equipment = query.getResultList();
 

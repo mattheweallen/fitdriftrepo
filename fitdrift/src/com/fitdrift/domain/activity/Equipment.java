@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 import javax.persistence.*;
 
+import com.fitdrift.domain.user.User;
+
 /**
  * Entity implementation class for Entity: Equipment
  *
@@ -19,6 +21,10 @@ public class Equipment implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(updatable = false, nullable = false)
 	private Long equipmenttype_id;
+	
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "user_id")
+	private User user;
 
 	@Column
 	private Long activitytype_id;
@@ -83,5 +89,19 @@ public class Equipment implements Serializable {
 	 */
 	public void setWeight(Double weight) {
 		this.weight = weight;
+	}
+
+	/**
+	 * @return the user
+	 */
+	public User getUser() {
+		return user;
+	}
+
+	/**
+	 * @param user the user to set
+	 */
+	public void setUser(User user) {
+		this.user = user;
 	}
 }
