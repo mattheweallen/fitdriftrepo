@@ -72,7 +72,7 @@
 									var="aSubType" itemLabel="#{aSubType.description}"
 									itemValue="#{aSubType}" />
 							</p:selectOneMenu>
-							<p:inputText id="valueInput" value="#{dashboardBean.measureValue}" required="true" requiredMessage="Measure value is required."
+							<p:inputText id="valueInput" label="Measure Value" value="#{dashboardBean.measureValue}" required="true" requiredMessage="Measure value is required."
 										validatorMessage="Measure value must be number between 0 and 1000." placeholder="Measure Value">
 								<f:validateDoubleRange minimum="0" maximum="1000" />
 							</p:inputText>
