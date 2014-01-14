@@ -26,19 +26,20 @@
 						<p:commandButton value="Dashboard"
 							action="dashboard?faces-redirect=true" immediate="true" />
 						<p:commandButton value="Upload"
-							action="upload?faces-redirect=true" immediate="true"/>
+							action="upload?faces-redirect=true" immediate="true" />
 						<p:commandButton value="Manual Activity"
-							action="createactivity?faces-redirect=true" immediate="true" 
-							style="color:#0000FF;"/>
+							action="createactivity?faces-redirect=true" immediate="true"
+							style="color:#0000FF;" />
 						<p:commandButton value="My Maps"
 							action="mymaps?faces-redirect=true" immediate="true" />
-						
+
 					</p:toolbarGroup>
 					<p:toolbarGroup align="right">
 						<p:menuButton value="#{userInfoBean.username}">
 							<p:menuitem value="Logout" url="/fitdrift/logout"></p:menuitem>
 							<p:menuitem value="Preferences" url="/preferences.xhtml"></p:menuitem>
-							<p:menuitem value="Manage Items" url="/admin/manageitems.xhtml" rendered="#{request.isUserInRole('ROLE_ADMIN')}"></p:menuitem>
+							<p:menuitem value="Manage Items" url="/admin/manageitems.xhtml"
+								rendered="#{request.isUserInRole('ROLE_ADMIN')}"></p:menuitem>
 						</p:menuButton>
 					</p:toolbarGroup>
 				</p:toolbar>
@@ -179,7 +180,7 @@
 											<f:validateDoubleRange minimum="0" maximum="20000" />
 										</p:inputText>
 										<p:outputLabel for="aveHeartRate" value="Average Heart Rate"></p:outputLabel>
-										<p:inputText id="aveHeartRate" style="width : 70px" 
+										<p:inputText id="aveHeartRate" style="width : 70px"
 											value="#{createActivityBean.aveHeartRate}" placeholder="BPM"
 											validatorMessage="Average Heart Rate must be number between 0 and 300.">
 											<f:validateDoubleRange minimum="0" maximum="300" />
@@ -189,8 +190,9 @@
 								<p:panelGrid columns="2"
 									rendered="#{createActivityBean.selectedActivityType ne null and createActivityBean.selectedActivityType.description eq 'Measurement' and createActivityBean.selectedActivitySubType.description eq 'Weight'}">
 									<p:outputLabel for="weight" value="Weight"></p:outputLabel>
-									<p:inputText id="weight" value="#{createActivityBean.weight}" placeholder="Pounds"
-										required="true" requiredMessage="Weight is required."
+									<p:inputText id="weight" value="#{createActivityBean.weight}"
+										placeholder="Pounds" required="true"
+										requiredMessage="Weight is required."
 										validatorMessage="Weight must be number between 0 and 1000.">
 										<f:validateDoubleRange minimum="0" maximum="1000" />
 									</p:inputText>
@@ -218,8 +220,9 @@
 								<p:panelGrid columns="2"
 									rendered="#{createActivityBean.selectedActivitySubType.description eq 'Height'}">
 									<p:outputLabel for="height" value="Height"></p:outputLabel>
-									<p:inputText id="height" value="#{createActivityBean.height}" placeholder="inches"
-										required="true" requiredMessage="Height is required."
+									<p:inputText id="height" value="#{createActivityBean.height}"
+										placeholder="inches" required="true"
+										requiredMessage="Height is required."
 										validatorMessage="Height must be number between 0 and 1000.">
 										<f:validateDoubleRange minimum="0" maximum="1000" />
 									</p:inputText>
@@ -227,8 +230,9 @@
 								<p:panelGrid columns="2"
 									rendered="#{createActivityBean.selectedActivitySubType.description eq 'Pulse'}">
 									<p:outputLabel for="pulse" value="Pulse/min"></p:outputLabel>
-									<p:inputText id="pulse" value="#{createActivityBean.pulse}" placeholder="BPM"
-										required="true" requiredMessage="Pulse is required."
+									<p:inputText id="pulse" value="#{createActivityBean.pulse}"
+										placeholder="BPM" required="true"
+										requiredMessage="Pulse is required."
 										validatorMessage="Pulse must be number between 0 and 1000.">
 										<f:validateDoubleRange minimum="0" maximum="1000" />
 									</p:inputText>
@@ -236,8 +240,9 @@
 								<p:panelGrid columns="2"
 									rendered="#{createActivityBean.selectedActivitySubType.description eq 'Waist'}">
 									<p:outputLabel for="waist" value="Waist"></p:outputLabel>
-									<p:inputText id="waist" value="#{createActivityBean.waist}" placeholder="inches"
-										required="true" requiredMessage="Waist is required."
+									<p:inputText id="waist" value="#{createActivityBean.waist}"
+										placeholder="inches" required="true"
+										requiredMessage="Waist is required."
 										validatorMessage="Waist must be number between 0 and 1000.">
 										<f:validateDoubleRange minimum="0" maximum="1000" />
 									</p:inputText>
@@ -245,8 +250,9 @@
 								<p:panelGrid columns="2"
 									rendered="#{createActivityBean.selectedActivitySubType.description eq 'Hip'}">
 									<p:outputLabel for="hip" value="Hip"></p:outputLabel>
-									<p:inputText id="hip" value="#{createActivityBean.hip}" placeholder="inches"
-										required="true" requiredMessage="Hip is required."
+									<p:inputText id="hip" value="#{createActivityBean.hip}"
+										placeholder="inches" required="true"
+										requiredMessage="Hip is required."
 										validatorMessage="Hip must be number between 0 and 1000.">
 										<f:validateDoubleRange minimum="0" maximum="1000" />
 									</p:inputText>
@@ -254,8 +260,9 @@
 								<p:panelGrid columns="2"
 									rendered="#{createActivityBean.selectedActivitySubType.description eq 'Thigh'}">
 									<p:outputLabel for="thigh" value="Thigh"></p:outputLabel>
-									<p:inputText id="thigh" value="#{createActivityBean.thigh}" placeholder="inches"
-										required="true" requiredMessage="Hip is required."
+									<p:inputText id="thigh" value="#{createActivityBean.thigh}"
+										placeholder="inches" required="true"
+										requiredMessage="Hip is required."
 										validatorMessage="Thigh must be number between 0 and 1000.">
 										<f:validateDoubleRange minimum="0" maximum="1000" />
 									</p:inputText>
@@ -274,8 +281,8 @@
 									<f:convertNumber maxFractionDigits="2"></f:convertNumber>
 								</h:inputText>
 								<h:outputText value="miles"></h:outputText>
-								<p:commandButton action="createpath?faces-redirect=true" icon="ui-icon-circle-plus"
-										value="Create Map"></p:commandButton>
+								<p:commandButton action="createpath?faces-redirect=true"
+									icon="ui-icon-circle-plus" value="Create Map"></p:commandButton>
 							</h:panelGrid>
 						</f:facet>
 
@@ -289,7 +296,7 @@
 
 			<!-- Dialog -->
 			<p:dialog widgetVar="dlg" showEffect="fade" appendTo="@(body)"
-				dynamic="true" modal="true">
+				dynamic="true" modal="true" header="Add Map">
 				<h:form prependId="false">
 					<p:dataTable id="myMapTable" value="#{myMapBean.lazyModel}"
 						var="myMap" rows="10" paginator="true" lazy="true">
@@ -319,36 +326,35 @@
 
 
 			<p:dialog widgetVar="geardlg" showEffect="fade" appendTo="@(body)"
-				dynamic="true" modal="true">
+				dynamic="true" modal="true" header="Add Gear">
 				<h:form prependId="false">
-					<p:panelGrid columns="1">
-						<f:facet name="header">
-							<h:outputText value="Add Gear"></h:outputText>
-						</f:facet>
-						<p:panelGrid columns="2">
-							<h:outputText value="Gear Description"></h:outputText>
-							<p:inputText style="width:250px"
-								placeholder="Gear Description Here"
-								value="#{createActivityBean.gearName}"></p:inputText>
-							<h:outputText value="Gear Weight"></h:outputText>
-							<p:inputText value="#{createActivityBean.gearWeight}"
-								style="width:250px"
-								placeholder="Optional Gear Weight in lbs Here"
-								validatorMessage="Gear weight must be number between 0 and 1000.">
-								<f:validateDoubleRange minimum="0" maximum="1000" />
-							</p:inputText>
-						</p:panelGrid>
+
+					<p:panelGrid columns="2">
+						<h:outputText value="Gear Description"></h:outputText>
+						<p:inputText style="width:250px"
+							placeholder="Gear Description Here"
+							value="#{createActivityBean.gearName}"></p:inputText>
+						<h:outputText value="Gear Weight"></h:outputText>
+						<p:inputText value="#{createActivityBean.gearWeight}"
+							style="width:250px"
+							placeholder="Optional Gear Weight in lbs Here"
+							validatorMessage="Gear weight must be number between 0 and 1000.">
+							<f:validateDoubleRange minimum="0" maximum="1000" />
+						</p:inputText>
 						<f:facet name="footer">
 							<h:panelGrid columns="2">
 								<p:commandButton value="Add Gear"
 									update=":#{p:component('gear')}"
-									action="#{createActivityBean.addGear}" oncomplete="PF('geardlg').hide();">
+									action="#{createActivityBean.addGear}"
+									oncomplete="PF('geardlg').hide();">
 								</p:commandButton>
 								<p:commandButton value="Cancel" onclick="return cancelGearAdd()">
 								</p:commandButton>
 							</h:panelGrid>
 						</f:facet>
 					</p:panelGrid>
+
+
 				</h:form>
 			</p:dialog>
 
