@@ -51,6 +51,9 @@ public class User implements Serializable {
 	
 	@OneToMany(mappedBy = "user", fetch=FetchType.LAZY, orphanRemoval=true)
 	private Set<Equipment> equipment;
+	
+	@OneToMany(mappedBy = "user", fetch=FetchType.LAZY, orphanRemoval=true)
+	private Set<UserSignIn> userSignIns;
 
 	@Column
 	private String username;
@@ -192,6 +195,20 @@ public class User implements Serializable {
 	 */
 	public void setEquipment(Set<Equipment> equipment) {
 		this.equipment = equipment;
+	}
+
+	/**
+	 * @return the userSignIns
+	 */
+	public Set<UserSignIn> getUserSignIns() {
+		return userSignIns;
+	}
+
+	/**
+	 * @param userSignIns the userSignIns to set
+	 */
+	public void setUserSignIns(Set<UserSignIn> userSignIns) {
+		this.userSignIns = userSignIns;
 	}
 	
 //	/**

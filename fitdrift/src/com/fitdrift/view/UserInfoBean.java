@@ -11,10 +11,13 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.fitdrift.domain.user.User;
+import com.fitdrift.domain.user.UserSignIn;
 import com.fitdrift.model.AthleticgisFacade;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.Collection;
+import java.util.Date;
 
 /**
  * This bean holds user info for each user's session.
@@ -85,6 +88,11 @@ public class UserInfoBean implements Serializable {
 					.getContext().getAuthentication().getPrincipal();
 			username = userDetails.getUsername();
 			user = AthleticgisFacade.findUserByUsername(username);
+			UserSignIn userSignIn = new UserSignIn();
+			userSignIn.setUser(user);
+			Date d = new Date();
+			userSignIn.setDate(new Timestamp(d.getTime()));
+			AthleticgisFacade.persist(userSignIn);
 		}
 		return user;
 	}
