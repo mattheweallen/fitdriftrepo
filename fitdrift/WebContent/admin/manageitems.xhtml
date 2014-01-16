@@ -14,8 +14,8 @@
 			<title>Manage Items</title>
 
 		</ui:define>
-		
-		
+
+
 		<ui:define name="header">
 			<h:form>
 				<p:toolbar>
@@ -26,24 +26,26 @@
 						<p:commandButton value="Dashboard"
 							action="/dashboard.xhtml?faces-redirect=true" immediate="true" />
 						<p:commandButton value="Upload"
-							action="/upload.xhtml?faces-redirect=true" immediate="true"/>
+							action="/upload.xhtml?faces-redirect=true" immediate="true" />
 						<p:commandButton value="Manual Activity"
-							action="/createactivity.xhtml?faces-redirect=true" immediate="true" />
+							action="/createactivity.xhtml?faces-redirect=true"
+							immediate="true" />
 						<p:commandButton value="My Maps"
 							action="/mymaps.xhtml?faces-redirect=true" immediate="true" />
-						
+
 					</p:toolbarGroup>
 					<p:toolbarGroup align="right">
 						<p:menuButton value="#{userInfoBean.username}">
 							<p:menuitem value="Logout" url="/fitdrift/logout"></p:menuitem>
 							<p:menuitem value="Preferences" url="/preferences.xhtml"></p:menuitem>
-							<p:menuitem value="Manage Items" url="/admin/manageitems.xhtml" rendered="#{request.isUserInRole('ROLE_ADMIN')}"></p:menuitem>
+							<p:menuitem value="Manage Items" url="/admin/manageitems.xhtml"
+								rendered="#{request.isUserInRole('ROLE_ADMIN')}"></p:menuitem>
 						</p:menuButton>
 					</p:toolbarGroup>
 				</p:toolbar>
 			</h:form>
 		</ui:define>
-		
+
 		<!--  <ui:define name="menu">
 			<h:form>
 				<p:tabMenu activeIndex="5">
@@ -57,49 +59,71 @@
 				</p:tabMenu>
 			</h:form>
 		</ui:define> -->
-		
+
 		<ui:define name="content">
 			<h:form>
-				
 
-				<h:outputLabel for="activityType" value="Activity Type"></h:outputLabel>
-				<p:inputText id="activityType" value="#{manageItemsBean.activityTypeDescription}"></p:inputText>
-				<h:outputLabel for="rank" value="Rank"></h:outputLabel>
-				<p:inputText id="rank" value="#{manageItemsBean.rank}"></p:inputText>
-				<p:commandButton value="Save Activity Type" update="activityTypes selectActivityTypes" actionListener="#{manageItemsBean.addActivityType}"></p:commandButton>
-				<h:dataTable id="activityTypes" value="#{manageItemsBean.activityTypes}" var="at">
-					<h:column>
-						<h:outputText value="#{at.activitytype_id}"></h:outputText>
-					</h:column>
-					<h:column>
-						<h:outputText value="#{at.description}"></h:outputText>
-					</h:column>
-				</h:dataTable>
-				<p:selectOneMenu converter="com.fitdrift.view.ActivityTypeConverter"  value="#{manageItemsBean.selectedActivityType}"  id="selectActivityTypes">
-					<p:ajax update="activitySubTypesTable" />
-					<f:selectItem itemLabel="-Select Activity Type-" itemValue="" />
-					<f:selectItems value="#{manageItemsBean.activityTypes}" var="actType" itemValue="#{actType}" itemLabel="#{actType.description}"/>
-				</p:selectOneMenu>
-				
-				<p:inputText id="activitySubType" value="#{manageItemsBean.activitySubTypeDescription}"></p:inputText>
-				<p:commandButton update="activitySubTypesTable" value="Save Activity Sub Type" actionListener="#{manageItemsBean.addActivitySubType}"></p:commandButton>
-				
-				<h:dataTable id="activitySubTypesTable" value="#{manageItemsBean.activitySubTypes}" var="ast">
-					<h:column>
-						<h:outputText value="#{ast.activitysubtype_id}"></h:outputText>
-					</h:column>
-					
-					<h:column>
-						<h:outputText value="#{ast.activitytype_id}"></h:outputText>
-					</h:column>
-					<h:column>
-						<h:outputText value="#{ast.description}"></h:outputText>
-					</h:column>
-				</h:dataTable>
-				
-				
-				
+				<p:panelGrid columns="1" >
+					<h:outputLabel for="activityType" value="Activity Type"></h:outputLabel>
+					<p:inputText id="activityType"
+						value="#{manageItemsBean.activityTypeDescription}"></p:inputText>
+					<h:outputLabel for="rank" value="Rank"></h:outputLabel>
+					<p:inputText id="rank" value="#{manageItemsBean.rank}"></p:inputText>
+					<p:commandButton value="Save Activity Type"
+						update="activityTypes selectActivityTypes"
+						actionListener="#{manageItemsBean.addActivityType}"></p:commandButton>
+					<p:dataTable id="activityTypes" 
+						value="#{manageItemsBean.activityTypes}" var="at">
+						<p:column>
+							<f:facet name="header">ActivityTypeId</f:facet>
+							<h:outputText value="#{at.activitytype_id}"></h:outputText>
+						</p:column>
+						<p:column>
+							<f:facet name="header">Description</f:facet>
+							<h:outputText value="#{at.description}"></h:outputText>
+						</p:column>
+						<p:column>
+							<f:facet name="header">Rank</f:facet>
+							<h:outputText value="#{at.rank}"></h:outputText>
+						</p:column>
+					</p:dataTable>
+					<p:selectOneMenu
+						converter="com.fitdrift.view.ActivityTypeConverter"
+						value="#{manageItemsBean.selectedActivityType}"
+						id="selectActivityTypes">
+						<p:ajax update="activitySubTypesTable" />
+						<f:selectItem itemLabel="-Select Activity Type-" itemValue="" />
+						<f:selectItems value="#{manageItemsBean.activityTypes}"
+							var="actType" itemValue="#{actType}"
+							itemLabel="#{actType.description}" />
+					</p:selectOneMenu>
 
+					<p:inputText id="activitySubType"
+						value="#{manageItemsBean.activitySubTypeDescription}"></p:inputText>
+					<p:commandButton update="activitySubTypesTable"
+						value="Save Activity Sub Type"
+						actionListener="#{manageItemsBean.addActivitySubType}"></p:commandButton>
+
+					<p:dataTable id="activitySubTypesTable"
+						value="#{manageItemsBean.activitySubTypes}" var="ast">
+						<p:column>
+							<f:facet name="header">ActivitySubTypeId</f:facet>
+							<h:outputText value="#{ast.activitysubtype_id}"></h:outputText>
+						</p:column>
+
+						<p:column>
+							<f:facet name="header">ActivityTypeId</f:facet>
+							<h:outputText value="#{ast.activitytype_id}"></h:outputText>
+						</p:column>
+						<p:column>
+							<f:facet name="header">Description</f:facet>
+							<h:outputText value="#{ast.description}"></h:outputText>
+						</p:column>
+					</p:dataTable>
+
+
+
+				</p:panelGrid>
 
 			</h:form>
 		</ui:define>
