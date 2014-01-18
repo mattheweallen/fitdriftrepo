@@ -63,7 +63,33 @@
 		<ui:define name="content">
 			<h:form>
 
-				<p:panelGrid columns="1" >
+				<p:panelGrid columns="1">
+
+					<!-- UserSignIn -->
+					<p:dataTable id="userSignInTable"
+						value="#{manageItemsBean.lazyModel}" var="userSignIn" rows="10"
+						paginator="true" lazy="true">
+
+
+
+						<p:column style="text-align: center">
+							<f:facet name="header">User Name</f:facet>
+							<h:outputText value="#{userSignIn.user.username}" />
+
+						</p:column>
+
+
+						<p:column style="text-align: center">
+							<f:facet name="header">Date</f:facet>
+							<h:outputText value="#{userSignIn.date}" />
+
+						</p:column>
+
+
+
+					</p:dataTable>
+					<!-- End UserSignIn -->
+
 					<h:outputLabel for="activityType" value="Activity Type"></h:outputLabel>
 					<p:inputText id="activityType"
 						value="#{manageItemsBean.activityTypeDescription}"></p:inputText>
@@ -72,7 +98,7 @@
 					<p:commandButton value="Save Activity Type"
 						update="activityTypes selectActivityTypes"
 						actionListener="#{manageItemsBean.addActivityType}"></p:commandButton>
-					<p:dataTable id="activityTypes" 
+					<p:dataTable id="activityTypes"
 						value="#{manageItemsBean.activityTypes}" var="at">
 						<p:column>
 							<f:facet name="header">ActivityTypeId</f:facet>

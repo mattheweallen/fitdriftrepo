@@ -16,6 +16,7 @@ import com.fitdrift.domain.activity.Measure;
 import com.fitdrift.domain.activity.MyMap;
 import com.fitdrift.domain.activity.MyMapMarker;
 import com.fitdrift.domain.user.User;
+import com.fitdrift.domain.user.UserSignIn;
 import com.fitdrift.model.activity.ActivityDao;
 import com.fitdrift.model.user.UserDao;
 import com.fitdrift.util.model.EntityManagerUtil;
@@ -283,5 +284,23 @@ public class AthleticgisFacade implements Serializable {
 	 */
 	public static List<Measure> findAllMeasuresPaginated(int start, int max) {
 		return ActivityDao.findAllMeasuresPaginated(start, max);
+	}
+	
+	/**
+	 * @param user_id
+	 * @return
+	 */
+	public static Long findUserSignInCount() {
+		return UserDao.findUserSignInCount();
+	}
+
+	/**
+	 * 
+	 * @param start
+	 * @param max
+	 * @return
+	 */
+	public static List<UserSignIn> findUserSignInPaginated(int start, int max) {
+		return UserDao.findUserSignInPaginated(start, max);
 	}
 }

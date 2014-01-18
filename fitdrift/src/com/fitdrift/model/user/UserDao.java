@@ -8,12 +8,14 @@ import java.util.Set;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import com.fitdrift.domain.activity.Activity;
 import com.fitdrift.domain.user.User;
 //import com.fitdrift.domain.user.UserDetail;
 import com.fitdrift.domain.user.UserRole;
+import com.fitdrift.domain.user.UserSignIn;
 import com.fitdrift.model.Dao;
 import com.fitdrift.util.model.EntityManagerUtil;
 
@@ -183,5 +185,42 @@ public class UserDao implements Dao<User>, Serializable {
 		em.merge(u);
 		em.getTransaction().commit();
 		em.close();
+	}
+	
+	/**
+	 * Counts all UserSignIn.
+	 * 
+	 * @return
+	 */
+	public static Long findUserSignInCount() {
+		EntityManager em = EntityManagerUtil.getEntityManager();
+
+		Query query = em.createQuery("SELECT count(u) FROM UserSignIn u");
+		Long count = (Long) query.getSingleResult();
+
+		em.close();
+		return count;
+	}
+
+	/**
+	 * find subset of UserSignIn records.
+	 * 
+	 * @param start
+	 * @param max
+	 * @return
+	 */
+	public static List<UserSignIn> findUserSignInPaginated(int start, int max) {
+		EntityManager em = EntityManagerUtil.getEntityManager();
+
+		TypedQuery<UserSignIn> query = em
+				.createQuery("SELECT u FROM UserSignIn u order by u.date desc",
+						UserSignIn.class);
+		query.setFirstResult(start);
+		query.setMaxResults(max);
+
+		List<UserSignIn> userSignIn = query.getResultList();
+
+		em.close();
+		return userSignIn;
 	}
 }

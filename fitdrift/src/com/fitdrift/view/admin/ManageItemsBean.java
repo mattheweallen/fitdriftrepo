@@ -10,10 +10,16 @@ import javax.faces.event.ActionEvent;
 import javax.faces.event.ValueChangeEvent;
 import javax.faces.model.SelectItem;
 
+import org.primefaces.model.LazyDataModel;
+
+import com.fitdrift.domain.activity.Activity;
 import com.fitdrift.domain.activity.ActivitySubType;
 import com.fitdrift.domain.activity.ActivityType;
 import com.fitdrift.domain.activity.Equipment;
+import com.fitdrift.domain.user.UserSignIn;
 import com.fitdrift.model.AthleticgisFacade;
+import com.fitdrift.view.model.ActivityDataModel;
+import com.fitdrift.view.model.UserSignInDataModel;
 
 @ManagedBean
 @ViewScoped
@@ -33,6 +39,7 @@ public class ManageItemsBean implements Serializable {
 	//private Long activityTypeId;
 	private ActivityType selectedActivityType;
 	private Long rank;
+	private LazyDataModel<UserSignIn> lazyModel;
 	
 //	public void onChangeValue(ValueChangeEvent e) {
 //		System.out.println(e.getNewValue());
@@ -173,6 +180,17 @@ public class ManageItemsBean implements Serializable {
 	 */
 	public void setRank(Long rank) {
 		this.rank = rank;
+	}
+	
+	/**
+	 * @return the lazyModel
+	 */
+	public LazyDataModel<UserSignIn> getLazyModel() {
+		if (lazyModel == null) {
+			lazyModel = new UserSignInDataModel();
+		}
+		return lazyModel;
+		//return new ActivityDataModel(userInfoBean.getUser_id());
 	}
 
 }
