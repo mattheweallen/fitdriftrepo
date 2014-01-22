@@ -1,6 +1,7 @@
 package com.fitdrift.model;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -302,5 +303,9 @@ public class AthleticgisFacade implements Serializable {
 	 */
 	public static List<UserSignIn> findUserSignInPaginated(int start, int max) {
 		return UserDao.findUserSignInPaginated(start, max);
+	}
+	
+	public static List<Object[]> summarizeActivityByUserByTime(Long user_id, Timestamp startDate, Timestamp endDate) {
+		return ActivityDao.summarizeActivityByUserByTime(user_id, startDate, endDate);
 	}
 }

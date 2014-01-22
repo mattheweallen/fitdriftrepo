@@ -133,7 +133,9 @@
 										<h:panelGrid columns="2" style="margin-bottom:10px;"
 											cellpadding="5">
 											<p:selectBooleanCheckbox id="indoors"
-												value="#{createActivityBean.indoors}" />
+												value="#{createActivityBean.indoors}" >
+													<p:ajax update="distance"/>
+												</p:selectBooleanCheckbox>
 											<h:outputText value="Indoors " />
 										</h:panelGrid>
 										<p:panelGrid columns="2" id="gear">
@@ -168,7 +170,7 @@
 										<p:outputLabel for="distance" value="Distance"></p:outputLabel>
 										<p:inputText id="distance" placeholder="Miles"
 											value="#{createActivityBean.distance}" style="width : 70px"
-											disabled="#{createActivityBean.useMyMap}"
+											disabled="#{createActivityBean.useMyMap and !createActivityBean.indoors}"
 											validatorMessage="Distance must be number between 0 and 1000.">
 											<f:validateDoubleRange minimum="0" maximum="1000" />
 											<f:convertNumber maxFractionDigits="2"></f:convertNumber>

@@ -1,6 +1,7 @@
 package com.fitdrift.model.activity;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -511,6 +512,19 @@ public class ActivityDao implements Serializable {
 		List<Measure> measures = query.getResultList();
 		em.close();
 		return measures;
+	}
+	
+	public static List<Object[]> summarizeActivityByUserByTime(Long user_id, Timestamp startDate, Timestamp endDate) {
+		EntityManager em = EntityManagerUtil.getEntityManager();
+		//divide by 60 to convert to minutes
+		Query q = em.createQuery("select at.description, sum(a.endTime - a.startTime)/60 from ActivityType at, Activity a "
+				+ "where a.activitytype_id = at.activitytype_id and a.user.user_id="+user_id+
+				" and a.date >='"+startDate + "' and a.date <='"+endDate +"' and a.startTime is not null and a.endTime is not null" 
+				+ " group by at.description order by sum(a.endTime - a.startTime) desc");
+		@SuppressWarnings("unchecked")
+		List<Object[]> results = q.getResultList();
+		em.close();
+		return results;
 	}
 
 }

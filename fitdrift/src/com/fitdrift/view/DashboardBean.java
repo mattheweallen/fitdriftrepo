@@ -43,6 +43,7 @@ public class DashboardBean implements Serializable {
 	private List<ActivitySubType> activitySubTypes;
 	private ActivitySubType selectedActivitySubType;
 	private Double measureValue;
+	private List<Object[]> weeklySummary;
 	
 	public DashboardBean() {  
         model = new DefaultDashboardModel();  
@@ -52,12 +53,16 @@ public class DashboardBean implements Serializable {
         
         //column1.addWidget("weather");
         //column1.addWidget("theme");
+        column1.addWidget("weeklyActivitySummary");
         column1.addWidget("activities");  
         column1.addWidget("measures");  
 //        column1.addWidget("finance");  
 //          
         column2.addWidget("theme");
         column2.addWidget("measureWidget");
+        
+        //heatMap
+       // column2.addWidget("heatMap");
        // column2.addWidget("lifestyle");  
           
 //          
@@ -205,5 +210,18 @@ public class DashboardBean implements Serializable {
 	 */
 	public void setMeasureValue(Double measureValue) {
 		this.measureValue = measureValue;
+	}
+
+	/**
+	 * @return the weeklySummary
+	 */
+	public List<Object[]> getWeeklySummary() {
+		if(weeklySummary == null) {
+			Timestamp endDate = new Timestamp(new Date().getTime());
+			Timestamp startDate = new Timestamp(new Date().getTime() - 1000*60*60*24*7); //subtract 7 days from current date
+			//Timestamp startDate = new Timestamp(0L);
+			weeklySummary = AthleticgisFacade.summarizeActivityByUserByTime(userInfoBean.getUser().getUser_id(), startDate, endDate);
+		}
+		return weeklySummary;
 	}
 }
