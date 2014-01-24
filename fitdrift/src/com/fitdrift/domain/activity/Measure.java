@@ -24,9 +24,9 @@ public class Measure implements Serializable {
 	@Column(updatable = false, nullable = false)
 	private Long measure_id;
 	
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(updatable = false, nullable = false)
-	private Long measureGroup_id;
+//	@GeneratedValue(strategy = GenerationType.AUTO)
+//	@Column(updatable = false, nullable = false)
+//	private Long measureGroup_id;
 	
 	@Column
 	private Timestamp date;
