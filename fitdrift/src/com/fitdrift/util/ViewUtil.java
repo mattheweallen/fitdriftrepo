@@ -34,4 +34,18 @@ public class ViewUtil {
 		return durString;
 		
 	}
+	
+	public static String equipmentType(String activityTypeDescription) {
+		if("Work".equals(activityTypeDescription)) {
+			return "Project";
+		} else if("Ride".equals(activityTypeDescription)) {
+			return "Bike";
+		} else if("Run".equals(activityTypeDescription)) {
+			return "Shoes";
+		} else if("Ski".equals(activityTypeDescription)) {
+			return "Skis";
+		} else {
+			return "Gear";
+		}
+	}
 }
