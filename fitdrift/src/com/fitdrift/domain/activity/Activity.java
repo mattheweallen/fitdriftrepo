@@ -67,9 +67,12 @@ public class Activity implements Serializable {
 	@Column
 	private Long startTime;
 	
-	@Column
+	@Column 
 	private Long endTime;
 	
+	@Column
+	Long durationSeconds;
+
 	@Column
 	private Double distance;
 	
@@ -327,5 +330,13 @@ public class Activity implements Serializable {
 	 */
 	public void setAveHeartRate(Double aveHeartRate) {
 		this.aveHeartRate = aveHeartRate;
+	}
+	
+	public Long getDurationSeconds() {
+		return durationSeconds;
+	}
+	
+	public void setDurationSeconds(Long durationSeconds) {
+		this.durationSeconds = durationSeconds;
 	}
 }

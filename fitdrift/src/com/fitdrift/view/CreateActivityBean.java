@@ -116,6 +116,10 @@ public class CreateActivityBean implements Serializable {
 			AthleticgisFacade.persist(m);
 		} else {
 			Activity a = new Activity();
+			
+			
+			
+			
 
 			a.setIndoors(indoors);
 
@@ -134,9 +138,18 @@ public class CreateActivityBean implements Serializable {
 			// TODO when get back out will have to check whether startTime <
 			// endTime. If other way around assume something like started 23:47
 			// and ended 00:15
-			a.setStartTime(convertTimeStringToLong(startTime));
-			a.setEndTime(convertTimeStringToLong(endTime));
-
+			Long st = convertTimeStringToLong(startTime);
+			Long et = convertTimeStringToLong(endTime);
+			
+			a.setStartTime(st);
+			a.setEndTime(et);
+			
+			if(st <= et) {
+				a.setDurationSeconds(et - st);
+			} else {
+				a.setDurationSeconds(24*60*60 -  st + et);
+			}
+			
 			if (selectedActivityType.getActivitytype_id() != null) {
 				a.setActivitytype_id(selectedActivityType.getActivitytype_id());
 			}
