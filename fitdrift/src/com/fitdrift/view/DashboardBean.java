@@ -228,7 +228,7 @@ public class DashboardBean implements Serializable {
 				Object[] objArr = new Object[3];
 				objArr[0] = o[0];
 				objArr[1] = ViewUtil.convertLongTimeToString((Long)o[1]);
-				//objArr[2] = ViewUtil.convertLongTimeToString((Long)o[2]);
+				objArr[2] = ViewUtil.convertLongTimeToString(((Double)o[2]).longValue());
 				weeklySummary.add(objArr);
 			}
 		}
