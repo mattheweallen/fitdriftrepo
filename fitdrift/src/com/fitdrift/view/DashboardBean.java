@@ -14,11 +14,13 @@ import com.fitdrift.domain.activity.Activity;
 import com.fitdrift.domain.activity.ActivitySubType;
 import com.fitdrift.domain.activity.Measure;
 import com.fitdrift.model.AthleticgisFacade;
+import com.fitdrift.util.ViewUtil;
 import com.fitdrift.view.model.ActivityDataModel;
 import com.fitdrift.view.model.MeasureDataModel;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -220,7 +222,15 @@ public class DashboardBean implements Serializable {
 			Timestamp endDate = new Timestamp(new Date().getTime());
 			Timestamp startDate = new Timestamp(new Date().getTime() - 1000*60*60*24*7); //subtract 7 days from current date
 			//Timestamp startDate = new Timestamp(0L);
-			weeklySummary = AthleticgisFacade.summarizeActivityByUserByTime(userInfoBean.getUser().getUser_id(), startDate, endDate);
+			List<Object[]> summary = AthleticgisFacade.summarizeActivityByUserByTime(userInfoBean.getUser().getUser_id(), startDate, endDate);
+			weeklySummary = new ArrayList<Object[]>();
+			for(Object[] o : summary) {			
+				Object[] objArr = new Object[3];
+				objArr[0] = o[0];
+				objArr[1] = ViewUtil.convertLongTimeToString((Long)o[1]);
+				//objArr[2] = ViewUtil.convertLongTimeToString((Long)o[2]);
+				weeklySummary.add(objArr);
+			}
 		}
 		return weeklySummary;
 	}

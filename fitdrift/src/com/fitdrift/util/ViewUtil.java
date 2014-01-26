@@ -1,0 +1,37 @@
+package com.fitdrift.util;
+
+public class ViewUtil {
+	public static String convertLongTimeToString(Long longTime) {
+//		Long time = null;
+//		String[] arr = strTime.split(":");
+//		Long hoursInSeconds = Long.parseLong(arr[0]) * 60 * 60;
+//		Long minutesInSeconds = Long.parseLong(arr[1]) * 60;
+//		Long seconds = Long.parseLong(arr[2]);
+//		time = hoursInSeconds + minutesInSeconds + seconds;
+//		return time;
+		
+		
+		//String timeString = null;
+		Long hours = longTime/(60*60);
+		Long minutes = (longTime - hours * 60*60)/60;
+		Long seconds = longTime - hours*60*60 - minutes*60;
+		String durString = "";
+		if(hours < 10) {
+			durString = "0"+hours;
+		} else {
+			durString = hours.toString();
+		}
+		if(minutes < 10) {
+			durString = durString + ":0" + minutes;
+		} else {
+			durString = durString + ":" + minutes;
+		}
+		if(seconds < 10) {
+			durString = durString + ":0" + seconds;
+		} else {
+			durString = durString + ":" + seconds;
+		}
+		return durString;
+		
+	}
+}
