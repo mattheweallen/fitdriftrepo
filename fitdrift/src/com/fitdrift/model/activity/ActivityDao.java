@@ -520,7 +520,7 @@ public class ActivityDao implements Serializable {
 		Query q = em.createQuery("select at.description, sum(a.durationSeconds)/60 from ActivityType at, Activity a "
 				+ "where a.activitytype_id = at.activitytype_id and a.user.user_id="+user_id+
 				" and a.date >='"+startDate + "' and a.date <='"+endDate +"' and a.startTime is not null and a.endTime is not null" 
-				+ " group by at.description order by sum(a.endTime - a.startTime) desc");
+				+ " group by at.description order by sum(a.durationSeconds) desc");
 		@SuppressWarnings("unchecked")
 		List<Object[]> results = q.getResultList();
 		em.close();
