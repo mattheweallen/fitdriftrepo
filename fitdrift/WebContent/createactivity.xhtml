@@ -121,13 +121,26 @@
 											value="#{createActivityBean.startTime}"
 											requiredMessage="Start Time is required."
 											validatorMessage="Start Time must be time in 24 hour clock HH:MM:SS, 23:45:56 for example.">
+											<p:ajax update="duration" event="blur"
+													listener="#{createActivityBean.calculateDuration}" />
 											<f:validator validatorId="militaryTimeValidator" />
 										</p:inputMask>
 										<p:outputLabel for="endTime" value="End Time (HH:MM:SS)"></p:outputLabel>
-										<p:inputMask style="width : 80px" id="endTime" mask="99:99:99"
+										<p:inputMask style="width : 80px" id="endTime" mask="99:99:99" 
 											required="true" value="#{createActivityBean.endTime}"
-											requiredMessage="End Time is required."
-											validatorMessage="End Time must be time in 24 hour clock HH:MM:SS, 23:45:56 for example.">
+											requiredMessage="End Time is required." 
+											validatorMessage="End Time must be time in 24 hour clock HH:MM:SS, 23:45:56 for example." >
+											
+											<p:ajax update="duration" event="blur"
+													listener="#{createActivityBean.calculateDuration}" />
+											<f:validator validatorId="militaryTimeValidator" />
+											
+										</p:inputMask>
+										<p:outputLabel for="duration" value="Duration (HH:MM:SS)"></p:outputLabel>
+										<p:inputMask style="width : 80px" id="duration" mask="99:99:99"
+											required="true" value="#{createActivityBean.duration}"
+											requiredMessage="Duration is required."
+											validatorMessage="Duration must be time format HH:MM:SS, 23:45:56 for example.">
 											<f:validator validatorId="militaryTimeValidator" />
 										</p:inputMask>
 										<h:panelGrid columns="2" style="margin-bottom:10px;"

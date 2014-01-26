@@ -66,6 +66,7 @@ public class CreateActivityBean implements Serializable {
 	private Double gearWeight;
 	private Long selectedEquipment;
 	private List<Equipment> equipment;
+	private String duration;
 	//private String distStr;
 
 	/**
@@ -140,15 +141,17 @@ public class CreateActivityBean implements Serializable {
 			// and ended 00:15
 			Long st = convertTimeStringToLong(startTime);
 			Long et = convertTimeStringToLong(endTime);
+			Long d = convertTimeStringToLong(duration);
 			
 			a.setStartTime(st);
 			a.setEndTime(et);
+			a.setDurationSeconds(d);
 			
-			if(st <= et) {
-				a.setDurationSeconds(et - st);
-			} else {
-				a.setDurationSeconds(24*60*60 -  st + et);
-			}
+//			if(st <= et) {
+//				a.setDurationSeconds(et - st);
+//			} else {
+//				a.setDurationSeconds(24*60*60 -  st + et);
+//			}
 			
 			if (selectedActivityType.getActivitytype_id() != null) {
 				a.setActivitytype_id(selectedActivityType.getActivitytype_id());
@@ -365,6 +368,55 @@ public class CreateActivityBean implements Serializable {
 		mapMapName = null;
 		//selectedMap = null;
 		distance = null;
+	}
+	
+	public void calculateDuration() {
+		if(startTime !=null && endTime != null) {
+			//System.out.println("in hre");
+			Long st = convertTimeStringToLong(startTime);
+			Long et = convertTimeStringToLong(endTime);
+			Long durationVal;
+			if(st <= et) {
+				durationVal = et - st;
+			} else {
+				durationVal = 24*60*60 -  st + et;
+			}
+			duration = convertLongTimeToString(durationVal);
+		}
+	}
+	
+	private String convertLongTimeToString(Long longTime) {
+//		Long time = null;
+//		String[] arr = strTime.split(":");
+//		Long hoursInSeconds = Long.parseLong(arr[0]) * 60 * 60;
+//		Long minutesInSeconds = Long.parseLong(arr[1]) * 60;
+//		Long seconds = Long.parseLong(arr[2]);
+//		time = hoursInSeconds + minutesInSeconds + seconds;
+//		return time;
+		
+		
+		//String timeString = null;
+		Long hours = longTime/(60*60);
+		Long minutes = (longTime - hours * 60*60)/60;
+		Long seconds = longTime - hours*60*60 - minutes*60;
+		String durString = "";
+		if(hours < 10) {
+			durString = "0"+hours;
+		} else {
+			durString = hours.toString();
+		}
+		if(minutes < 10) {
+			durString = durString + ":0" + minutes;
+		} else {
+			durString = durString + ":" + minutes;
+		}
+		if(seconds < 10) {
+			durString = durString + ":0" + seconds;
+		} else {
+			durString = durString + ":" + seconds;
+		}
+		return durString;
+		
 	}
 
 	/**
@@ -812,6 +864,14 @@ public class CreateActivityBean implements Serializable {
 	 */
 	public void setSelectedEquipment(Long selectedEquipment) {
 		this.selectedEquipment = selectedEquipment;
+	}
+
+	public String getDuration() {
+		return duration;
+	}
+
+	public void setDuration(String duration) {
+		this.duration = duration;
 	}
 
 //	/**
