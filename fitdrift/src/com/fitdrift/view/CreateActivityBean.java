@@ -145,7 +145,7 @@ public class CreateActivityBean implements Serializable {
 			
 			a.setStartTime(st);
 			a.setEndTime(et);
-			a.setDurationSeconds(d);
+			a.setDurationMilliseconds(d);
 			
 //			if(st <= et) {
 //				a.setDurationSeconds(et - st);
@@ -234,7 +234,7 @@ public class CreateActivityBean implements Serializable {
 		Long minutesInSeconds = Long.parseLong(arr[1]) * 60;
 		Long seconds = Long.parseLong(arr[2]);
 		time = hoursInSeconds + minutesInSeconds + seconds;
-		return time;
+		return time*1000; //time in milliseconds
 	}
 
 	/**

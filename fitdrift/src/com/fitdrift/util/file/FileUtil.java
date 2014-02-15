@@ -116,6 +116,14 @@ public class FileUtil {
 		a.setUseMyMap(false);
 		//distance
 		
+		long startTime = activityPoints.get(0).getTime().getTime();
+		long endTime = activityPoints.get(activityPoints.size()-1).getTime().getTime(); 
+		a.setStartTime(startTime); //start time end time milliseconds
+		a.setEndTime(endTime);
+		long duration = (endTime - startTime); //duration in milliseconds
+		a.setDurationMilliseconds(duration);
+		a.setActivitytype_id(1L); //set default activity to running, or whatever 1L is
+		
 		AthleticgisFacade.persistActivityAndActivityPoints(a, activityPoints);
 	}
 

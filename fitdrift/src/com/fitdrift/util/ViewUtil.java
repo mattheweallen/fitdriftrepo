@@ -12,9 +12,13 @@ public class ViewUtil {
 		
 		
 		//String timeString = null;
-		Long hours = longTime/(60*60);
-		Long minutes = (longTime - hours * 60*60)/60;
-		Long seconds = longTime - hours*60*60 - minutes*60;
+		
+		//longTime now in milliseconds, convert milliseconds to seconds
+		long secondTime = longTime/1000;
+		
+		Long hours = secondTime/(60*60);
+		Long minutes = (secondTime - hours * 60*60)/60;
+		Long seconds = secondTime - hours*60*60 - minutes*60;
 		String durString = "";
 		if(hours < 10) {
 			durString = "0"+hours;
