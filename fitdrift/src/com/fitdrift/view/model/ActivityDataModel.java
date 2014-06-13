@@ -47,7 +47,7 @@ public class ActivityDataModel extends LazyDataModel<Activity> {
 
 	@Override
 	public List<Activity> load(int first, int pageSize, String sortField,
-			SortOrder sortOrder, Map<String, String> filters) {
+			SortOrder sortOrder, Map<String, Object> filters) {
 		//	List<Activity> data = new ArrayList<Activity>();
 
 //		// filter

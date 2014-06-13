@@ -50,7 +50,7 @@ public class MyMapDataModel extends LazyDataModel<MyMap> {
 
 	@Override
 	public List<MyMap> load(int first, int pageSize, String sortField,
-			SortOrder sortOrder, Map<String, String> filters) {
+			SortOrder sortOrder, Map<String, Object> filters) {
 			
 		//System.out.println("Loading....");
 		

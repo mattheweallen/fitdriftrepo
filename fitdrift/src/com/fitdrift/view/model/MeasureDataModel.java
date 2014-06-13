@@ -41,7 +41,7 @@ public class MeasureDataModel extends LazyDataModel<Measure> {
 
 	@Override
 	public List<Measure> load(int first, int pageSize, String sortField,
-			SortOrder sortOrder, Map<String, String> filters) {
+			SortOrder sortOrder, Map<String, Object> filters) {
 
 		
 		Integer dataSize;

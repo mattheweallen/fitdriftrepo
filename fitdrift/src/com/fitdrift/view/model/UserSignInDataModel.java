@@ -44,7 +44,7 @@ public class UserSignInDataModel extends LazyDataModel<UserSignIn> {
 
 	@Override
 	public List<UserSignIn> load(int first, int pageSize, String sortField,
-			SortOrder sortOrder, Map<String, String> filters) {
+			SortOrder sortOrder, Map<String, Object> filters) {
 		//	List<Activity> data = new ArrayList<Activity>();
 
 //		// filter
